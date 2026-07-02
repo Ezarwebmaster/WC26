@@ -26,5 +26,8 @@ All notable changes to this project will be documented in this file.
   - Added support for Penalty Shootout scores (`PEN`) rendered elegantly under match results.
   - Added rich native Tooltips showing Goalscorers and Extra Time details on hover.
   - Replaced center trophy emoji with a hyper-realistic, glowing 3D World Cup trophy asset.
+- **Branding & SEO**:
+  - Updated the application favicon to use the new 3D World Cup trophy icon.
+  - Improved browser tab title to "World Cup 2026 Bracket" for better clarity.
 
 ## [1.0.0] - 2026-07-02
