@@ -20,9 +20,11 @@ All notable changes to this project will be documented in this file.
   - Curved round labels that perfectly nestle in the top gap.
   - T-junction score badges for completed matches.
   - Glow filters and premium UI styling (glassmorphism, dark mode).
+## [1.1.0] - 2026-07-02
+### Added
 - **Match Details Enhancement**:
   - Added support for Penalty Shootout scores (`PEN`) rendered elegantly under match results.
   - Added rich native Tooltips showing Goalscorers and Extra Time details on hover.
   - Replaced center trophy emoji with a hyper-realistic, glowing 3D World Cup trophy asset.
-### Changed
-- Open sourced the project under MIT License.
+
+## [1.0.0] - 2026-07-02
