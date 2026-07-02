@@ -1,0 +1,24 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.0.0] - 2026-07-02
+### Added
+- **World Cup 2026 Bracket App**: Initial complete release.
+- **Tech Stack**: Built with React, TypeScript, and Vite.
+- **Dynamic Tree Design**:
+  - Radial orthogonal connections ("T-shapes" and arcs).
+  - Perfect symmetry and mathematical layout.
+  - Split-flag nodes for head-to-head matches.
+- **Live Match Support**:
+  - Red pulsing highlights for live matches.
+  - Rounded red score badge for live updates.
+- **Timezone Auto-detection**:
+  - Top navigation bar includes a timezone selector.
+  - Automatically detects and displays match times in the user's local timezone.
+- **Advanced SVG Rendering**:
+  - Curved round labels that perfectly nestle in the top gap.
+  - T-junction score badges for completed matches.
+  - Glow filters and premium UI styling (glassmorphism, dark mode).
+### Changed
+- Open sourced the project under MIT License.
