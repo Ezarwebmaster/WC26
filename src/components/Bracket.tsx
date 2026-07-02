@@ -279,7 +279,9 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
         fontFamily="Outfit"
         paintOrder="stroke"
         stroke="#060608"
-        strokeWidth="6"
+        strokeWidth={lang === "ar" ? 3.5 : 6}
+        strokeLinejoin="round"
+        strokeLinecap="round"
       >
           <text><textPath href="#txt-R32" startOffset="50%" textAnchor="middle">{translations[lang].R32}</textPath></text>
           <text><textPath href="#txt-R16" startOffset="50%" textAnchor="middle">{translations[lang].R16}</textPath></text>
