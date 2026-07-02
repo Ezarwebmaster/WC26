@@ -358,6 +358,9 @@ svg.links {
   border: 1px solid #2a2a33;
   white-space: nowrap;
 }
+.split-text-below.has-live-score {
+  bottom: -38px;
+}
 .split-text-below .date {
   font-family: 'Inter', sans-serif;
   color: var(--text);

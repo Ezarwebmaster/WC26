@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.1] - 2026-07-03
+### Fixed
+- **Live Match Rendering**: Fixed a bug where live matches (e.g. status `1H`/`2H`) were misclassified as finished, resulting in blank match nodes.
+- **Layout Overlap**: Adjusted layout to shift match date/time below the live score badge when a match is live, preventing overlap.
+
 ## [1.2.0] - 2026-07-02
 ### Added
 - **Multi-Language Support**:

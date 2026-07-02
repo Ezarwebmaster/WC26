@@ -43,6 +43,17 @@ export interface Match {
 
 export type ByStage = Record<StageKey, Match[]>;
 
+export function isLive(e: Match | null): boolean {
+  if (!e) return false;
+  const s = (e.strStatus || "").toUpperCase();
+  return (
+    (/\d/.test(s) || ["1H", "2H", "HT", "ET", "LIVE", "PLAY"].some((x) => s.includes(x))) &&
+    !["FT", "AET", "AP", "PEN", "FINISHED"].some((x) => s.includes(x)) &&
+    s !== "NS" &&
+    s !== ""
+  );
+}
+
 export function isFinished(e: Match | null): boolean {
   if (!e) return false;
   const s = (e.strStatus || "").toUpperCase();
@@ -51,18 +62,8 @@ export function isFinished(e: Match | null): boolean {
     (e.intHomeScore != null &&
       e.intAwayScore != null &&
       s !== "NS" &&
-      s !== "")
-  );
-}
-
-export function isLive(e: Match | null): boolean {
-  if (!e) return false;
-  const s = e.strStatus || "";
-  return (
-    (/\d/.test(s) || ["1H", "2H", "HT", "ET", "LIVE", "PLAY"].some((x) => s.includes(x))) &&
-    !isFinished(e) &&
-    s !== "NS" &&
-    s !== ""
+      s !== "" &&
+      !isLive(e))
   );
 }
 

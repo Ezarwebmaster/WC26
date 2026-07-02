@@ -87,7 +87,7 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
             src={flagURL(match.strAwayTeam) || match.strAwayTeamBadge || ""}
             alt={match.strAwayTeam!}
           />
-          <div className="split-text-below">
+          <div className={`split-text-below ${live ? "has-live-score" : ""}`}>
             <div className="date">{dateStr} {timeStr}</div>
           </div>
         </>
