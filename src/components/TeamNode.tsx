@@ -1,6 +1,7 @@
 import { isLive, isFinished } from "../api/sportsdb";
 import type { Match } from "../api/sportsdb";
 import { flagURL, short, matchTip, scoreTxt, formatMatchDate } from "../utils/helpers";
+import type { SupportedLang } from "../utils/i18n";
 
 interface TeamNodeProps {
   team: string | null;
@@ -12,6 +13,7 @@ interface TeamNodeProps {
   match: Match | null;
   isOuter?: boolean;
   timezone: string;
+  lang: SupportedLang;
 }
 
 export const TeamNode: React.FC<TeamNodeProps> = ({
@@ -24,6 +26,7 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
   match,
   isOuter = false,
   timezone,
+  lang,
 }) => {
   const live = isLive(match);
   const fin = isFinished(match);
@@ -63,7 +66,7 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
   let dateStr = "";
   let timeStr = "";
   if (isSplit && match) {
-    const fd = formatMatchDate(match.dateEvent, match.strTime, timezone);
+    const fd = formatMatchDate(match.dateEvent, match.strTime, timezone, lang);
     dateStr = fd.date;
     timeStr = fd.time;
   }
@@ -71,7 +74,7 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
   const finalClasses = classes;
 
   return (
-    <div className={finalClasses} style={style} title={matchTip(match)}>
+    <div className={finalClasses} style={style} title={matchTip(match, lang)}>
       {isSplit ? (
         <>
           <img

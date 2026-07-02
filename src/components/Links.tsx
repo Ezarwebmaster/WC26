@@ -2,6 +2,9 @@ import React from "react";
 import { SIZE, scoreTxt } from "../utils/helpers";
 import type { Match } from "../api/sportsdb";
 
+import { translations } from "../utils/i18n";
+import type { SupportedLang } from "../utils/i18n";
+
 export interface LinkData {
   a: { x: number; y: number };
   b: { x: number; y: number };
@@ -11,6 +14,7 @@ export interface LinkData {
 
 interface LinksProps {
   links: LinkData[];
+  lang: SupportedLang;
 }
 
 const STYLE: Record<string, { stroke: string; w: number; op: number; dash: string | null; glow: boolean }> = {
@@ -57,7 +61,7 @@ const generatePath = (a: { x: number; y: number }, b: { x: number; y: number }) 
   const path = `M ${a.x} ${a.y} L ${pt1.x} ${pt1.y} A ${rMid} ${rMid} 0 0 ${sweepFlag} ${pt2.x} ${pt2.y} L ${b.x} ${b.y}`;
   return { path, scorePt: pt2 };
 };
-export const Links: React.FC<LinksProps> = ({ links }) => {
+export const Links: React.FC<LinksProps> = ({ links, lang }) => {
   // Sort links from least to most visible
   const sortedLinks = [...links].sort((a, b) => (RANK[a.state] || 0) - (RANK[b.state] || 0));
 
@@ -87,9 +91,13 @@ export const Links: React.FC<LinksProps> = ({ links }) => {
         const score = l.match ? scoreTxt(l.match) : "";
         const { path, scorePt } = generatePath(l.a, l.b);
 
+        const homeLabel = translations[lang].home;
+        const awayLabel = translations[lang].away;
+        const penLabel = translations[lang].pen;
+
         let tooltip = "";
         if (l.match && (l.match.strHomeGoalDetails || l.match.strAwayGoalDetails)) {
-          tooltip = `${l.match.strHomeTeam || "Home"}: ${l.match.strHomeGoalDetails || "-"}\n${l.match.strAwayTeam || "Away"}: ${l.match.strAwayGoalDetails || "-"}`;
+          tooltip = `${l.match.strHomeTeam || homeLabel}: ${l.match.strHomeGoalDetails || "-"}\n${l.match.strAwayTeam || awayLabel}: ${l.match.strAwayGoalDetails || "-"}`;
         }
 
         let penScore = "";
@@ -102,12 +110,12 @@ export const Links: React.FC<LinksProps> = ({ links }) => {
           const isPen = l.match.strStatus === "PEN" || (hPen != null && aPen != null);
           
           if (hPen != null && aPen != null) {
-            penScore = `${hPen} - ${aPen} PEN`;
+            penScore = `${hPen} - ${aPen} ${penLabel}`;
           } else if (isPen && hEx != null && aEx != null) {
-            penScore = `${hEx} - ${aEx} PEN`;
+            penScore = `${hEx} - ${aEx} ${penLabel}`;
           } else if (l.match.strResult?.includes("penalties")) {
             // Rough fallback if they put it in strResult
-            penScore = "PEN"; 
+            penScore = penLabel; 
           }
         }
 

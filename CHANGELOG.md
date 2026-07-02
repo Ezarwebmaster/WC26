@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2026-07-02
+### Added
+- **Multi-Language Support**:
+  - Full translations for English (`en`), French (`fr`), Arabic (`ar`), Spanish (`es`), and Portuguese (`pt`).
+  - Styled dropdown selector in the header for manual language switching.
+  - Automatic browser language detection on initialization.
+- **RTL Layout Support**:
+  - Fully compatible with `dir="rtl"` for Arabic, ensuring proper text alignment and readability.
+- **Localized Content**:
+  - Dynamically translated match dates (e.g. "July 4" -> "4 juil." -> "٤ يوليو"), round labels, status text, and tooltips.
+
+## [1.1.0] - 2026-07-02
+### Added
+- **Match Details Enhancement**:
+  - Added support for Penalty Shootout scores (`PEN`) rendered elegantly under match results.
+  - Added rich native Tooltips showing Goalscorers and Extra Time details on hover.
+  - Replaced center trophy emoji with a hyper-realistic, glowing 3D World Cup trophy asset.
+- **Branding & SEO**:
+  - Updated the application favicon to use the new 3D World Cup trophy icon.
+  - Improved browser tab title to "World Cup 2026 Bracket" for better clarity.
+
 ## [1.0.0] - 2026-07-02
 ### Added
 - **World Cup 2026 Bracket App**: Initial complete release.
@@ -20,14 +41,3 @@ All notable changes to this project will be documented in this file.
   - Curved round labels that perfectly nestle in the top gap.
   - T-junction score badges for completed matches.
   - Glow filters and premium UI styling (glassmorphism, dark mode).
-## [1.1.0] - 2026-07-02
-### Added
-- **Match Details Enhancement**:
-  - Added support for Penalty Shootout scores (`PEN`) rendered elegantly under match results.
-  - Added rich native Tooltips showing Goalscorers and Extra Time details on hover.
-  - Replaced center trophy emoji with a hyper-realistic, glowing 3D World Cup trophy asset.
-- **Branding & SEO**:
-  - Updated the application favicon to use the new 3D World Cup trophy icon.
-  - Improved browser tab title to "World Cup 2026 Bracket" for better clarity.
-
-## [1.0.0] - 2026-07-02

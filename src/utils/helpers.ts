@@ -73,6 +73,9 @@ export function short(name: string | null): string {
   return name.replace(/[^A-Za-z ]/g, "").slice(0, 3).toUpperCase();
 }
 
+import { translations } from "./i18n";
+import type { SupportedLang } from "./i18n";
+
 export function scoreTxt(e: Match | null): string {
   if (!e) return "";
   return e.intHomeScore != null && e.intAwayScore != null
@@ -80,7 +83,7 @@ export function scoreTxt(e: Match | null): string {
     : "";
 }
 
-export function matchTip(e: Match | null): string {
+export function matchTip(e: Match | null, lang: SupportedLang = "en"): string {
   if (!e) return "";
   const sc =
     e.intHomeScore != null ? ` ${e.intHomeScore}-${e.intAwayScore}` : "";
@@ -91,9 +94,9 @@ export function matchTip(e: Match | null): string {
     : e.strTime
     ? ` ${e.strTime.slice(0, 5)}`
     : "";
-  let t = `${e.strHomeTeam || "?"} vs ${e.strAwayTeam || "?"}${sc}${st}`;
+  let t = `${e.strHomeTeam || "?"} ${translations[lang].vs} ${e.strAwayTeam || "?"}${sc}${st}`;
   if (e.strHomeGoalDetails || e.strAwayGoalDetails) {
-    t += `\n\n⚽️ Buteurs :\n${e.strHomeTeam}: ${e.strHomeGoalDetails || "-"}\n${e.strAwayTeam}: ${e.strAwayGoalDetails || "-"}`;
+    t += `\n\n⚽️ ${translations[lang].scorers} :\n${e.strHomeTeam}: ${e.strHomeGoalDetails || "-"}\n${e.strAwayTeam}: ${e.strAwayGoalDetails || "-"}`;
   }
   return t;
 }
@@ -109,18 +112,23 @@ export function winner(e: Match | null, nextStageTeams?: Set<string | null>): st
   }
   
   if (isFinished(e)) {
-    if (Number(e.intHomeScore) > Number(e.intAwayScore)) return h;
-    if (Number(e.intAwayScore) > Number(e.intHomeScore)) return a;
+    const hs = +(e.intHomeScore || 0) + +(e.intHomeScoreExtra || 0);
+    const as = +(e.intAwayScore || 0) + +(e.intAwayScoreExtra || 0);
+    if (hs > as) return h;
+    if (as > hs) return a;
+    const hp = +(e.intHomePenaltyScore || 0);
+    const ap = +(e.intAwayPenaltyScore || 0);
+    if (hp > ap) return h;
+    if (ap > hp) return a;
   }
   return null;
 }
 
-export function badgeOf(e: Match, team: string | null): string | null {
-  return team === e.strHomeTeam
-    ? e.strHomeTeamBadge
-    : team === e.strAwayTeam
-    ? e.strAwayTeamBadge
-    : null;
+export function badgeOf(e: Match | null, teamName: string | null): string | null {
+  if (!e || !teamName) return null;
+  if (e.strHomeTeam === teamName) return e.strHomeTeamBadge;
+  if (e.strAwayTeam === teamName) return e.strAwayTeamBadge;
+  return null;
 }
 
 export function lineState(m: Match | null, w: string | null, team: string | null) {
@@ -131,7 +139,7 @@ export function lineState(m: Match | null, w: string | null, team: string | null
   return "cold";
 }
 
-export function formatMatchDate(dateStr: string | null, timeStr: string | null, tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone): { date: string, time: string } {
+export function formatMatchDate(dateStr: string | null, timeStr: string | null, tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone, lang: SupportedLang = "en"): { date: string, time: string } {
   if (!dateStr) return { date: "TBD", time: "" };
   const d = new Date(dateStr + "T" + (timeStr || "00:00:00") + "Z");
   if (isNaN(d.getTime())) return { date: dateStr, time: timeStr ? timeStr.slice(0, 5) : "" };
@@ -139,8 +147,9 @@ export function formatMatchDate(dateStr: string | null, timeStr: string | null, 
   const dateOptions: Intl.DateTimeFormatOptions = { day: "numeric", month: "short", timeZone: tz };
   const timeOptions: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: tz };
   
-  const dateFormatted = d.toLocaleDateString("en-US", dateOptions);
-  const timeFormatted = d.toLocaleTimeString("en-US", timeOptions);
+  const locale = lang === "en" ? "en-US" : lang;
+  const dateFormatted = d.toLocaleDateString(locale, dateOptions);
+  const timeFormatted = d.toLocaleTimeString(locale, timeOptions);
   
   return { date: dateFormatted, time: timeFormatted };
 }

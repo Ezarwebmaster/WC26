@@ -19,9 +19,13 @@ import { TeamNode } from "./TeamNode";
 import { Links } from "./Links";
 import type { LinkData } from "./Links";
 
+import { translations } from "../utils/i18n";
+import type { SupportedLang } from "../utils/i18n";
+
 interface BracketProps {
   byStage: ByStage;
   timezone: string;
+  lang: SupportedLang;
 }
 
 interface NodeData {
@@ -37,7 +41,7 @@ interface NodeData {
   timezone: string;
 }
 
-export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
+export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => {
   const { nodes, links, center } = useMemo(() => {
     const computedNodes: NodeData[] = [];
     const computedLinks: LinkData[] = [];
@@ -200,13 +204,13 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
     }
 
     return { nodes: computedNodes, links: computedLinks, center: centerData };
-  }, [byStage]);
+  }, [byStage, timezone, lang]);
 
   return (
     <div className="canvas" id="canvas" style={{ width: SIZE, height: SIZE }}>
       <div className="glow"></div>
       
-      <Links links={links} />
+      <Links links={links} lang={lang} />
 
       {nodes.map((n, i) => (
         <TeamNode
@@ -220,6 +224,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
           match={n.match}
           isOuter={n.isOuter}
           timezone={n.timezone}
+          lang={lang}
         />
       ))}
 
@@ -241,14 +246,14 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
             <div className="champ">
               {center.champ}
               <br />
-              <span style={{ color: "var(--muted)", fontWeight: 600 }}>Champion</span>
+              <span style={{ color: "var(--muted)", fontWeight: 600 }}>{translations[lang].champion}</span>
             </div>
           </>
         ) : center.finalM ? (
           <>
             <img src="/trophy.png" alt="World Cup" style={{ width: 100, height: 100, objectFit: "contain", filter: "drop-shadow(0 0 10px rgba(255, 215, 0, 0.4))" }} />
             <div className="champ" style={{ color: "#fff", fontSize: 11 }}>
-              FINAL<br />
+              {translations[lang].F.toUpperCase()}<br />
               {center.finalM.strHomeTeam || "?"} {center.score || "vs"} {center.finalM.strAwayTeam || "?"}
             </div>
           </>
@@ -276,10 +281,10 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
         stroke="#060608"
         strokeWidth="6"
       >
-          <text><textPath href="#txt-R32" startOffset="50%" textAnchor="middle">Round of 32</textPath></text>
-          <text><textPath href="#txt-R16" startOffset="50%" textAnchor="middle">Round of 16</textPath></text>
-          <text><textPath href="#txt-QF" startOffset="50%" textAnchor="middle">Quarter-Finals</textPath></text>
-          <text><textPath href="#txt-SF" startOffset="50%" textAnchor="middle">Semi-Finals</textPath></text>
+          <text><textPath href="#txt-R32" startOffset="50%" textAnchor="middle">{translations[lang].R32}</textPath></text>
+          <text><textPath href="#txt-R16" startOffset="50%" textAnchor="middle">{translations[lang].R16}</textPath></text>
+          <text><textPath href="#txt-QF" startOffset="50%" textAnchor="middle">{translations[lang].QF}</textPath></text>
+          <text><textPath href="#txt-SF" startOffset="50%" textAnchor="middle">{translations[lang].SF}</textPath></text>
         </g>
       </svg>
     </div>
