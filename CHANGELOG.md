@@ -23,5 +23,6 @@ All notable changes to this project will be documented in this file.
 - **Match Details Enhancement**:
   - Added support for Penalty Shootout scores (`PEN`) rendered elegantly under match results.
   - Added rich native Tooltips showing Goalscorers and Extra Time details on hover.
+  - Replaced center trophy emoji with a hyper-realistic, glowing 3D World Cup trophy asset.
 ### Changed
 - Open sourced the project under MIT License.
