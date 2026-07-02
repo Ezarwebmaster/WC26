@@ -265,7 +265,17 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
           <path id="txt-QF"  d={`M ${C - RINGS.QF.r}  ${C} A ${RINGS.QF.r}  ${RINGS.QF.r}  0 0 1 ${C + RINGS.QF.r}  ${C}`} />
           <path id="txt-SF"  d={`M ${C - RINGS.SF.r}  ${C} A ${RINGS.SF.r}  ${RINGS.SF.r}  0 0 1 ${C + RINGS.SF.r}  ${C}`} />
         </defs>
-        <g fill="var(--gold)" fontSize="11" fontWeight="800" letterSpacing="4" textTransform="uppercase" fontFamily="Outfit" paintOrder="stroke" stroke="#060608" strokeWidth="6">
+        <g
+        fill="var(--gold)"
+        fontSize="14"
+        fontWeight="800"
+        letterSpacing="2"
+        style={{ textTransform: "uppercase" }}
+        fontFamily="Outfit"
+        paintOrder="stroke"
+        stroke="#060608"
+        strokeWidth="6"
+      >
           <text><textPath href="#txt-R32" startOffset="50%" textAnchor="middle">Round of 32</textPath></text>
           <text><textPath href="#txt-R16" startOffset="50%" textAnchor="middle">Round of 16</textPath></text>
           <text><textPath href="#txt-QF" startOffset="50%" textAnchor="middle">Quarter-Finals</textPath></text>

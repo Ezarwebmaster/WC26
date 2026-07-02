@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { fetchBracketData, ORDER, isLive } from "./api/sportsdb";
+import { fetchBracketData, ORDER, isLive, isFinished } from "./api/sportsdb";
 import type { ByStage } from "./api/sportsdb";
 import { Bracket } from "./components/Bracket";
 import { SIZE } from "./utils/helpers";
@@ -19,6 +19,7 @@ function App() {
     setStatusTxt("Connecting to API…");
     try {
       const byStage = await fetchBracketData();
+      
       setData(byStage);
 
       const live = ORDER.flatMap((s) => byStage[s]).filter(isLive).length;

@@ -27,15 +27,7 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
 }) => {
   const live = isLive(match);
   const fin = isFinished(match);
-  const elim = isOuter && team && fin && !isWin;
-  const sched =
-    !team &&
-    !isOuter &&
-    match &&
-    match.strHomeTeam &&
-    match.strAwayTeam &&
-    !fin &&
-    !live;
+
 
   const classes = [
     "node",
@@ -47,6 +39,8 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
   ]
     .filter(Boolean)
     .join(" ");
+
+
 
   const isSplit =
     !team &&

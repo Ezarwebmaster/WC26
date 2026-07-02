@@ -88,10 +88,14 @@ export function matchTip(e: Match | null): string {
     ? " (LIVE)"
     : isFinished(e)
     ? ""
-    : ` — ${e.dateEvent || ""} ${(e.strTime || "").slice(0, 5)}`;
-  return `${e.strHomeTeam || "?"}${sc ? sc.split("-")[0] : ""} vs ${
-    e.strAwayTeam || "?"
-  }${sc ? " " + sc.trim() : ""}${st}`;
+    : e.strTime
+    ? ` ${e.strTime.slice(0, 5)}`
+    : "";
+  let t = `${e.strHomeTeam || "?"} vs ${e.strAwayTeam || "?"}${sc}${st}`;
+  if (e.strHomeGoalDetails || e.strAwayGoalDetails) {
+    t += `\n\n⚽️ Buteurs :\n${e.strHomeTeam}: ${e.strHomeGoalDetails || "-"}\n${e.strAwayTeam}: ${e.strAwayGoalDetails || "-"}`;
+  }
+  return t;
 }
 
 export function winner(e: Match | null, nextStageTeams?: Set<string | null>): string | null {

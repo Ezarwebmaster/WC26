@@ -22,6 +22,7 @@ export const LABEL: Record<StageKey, string> = {
 
 export interface Match {
   idEvent: string;
+  strEvent: string;
   strHomeTeam: string | null;
   strAwayTeam: string | null;
   intHomeScore: string | null;
@@ -31,6 +32,13 @@ export interface Match {
   dateEvent: string | null;
   strTime: string | null;
   strStatus: string | null;
+  strHomeGoalDetails?: string | null;
+  strAwayGoalDetails?: string | null;
+  intHomeScoreExtra?: string | null;
+  intAwayScoreExtra?: string | null;
+  intHomePenaltyScore?: string | null;
+  intAwayPenaltyScore?: string | null;
+  strResult?: string | null;
 }
 
 export type ByStage = Record<StageKey, Match[]>;
@@ -49,7 +57,7 @@ export function isFinished(e: Match | null): boolean {
 
 export function isLive(e: Match | null): boolean {
   if (!e) return false;
-  const s = (e.strStatus || "").toUpperCase();
+  const s = e.strStatus || "";
   return (
     (/\d/.test(s) || ["1H", "2H", "HT", "ET", "LIVE", "PLAY"].some((x) => s.includes(x))) &&
     !isFinished(e) &&
