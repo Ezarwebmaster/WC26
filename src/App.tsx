@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { fetchBracketData, ORDER, isLive, isFinished } from "./api/sportsdb";
+import { fetchBracketData, ORDER, isLive } from "./api/sportsdb";
 import type { ByStage } from "./api/sportsdb";
 import { Bracket } from "./components/Bracket";
 import { SIZE } from "./utils/helpers";

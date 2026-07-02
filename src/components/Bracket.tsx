@@ -206,7 +206,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
     <div className="canvas" id="canvas" style={{ width: SIZE, height: SIZE }}>
       <div className="glow"></div>
       
-      <Links links={links} timezone={timezone} />
+      <Links links={links} />
 
       {nodes.map((n, i) => (
         <TeamNode
