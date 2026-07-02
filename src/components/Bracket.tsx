@@ -237,7 +237,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
                 <img className="crest" src={center.badge} alt="" />
               )}
             </div>
-            <div className="trophy">🏆</div>
+
             <div className="champ">
               {center.champ}
               <br />
@@ -246,14 +246,14 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone }) => {
           </>
         ) : center.finalM ? (
           <>
-            <div className="trophy">🏆</div>
+            <img src="/trophy.png" alt="World Cup" style={{ width: 100, height: 100, mixBlendMode: "screen", objectFit: "contain", filter: "drop-shadow(0 0 10px rgba(255, 215, 0, 0.4))" }} />
             <div className="champ" style={{ color: "#fff", fontSize: 11 }}>
               FINAL<br />
               {center.finalM.strHomeTeam || "?"} {center.score || "vs"} {center.finalM.strAwayTeam || "?"}
             </div>
           </>
         ) : (
-          <div className="trophy">🏆</div>
+          <img src="/trophy.png" alt="World Cup" style={{ width: 100, height: 100, mixBlendMode: "screen", objectFit: "contain", filter: "drop-shadow(0 0 10px rgba(255, 215, 0, 0.4))" }} />
         )}
       </div>
 
