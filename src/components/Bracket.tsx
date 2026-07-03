@@ -234,6 +234,8 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
           isOuter={n.isOuter}
           timezone={n.timezone}
           lang={lang}
+          homeTeam={n.homeTeam}
+          awayTeam={n.awayTeam}
         />
       ))}
 
