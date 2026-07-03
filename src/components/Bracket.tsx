@@ -39,6 +39,11 @@ interface NodeData {
   match: Match | null;
   isOuter: boolean;
   timezone: string;
+  // Determined pairing for a slot whose fixture is not yet in the API
+  // (e.g. both feeder winners are known but the next-round match isn't
+  // published). Lets the node render as a split instead of a blank circle.
+  homeTeam?: string | null;
+  awayTeam?: string | null;
 }
 
 export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => {
@@ -170,13 +175,17 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
         const ang = meanAngle([left[i].angle, left[i + 1].angle]);
         const p = pos(ang, RINGS[stageKey].r);
         const wn = { x: p.x, y: p.y, angle: normAng(ang), team: null };
-        
+        // Both feeder winners are known but the fixture isn't in the API yet:
+        // surface the determined pairing so it renders as a split, not a blank.
+        const bothKnown = !!left[i].team && !!left[i + 1].team;
         computedNodes.push({
           ...wn, badge: null, ringSize: RINGS[stageKey].sz,
-          isWin: false, match: null, isOuter: false, timezone
+          isWin: false, match: null, isOuter: false, timezone,
+          homeTeam: left[i].team, awayTeam: left[i + 1].team,
         });
-        computedLinks.push({ a: left[i], b: wn, state: "cold" });
-        computedLinks.push({ a: left[i + 1], b: wn, state: "cold" });
+        const linkState = bothKnown ? "sched" : "cold";
+        computedLinks.push({ a: left[i], b: wn, state: linkState });
+        computedLinks.push({ a: left[i + 1], b: wn, state: linkState });
         out.push(wn);
       }
       return out;

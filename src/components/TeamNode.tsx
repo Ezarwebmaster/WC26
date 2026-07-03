@@ -1,6 +1,7 @@
 import { isLive, isFinished } from "../api/sportsdb";
 import type { Match } from "../api/sportsdb";
 import { flagURL, short, matchTip, scoreTxt, formatMatchDate } from "../utils/helpers";
+import { translations } from "../utils/i18n";
 import type { SupportedLang } from "../utils/i18n";
 
 interface TeamNodeProps {
@@ -14,6 +15,8 @@ interface TeamNodeProps {
   isOuter?: boolean;
   timezone: string;
   lang: SupportedLang;
+  homeTeam?: string | null;
+  awayTeam?: string | null;
 }
 
 export const TeamNode: React.FC<TeamNodeProps> = ({
@@ -27,6 +30,8 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
   isOuter = false,
   timezone,
   lang,
+  homeTeam,
+  awayTeam,
 }) => {
   const live = isLive(match);
   const fin = isFinished(match);
@@ -45,12 +50,12 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
 
 
 
-  const isSplit =
-    !team &&
-    !isOuter &&
-    match?.strHomeTeam &&
-    match?.strAwayTeam &&
-    !fin;
+  // The two sides of an upcoming match: from the API fixture when present,
+  // otherwise the determined pairing passed in (fixture not yet published).
+  const splitHome = match?.strHomeTeam ?? homeTeam ?? null;
+  const splitAway = match?.strAwayTeam ?? awayTeam ?? null;
+
+  const isSplit = !team && !isOuter && !!splitHome && !!splitAway && !fin;
 
   const flag = flagURL(team);
 
@@ -73,19 +78,25 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
 
   const finalClasses = classes;
 
+  const title = match
+    ? matchTip(match, lang)
+    : splitHome && splitAway
+    ? `${splitHome} ${translations[lang].vs} ${splitAway}`
+    : "";
+
   return (
-    <div className={finalClasses} style={style} title={matchTip(match, lang)}>
+    <div className={finalClasses} style={style} title={title}>
       {isSplit ? (
         <>
           <img
             className="split-flag home"
-            src={flagURL(match.strHomeTeam) || match.strHomeTeamBadge || ""}
-            alt={match.strHomeTeam!}
+            src={flagURL(splitHome) || match?.strHomeTeamBadge || ""}
+            alt={splitHome || ""}
           />
           <img
             className="split-flag away"
-            src={flagURL(match.strAwayTeam) || match.strAwayTeamBadge || ""}
-            alt={match.strAwayTeam!}
+            src={flagURL(splitAway) || match?.strAwayTeamBadge || ""}
+            alt={splitAway || ""}
           />
           <div className={`split-text-below ${live ? "has-live-score" : ""}`}>
             <div className="date">{dateStr} {timeStr}</div>

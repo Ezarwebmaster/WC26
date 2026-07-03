@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - **Refresh Race Condition**: Added a request-id guard so a slow in-flight fetch can no longer overwrite fresher data when refresh and auto-poll overlap.
 - **Stable Render Keys**: Bracket nodes and connector links now key on their geometric position instead of array index, preventing flicker and mismatched tooltips when match states reorder between polls.
 - **Partial API Failures**: Round fetches now distinguish a genuine network/HTTP failure from a legitimately empty round. A full outage surfaces as an error, and a partial failure shows a "⚠ partial data" warning instead of silently presenting an incomplete bracket as complete.
+- **Blank Next-Round Node**: When both feeder teams are known but the next-round fixture isn't yet published by the API (common right after a round finishes), the slot now renders the determined pairing as a split node (both flags + a tooltip) instead of an empty circle.
 ### Security
 - **Analytics Injection**: The inline Google Analytics snippet now uses `textContent` and JSON-encodes the tracking id instead of building script markup via `innerHTML`.
 ### Changed
