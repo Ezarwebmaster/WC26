@@ -212,9 +212,9 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
       
       <Links links={links} lang={lang} />
 
-      {nodes.map((n, i) => (
+      {nodes.map((n) => (
         <TeamNode
-          key={i}
+          key={`${Math.round(n.x)},${Math.round(n.y)}`}
           team={n.team}
           badge={n.badge}
           x={n.x}

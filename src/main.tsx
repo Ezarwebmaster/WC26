@@ -12,11 +12,11 @@ if (gaId && typeof window !== "undefined") {
   document.head.appendChild(script);
 
   const inlineScript = document.createElement("script");
-  inlineScript.innerHTML = `
+  inlineScript.textContent = `
     window.dataLayer = window.dataLayer || [];
     function gtag(){window.dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '${gaId}', { page_path: window.location.pathname });
+    gtag('config', ${JSON.stringify(gaId)}, { page_path: window.location.pathname });
   `;
   document.head.appendChild(inlineScript);
 }

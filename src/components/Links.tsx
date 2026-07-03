@@ -84,7 +84,7 @@ export const Links: React.FC<LinksProps> = ({ links, lang }) => {
       </defs>
 
       {/* Links */}
-      {sortedLinks.map((l, i) => {
+      {sortedLinks.map((l) => {
         const s = STYLE[l.state] || STYLE.cold;
         
         const isWonLine = l.state === "won" && l.match;
@@ -126,7 +126,7 @@ export const Links: React.FC<LinksProps> = ({ links, lang }) => {
         const penY = penScore ? 9 : 0;
 
         return (
-          <g key={i}>
+          <g key={`${Math.round(l.a.x)},${Math.round(l.a.y)}-${Math.round(l.b.x)},${Math.round(l.b.y)}`}>
             <path
               d={path}
               fill="none"

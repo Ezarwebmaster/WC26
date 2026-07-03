@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { fetchBracketData, ORDER, isLive } from "./api/sportsdb";
 import type { ByStage } from "./api/sportsdb";
 import { Bracket } from "./components/Bracket";
@@ -27,13 +27,17 @@ function App() {
   const [scale, setScale] = useState(1);
   const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const [timezone, setTimezone] = useState<string>(localTimezone);
+  const loadId = useRef(0);
 
   // Fetch is independent of language so switching locale never refetches or
   // resets the auto-refresh timer. Status text is derived from state below.
   const load = useCallback(async () => {
+    const id = ++loadId.current;
     setStatus("load");
     try {
       const byStage = await fetchBracketData();
+      // Ignore stale responses: a newer load() was started while this awaited.
+      if (id !== loadId.current) return;
 
       setData(byStage);
 
@@ -44,6 +48,7 @@ function App() {
       setStatus("ok");
       setLastUpdate(new Date());
     } catch (err: any) {
+      if (id !== loadId.current) return;
       setErrMsg(err.message);
       setStatus("err");
     }

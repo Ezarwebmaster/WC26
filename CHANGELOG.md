@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - **Language Switching**: Decoupled data fetching from the selected language, so switching locales no longer fires redundant API requests or resets the 60s auto-refresh timer.
 - **Timezone Selector**: De-duplicated the "Auto" option against the common timezone list, so users in a listed zone (e.g. Europe/Paris) can now see and select it.
+- **Refresh Race Condition**: Added a request-id guard so a slow in-flight fetch can no longer overwrite fresher data when refresh and auto-poll overlap.
+- **Stable Render Keys**: Bracket nodes and connector links now key on their geometric position instead of array index, preventing flicker and mismatched tooltips when match states reorder between polls.
+### Security
+- **Analytics Injection**: The inline Google Analytics snippet now uses `textContent` and JSON-encodes the tracking id instead of building script markup via `innerHTML`.
 ### Changed
 - **API Key Configuration**: The TheSportsDB API key is now configurable via the `VITE_SPORTSDB_KEY` environment variable (falls back to the public test key).
 ### Removed
