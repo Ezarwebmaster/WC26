@@ -1,4 +1,4 @@
-const KEY = "123";
+const KEY = import.meta.env.VITE_SPORTSDB_KEY || "123";
 const BASE = `https://www.thesportsdb.com/api/v1/json/${KEY}/eventsround.php?id=4429&s=2026&r=`;
 
 export const KO_ROUNDS = [

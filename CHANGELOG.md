@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2026-07-03
+### Fixed
+- **Language Switching**: Decoupled data fetching from the selected language, so switching locales no longer fires redundant API requests or resets the 60s auto-refresh timer.
+- **Timezone Selector**: De-duplicated the "Auto" option against the common timezone list, so users in a listed zone (e.g. Europe/Paris) can now see and select it.
+### Changed
+- **API Key Configuration**: The TheSportsDB API key is now configurable via the `VITE_SPORTSDB_KEY` environment variable (falls back to the public test key).
+### Removed
+- **Dead Code**: Removed the unused `.rtl` CSS class hook and the unused `jimp` dependency.
+
 ## [1.2.1] - 2026-07-03
 ### Fixed
 - **Live Match Rendering**: Fixed a bug where live matches (e.g. status `1H`/`2H`) were misclassified as finished, resulting in blank match nodes.

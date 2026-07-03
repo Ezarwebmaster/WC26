@@ -8,41 +8,46 @@ import type { SupportedLang } from "./utils/i18n";
 
 type StatusType = "load" | "ok" | "err";
 
+const COMMON_TIMEZONES = [
+  "Europe/Paris",
+  "America/New_York",
+  "America/Los_Angeles",
+  "Europe/London",
+  "Asia/Tokyo",
+  "Australia/Sydney",
+];
+
 function App() {
   const [data, setData] = useState<ByStage | null>(null);
   const [status, setStatus] = useState<StatusType>("load");
   const [lang, setLang] = useState<SupportedLang>(detectBrowserLanguage);
-  const [statusTxt, setStatusTxt] = useState(translations[lang].connecting);
-  const [lastUpdate, setLastUpdate] = useState<string>("—");
+  const [stats, setStats] = useState<{ tot: number; live: number } | null>(null);
+  const [errMsg, setErrMsg] = useState<string>("");
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
   const [scale, setScale] = useState(1);
-  const [timezone, setTimezone] = useState<string>(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
+  const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const [timezone, setTimezone] = useState<string>(localTimezone);
 
-  // Sync initial loading message if language changes before load finishes
-  useEffect(() => {
-    if (status === "load") {
-      setStatusTxt(translations[lang].connecting);
-    }
-  }, [lang, status]);
-
+  // Fetch is independent of language so switching locale never refetches or
+  // resets the auto-refresh timer. Status text is derived from state below.
   const load = useCallback(async () => {
     setStatus("load");
-    setStatusTxt(translations[lang].connecting);
     try {
       const byStage = await fetchBracketData();
-      
+
       setData(byStage);
 
       const live = ORDER.flatMap((s) => byStage[s]).filter(isLive).length;
       const tot = ORDER.reduce((n, s) => n + byStage[s].length, 0);
 
+      setStats({ tot, live });
       setStatus("ok");
-      setStatusTxt(`${tot} ${translations[lang].matches}${live ? ` · ${live} ${translations[lang].live}` : ""}`);
-      setLastUpdate(new Date().toLocaleTimeString(lang === "en" ? "en-US" : lang));
+      setLastUpdate(new Date());
     } catch (err: any) {
+      setErrMsg(err.message);
       setStatus("err");
-      setStatusTxt(`${translations[lang].error}: ${err.message}`);
     }
-  }, [lang]);
+  }, []);
 
   useEffect(() => {
     load();
@@ -60,8 +65,19 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const t = translations[lang];
+  const statusTxt =
+    status === "err"
+      ? `${t.error}: ${errMsg}`
+      : status === "ok" && stats
+      ? `${stats.tot} ${t.matches}${stats.live ? ` · ${stats.live} ${t.live}` : ""}`
+      : t.connecting;
+  const lastUpdateTxt = lastUpdate
+    ? lastUpdate.toLocaleTimeString(lang === "en" ? "en-US" : lang)
+    : "—";
+
   return (
-    <div dir={lang === "ar" ? "rtl" : "ltr"} className={lang === "ar" ? "rtl" : ""}>
+    <div dir={lang === "ar" ? "rtl" : "ltr"}>
       <header>
         <h1>{translations[lang].title}</h1>
         <div className="sub">{translations[lang].subtitle}</div>
@@ -113,16 +129,15 @@ function App() {
               cursor: "pointer"
             }}
           >
-            {/* List some common timezones */}
-            <option value="Europe/Paris">Europe/Paris</option>
-            <option value="America/New_York">America/New_York</option>
-            <option value="America/Los_Angeles">America/Los_Angeles</option>
-            <option value="Europe/London">Europe/London</option>
-            <option value="Asia/Tokyo">Asia/Tokyo</option>
-            <option value="Australia/Sydney">Australia/Sydney</option>
-            <option value={Intl.DateTimeFormat().resolvedOptions().timeZone}>
-              {lang === "ar" ? "تلقائي" : "Auto"} ({Intl.DateTimeFormat().resolvedOptions().timeZone})
+            {/* Auto (local) first, then common zones with the local one de-duped */}
+            <option value={localTimezone}>
+              {lang === "ar" ? "تلقائي" : "Auto"} ({localTimezone})
             </option>
+            {COMMON_TIMEZONES.filter((tz) => tz !== localTimezone).map((tz) => (
+              <option key={tz} value={tz}>
+                {tz}
+              </option>
+            ))}
           </select>
         </div>
       </header>
@@ -144,7 +159,7 @@ function App() {
         <a href="https://www.thesportsdb.com" target="_blank" rel="noreferrer">
           TheSportsDB
         </a>{" "}
-        · {translations[lang].autoRefresh} · {translations[lang].hoverBadge} · <span>{lastUpdate}</span>
+        · {translations[lang].autoRefresh} · {translations[lang].hoverBadge} · <span>{lastUpdateTxt}</span>
       </footer>
     </div>
   );
