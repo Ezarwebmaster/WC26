@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - **Timezone Selector**: De-duplicated the "Auto" option against the common timezone list, so users in a listed zone (e.g. Europe/Paris) can now see and select it.
 - **Refresh Race Condition**: Added a request-id guard so a slow in-flight fetch can no longer overwrite fresher data when refresh and auto-poll overlap.
 - **Stable Render Keys**: Bracket nodes and connector links now key on their geometric position instead of array index, preventing flicker and mismatched tooltips when match states reorder between polls.
+- **Partial API Failures**: Round fetches now distinguish a genuine network/HTTP failure from a legitimately empty round. A full outage surfaces as an error, and a partial failure shows a "⚠ partial data" warning instead of silently presenting an incomplete bracket as complete.
 ### Security
 - **Analytics Injection**: The inline Google Analytics snippet now uses `textContent` and JSON-encodes the tracking id instead of building script markup via `innerHTML`.
 ### Changed

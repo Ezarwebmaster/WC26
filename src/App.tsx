@@ -22,6 +22,7 @@ function App() {
   const [status, setStatus] = useState<StatusType>("load");
   const [lang, setLang] = useState<SupportedLang>(detectBrowserLanguage);
   const [stats, setStats] = useState<{ tot: number; live: number } | null>(null);
+  const [partial, setPartial] = useState(false);
   const [errMsg, setErrMsg] = useState<string>("");
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
   const [scale, setScale] = useState(1);
@@ -35,7 +36,7 @@ function App() {
     const id = ++loadId.current;
     setStatus("load");
     try {
-      const byStage = await fetchBracketData();
+      const { byStage, failedStages } = await fetchBracketData();
       // Ignore stale responses: a newer load() was started while this awaited.
       if (id !== loadId.current) return;
 
@@ -45,6 +46,7 @@ function App() {
       const tot = ORDER.reduce((n, s) => n + byStage[s].length, 0);
 
       setStats({ tot, live });
+      setPartial(failedStages.length > 0);
       setStatus("ok");
       setLastUpdate(new Date());
     } catch (err: any) {
@@ -75,7 +77,7 @@ function App() {
     status === "err"
       ? `${t.error}: ${errMsg}`
       : status === "ok" && stats
-      ? `${stats.tot} ${t.matches}${stats.live ? ` · ${stats.live} ${t.live}` : ""}`
+      ? `${stats.tot} ${t.matches}${stats.live ? ` · ${stats.live} ${t.live}` : ""}${partial ? ` · ⚠ ${t.partialData}` : ""}`
       : t.connecting;
   const lastUpdateTxt = lastUpdate
     ? lastUpdate.toLocaleTimeString(lang === "en" ? "en-US" : lang)

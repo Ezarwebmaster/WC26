@@ -8,6 +8,7 @@ export interface TranslationDict {
   matches: string;
   live: string;
   error: string;
+  partialData: string;
   couldNotReach: string;
   liveDataVia: string;
   autoRefresh: string;
@@ -34,6 +35,7 @@ export const translations: Record<SupportedLang, TranslationDict> = {
     matches: "matches",
     live: "LIVE",
     error: "Error",
+    partialData: "partial data",
     couldNotReach: "Could not reach the API. Retrying in 60s.",
     liveDataVia: "Live data via",
     autoRefresh: "auto-refresh 60s",
@@ -58,6 +60,7 @@ export const translations: Record<SupportedLang, TranslationDict> = {
     matches: "matchs",
     live: "EN DIRECT",
     error: "Erreur",
+    partialData: "données partielles",
     couldNotReach: "Impossible de contacter l'API. Nouvelle tentative dans 60s.",
     liveDataVia: "Données en direct via",
     autoRefresh: "actualisation auto 60s",
@@ -82,6 +85,7 @@ export const translations: Record<SupportedLang, TranslationDict> = {
     matches: "مباريات",
     live: "مباشر",
     error: "خطأ",
+    partialData: "بيانات جزئية",
     couldNotReach: "تعذر الاتصال بالواجهة البرمجية. إعادة المحاولة خلال 60 ثانية.",
     liveDataVia: "البيانات المباشرة عبر",
     autoRefresh: "تحديث تلقائي كل 60 ثانية",
@@ -106,6 +110,7 @@ export const translations: Record<SupportedLang, TranslationDict> = {
     matches: "partidos",
     live: "EN VIVO",
     error: "Error",
+    partialData: "datos parciales",
     couldNotReach: "No se pudo conectar a la API. Reintentando en 60s.",
     liveDataVia: "Datos en vivo a través de",
     autoRefresh: "auto-actualización 60s",
@@ -130,6 +135,7 @@ export const translations: Record<SupportedLang, TranslationDict> = {
     matches: "jogos",
     live: "AO VIVO",
     error: "Erro",
+    partialData: "dados parciais",
     couldNotReach: "Não foi possível conectar à API. Tentando novamente em 60s.",
     liveDataVia: "Dados ao vivo via",
     autoRefresh: "atualização automática 60s",

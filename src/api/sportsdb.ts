@@ -67,13 +67,24 @@ export function isFinished(e: Match | null): boolean {
   );
 }
 
-export async function fetchBracketData(): Promise<ByStage> {
+export interface BracketResult {
+  byStage: ByStage;
+  // Rounds whose request genuinely failed (network/HTTP), as opposed to
+  // succeeding with an empty list (a not-yet-played round is not a failure).
+  failedStages: StageKey[];
+}
+
+export async function fetchBracketData(): Promise<BracketResult> {
   const results = await Promise.all(
-    KO_ROUNDS.map((k) =>
-      fetch(BASE + k.r, { cache: "no-store" })
-        .then((r) => (r.ok ? r.json() : { events: null }))
-        .catch(() => ({ events: null }))
-    )
+    KO_ROUNDS.map(async (k) => {
+      try {
+        const r = await fetch(BASE + k.r, { cache: "no-store" });
+        if (!r.ok) return { ok: false, data: { events: null } };
+        return { ok: true, data: await r.json() };
+      } catch {
+        return { ok: false, data: { events: null } };
+      }
+    })
   );
 
   const byStage: Partial<ByStage> = {};
@@ -81,9 +92,11 @@ export async function fetchBracketData(): Promise<ByStage> {
     byStage[s] = [];
   });
 
-  results.forEach((data, i) => {
+  const failedStages: StageKey[] = [];
+  results.forEach((res, i) => {
     const k = KO_ROUNDS[i];
-    const evs = data && data.events ? data.events : [];
+    if (!res.ok) failedStages.push(k.st as StageKey);
+    const evs = res.data && res.data.events ? res.data.events : [];
     evs.forEach((ev: any) => {
       // Exclut la 2e journée de poules qui partage le round 2 avec la finale
       if (k.r === 2 && !(ev.dateEvent && ev.dateEvent >= "2026-07-16")) return;
@@ -100,9 +113,13 @@ export async function fetchBracketData(): Promise<ByStage> {
     )
   );
 
+  // Every round failed → treat as a full outage.
+  if (failedStages.length === KO_ROUNDS.length) {
+    throw new Error("Could not reach the data source");
+  }
   if (!ORDER.some((s) => byStage[s]!.length > 0)) {
     throw new Error("No knockout matches returned");
   }
 
-  return byStage as ByStage;
+  return { byStage: byStage as ByStage, failedStages };
 }
