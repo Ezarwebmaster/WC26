@@ -130,6 +130,36 @@ button.refresh:active {
   transform: translateY(0);
 }
 
+a.github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(20, 20, 25, 0.8);
+  backdrop-filter: blur(10px);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+a.github-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+  background: rgba(30, 30, 35, 0.9);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+a.github-btn:active {
+  transform: translateY(0);
+}
+
 .stage {
   display: flex;
   justify-content: center;

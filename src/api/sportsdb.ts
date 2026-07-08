@@ -104,14 +104,18 @@ export async function fetchBracketData(): Promise<BracketResult> {
     });
   });
 
-  ORDER.forEach((s) =>
-    byStage[s]!.sort(
-      (a, b) =>
-        ((a.dateEvent || "") + (a.strTime || "")).localeCompare(
-          (b.dateEvent || "") + (b.strTime || "")
-        ) || +a.idEvent - +b.idEvent
-    )
-  );
+  ORDER.forEach((s) => {
+    byStage[s]!.sort((a, b) => {
+      const slotA = getMatchSlot(a, s);
+      const slotB = getMatchSlot(b, s);
+      if (slotA !== slotB) {
+        return slotA - slotB;
+      }
+      const dateTimeA = (a.dateEvent || "") + (a.strTime || "");
+      const dateTimeB = (b.dateEvent || "") + (b.strTime || "");
+      return dateTimeA.localeCompare(dateTimeB) || +a.idEvent - +b.idEvent;
+    });
+  });
 
   // Every round failed → treat as a full outage.
   if (failedStages.length === KO_ROUNDS.length) {
@@ -122,4 +126,84 @@ export async function fetchBracketData(): Promise<BracketResult> {
   }
 
   return { byStage: byStage as ByStage, failedStages };
+}
+
+const normalizeTeamName = (name: string | null): string => {
+  if (!name) return "";
+  const n = name.trim().toLowerCase();
+  if (n === "united states" || n === "usa") return "usa";
+  return n;
+};
+
+const BRACKET_R32_PAIRS = [
+  ["germany", "paraguay"],
+  ["france", "sweden"],
+  ["south africa", "canada"],
+  ["netherlands", "morocco"],
+  ["portugal", "croatia"],
+  ["spain", "austria"],
+  ["usa", "bosnia-herzegovina"],
+  ["belgium", "senegal"],
+  ["brazil", "japan"],
+  ["ivory coast", "norway"],
+  ["mexico", "ecuador"],
+  ["england", "dr congo"],
+  ["argentina", "cape verde"],
+  ["australia", "egypt"],
+  ["switzerland", "algeria"],
+  ["colombia", "ghana"],
+];
+
+export function getMatchSlot(m: Match, stage: StageKey): number {
+  const home = normalizeTeamName(m.strHomeTeam);
+  const away = normalizeTeamName(m.strAwayTeam);
+
+  if (stage === "R32") {
+    for (let i = 0; i < BRACKET_R32_PAIRS.length; i++) {
+      const pair = BRACKET_R32_PAIRS[i];
+      if ((home && pair.includes(home)) || (away && pair.includes(away))) {
+        return i;
+      }
+    }
+  } else if (stage === "R16") {
+    for (let j = 0; j < 8; j++) {
+      const r32_1 = BRACKET_R32_PAIRS[2 * j];
+      const r32_2 = BRACKET_R32_PAIRS[2 * j + 1];
+      if (
+        (home && (r32_1.includes(home) || r32_2.includes(home))) ||
+        (away && (r32_1.includes(away) || r32_2.includes(away)))
+      ) {
+        return j;
+      }
+    }
+  } else if (stage === "QF") {
+    for (let k = 0; k < 4; k++) {
+      const allowedTeams: string[] = [];
+      for (let offset = 0; offset < 4; offset++) {
+        allowedTeams.push(...BRACKET_R32_PAIRS[4 * k + offset]);
+      }
+      if (
+        (home && allowedTeams.includes(home)) ||
+        (away && allowedTeams.includes(away))
+      ) {
+        return k;
+      }
+    }
+  } else if (stage === "SF") {
+    for (let s = 0; s < 2; s++) {
+      const allowedTeams: string[] = [];
+      for (let offset = 0; offset < 8; offset++) {
+        allowedTeams.push(...BRACKET_R32_PAIRS[8 * s + offset]);
+      }
+      if (
+        (home && allowedTeams.includes(home)) ||
+        (away && allowedTeams.includes(away))
+      ) {
+        return s;
+      }
+    }
+  } else if (stage === "F") {
+    return 0;
+  }
+  return 999;
 }
