@@ -107,7 +107,7 @@ export const Links: React.FC<LinksProps> = ({ links, lang }) => {
           // Fallback if API uses Extra score for penalties when status is PEN or similar
           const hEx = l.match.intHomeScoreExtra;
           const aEx = l.match.intAwayScoreExtra;
-          const isPen = l.match.strStatus === "PEN" || (hPen != null && aPen != null);
+          const isPen = l.match.strStatus === "PEN" || l.match.strStatus === "AP" || (hPen != null && aPen != null);
           
           if (hPen != null && aPen != null) {
             penScore = `${hPen} - ${aPen} ${penLabel}`;

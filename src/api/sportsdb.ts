@@ -75,24 +75,45 @@ export interface BracketResult {
 }
 
 export async function fetchBracketData(): Promise<BracketResult> {
-  const results = await Promise.all(
-    KO_ROUNDS.map(async (k) => {
-      try {
-        const r = await fetch(BASE + k.r, { cache: "no-store" });
-        if (!r.ok) return { ok: false, data: { events: null } };
-        return { ok: true, data: await r.json() };
-      } catch {
-        return { ok: false, data: { events: null } };
-      }
-    })
-  );
-
   const byStage: Partial<ByStage> = {};
   ORDER.forEach((s) => {
     byStage[s] = [];
   });
-
   const failedStages: StageKey[] = [];
+
+  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const fetchWithRetry = async (url: string, retries = 3, backoff = 300): Promise<{ ok: boolean; data: any }> => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (r.status === 429) {
+          await delay(backoff);
+          backoff *= 2;
+          continue;
+        }
+        if (!r.ok) return { ok: false, data: { events: null } };
+        const data = await r.json();
+        return { ok: true, data };
+      } catch {
+        if (i === retries - 1) return { ok: false, data: { events: null } };
+        await delay(backoff);
+        backoff *= 2;
+      }
+    }
+    return { ok: false, data: { events: null } };
+  };
+
+  const results: { ok: boolean; data: any }[] = [];
+  for (let i = 0; i < KO_ROUNDS.length; i++) {
+    const k = KO_ROUNDS[i];
+    if (i > 0) {
+      await delay(150); // delay between fetches to avoid rate limit
+    }
+    const res = await fetchWithRetry(BASE + k.r);
+    results.push(res);
+  }
+
   results.forEach((res, i) => {
     const k = KO_ROUNDS[i];
     if (!res.ok) failedStages.push(k.st as StageKey);
