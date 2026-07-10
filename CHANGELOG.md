@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.3] - 2026-07-10
+### Fixed
+- **API Rate Limiting**: Migrated parallel requests to sequential fetches with a 150ms delay and added exponential backoff retry logic. This prevents HTTP 429 and Cloudflare 1015 errors when loading the bracket.
+- **Quarter-finals Custom Round Numbers**: Added support for custom round numbers from the database (specifically round `125` for QF, and fallbacks `126` for SF and `127` for the Final). This allows matches like France vs Morocco (2-0) to load and propagate correctly.
+- **Penalty Shootout rendering for "AP" matches**: Updated match link state detection to treat the `"AP"` (After Penalties) status code as a penalty shootout, ensuring penalty shootout scores (e.g. `4 - 3 PEN`) are rendered.
+
 ## [1.2.2] - 2026-07-03
 ### Fixed
 - **Language Switching**: Decoupled data fetching from the selected language, so switching locales no longer fires redundant API requests or resets the 60s auto-refresh timer.
