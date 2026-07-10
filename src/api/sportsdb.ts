@@ -1,13 +1,27 @@
 const KEY = import.meta.env.VITE_SPORTSDB_KEY || "123";
-const BASE = `https://www.thesportsdb.com/api/v1/json/${KEY}/eventsround.php?id=4429&s=2026&r=`;
 
-export const KO_ROUNDS = [
-  { r: [32], st: "R32" },
-  { r: [16], st: "R16" },
-  { r: [8, 125], st: "QF" },
-  { r: [4, 150], st: "SF" },
-  { r: [2, 200], st: "F" },
-] as const;
+export interface KOStage {
+  r: readonly number[];
+  st: StageKey;
+}
+
+export const getKoRoundsForSeason = (season: string): readonly KOStage[] => {
+  if (season === "2022") {
+    return [
+      { r: [16], st: "R16" },
+      { r: [125], st: "QF" },
+      { r: [150], st: "SF" },
+      { r: [200], st: "F" },
+    ] as const;
+  }
+  return [
+    { r: [32], st: "R32" },
+    { r: [16], st: "R16" },
+    { r: [8, 125], st: "QF" },
+    { r: [4, 150], st: "SF" },
+    { r: [2, 200], st: "F" },
+  ] as const;
+};
 
 export const ORDER = ["R32", "R16", "QF", "SF", "F"] as const;
 export type StageKey = typeof ORDER[number];
@@ -74,12 +88,14 @@ export interface BracketResult {
   failedStages: StageKey[];
 }
 
-export async function fetchBracketData(): Promise<BracketResult> {
+export async function fetchBracketData(season: string = "2026"): Promise<BracketResult> {
   const byStage: Partial<ByStage> = {};
   ORDER.forEach((s) => {
     byStage[s] = [];
   });
   const failedStages: StageKey[] = [];
+  const koRounds = getKoRoundsForSeason(season);
+  const baseApiUrl = `https://www.thesportsdb.com/api/v1/json/${KEY}/eventsround.php?id=4429&s=${season}&r=`;
 
   const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -105,14 +121,14 @@ export async function fetchBracketData(): Promise<BracketResult> {
   };
 
   const results: { ok: boolean; data: any; roundNum: number; stageKey: StageKey }[] = [];
-  for (let i = 0; i < KO_ROUNDS.length; i++) {
-    const k = KO_ROUNDS[i];
+  for (let i = 0; i < koRounds.length; i++) {
+    const k = koRounds[i];
     for (let j = 0; j < k.r.length; j++) {
       const rNum = k.r[j];
       if (results.length > 0) {
         await delay(150); // delay between fetches to avoid rate limit
       }
-      const res = await fetchWithRetry(BASE + rNum);
+      const res = await fetchWithRetry(baseApiUrl + rNum);
       results.push({ ...res, roundNum: rNum, stageKey: k.st });
     }
   }
@@ -130,8 +146,8 @@ export async function fetchBracketData(): Promise<BracketResult> {
       stageSuccess[res.stageKey] = true;
       const evs = res.data && res.data.events ? res.data.events : [];
       evs.forEach((ev: any) => {
-        // Exclut la 2e journée de poules qui partage le round 2 avec la finale
-        if (res.roundNum === 2 && !(ev.dateEvent && ev.dateEvent >= "2026-07-16")) return;
+        // Exclut la 2e journée de poules qui partage le round 2 avec la finale (uniquement pour 2026)
+        if (season === "2026" && res.roundNum === 2 && !(ev.dateEvent && ev.dateEvent >= "2026-07-16")) return;
         
         // Avoid duplicate events if they exist under multiple query fallback rounds
         if (!byStage[res.stageKey]!.some((existing) => existing.idEvent === ev.idEvent)) {
@@ -141,9 +157,9 @@ export async function fetchBracketData(): Promise<BracketResult> {
     }
   });
 
-  ORDER.forEach((s) => {
-    if (!stageSuccess[s]) {
-      failedStages.push(s);
+  koRounds.forEach((k) => {
+    if (!stageSuccess[k.st]) {
+      failedStages.push(k.st);
     }
   });
 
@@ -161,7 +177,7 @@ export async function fetchBracketData(): Promise<BracketResult> {
   });
 
   // Every round failed → treat as a full outage.
-  if (failedStages.length === KO_ROUNDS.length) {
+  if (failedStages.length === koRounds.length) {
     throw new Error("Could not reach the data source");
   }
   if (!ORDER.some((s) => byStage[s]!.length > 0)) {

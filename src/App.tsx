@@ -21,6 +21,7 @@ function App() {
   const [data, setData] = useState<ByStage | null>(null);
   const [status, setStatus] = useState<StatusType>("load");
   const [lang, setLang] = useState<SupportedLang>(detectBrowserLanguage);
+  const [season, setSeason] = useState<string>("2026");
   const [stats, setStats] = useState<{ tot: number; live: number } | null>(null);
   const [partial, setPartial] = useState(false);
   const [errMsg, setErrMsg] = useState<string>("");
@@ -36,7 +37,7 @@ function App() {
     const id = ++loadId.current;
     setStatus("load");
     try {
-      const { byStage, failedStages } = await fetchBracketData();
+      const { byStage, failedStages } = await fetchBracketData(season);
       // Ignore stale responses: a newer load() was started while this awaited.
       if (id !== loadId.current) return;
 
@@ -54,7 +55,7 @@ function App() {
       setErrMsg(err.message);
       setStatus("err");
     }
-  }, []);
+  }, [season]);
 
   useEffect(() => {
     load();
@@ -116,6 +117,27 @@ function App() {
           </a>
           
           <select 
+            value={season} 
+            onChange={(e) => setSeason(e.target.value)} 
+            style={{ 
+              padding: "8px 12px", 
+              borderRadius: 20, 
+              background: "rgba(20, 20, 25, 0.8)", 
+              color: "var(--text)", 
+              border: "1px solid rgba(255, 255, 255, 0.05)", 
+              fontSize: 13,
+              backdropFilter: "blur(10px)",
+              outline: "none",
+              cursor: "pointer",
+              marginRight: lang === "ar" ? 0 : 8,
+              marginLeft: lang === "ar" ? 8 : 0
+            }}
+          >
+            <option value="2026">2026</option>
+            <option value="2022">2022</option>
+          </select>
+
+          <select 
             value={lang} 
             onChange={(e) => setLang(e.target.value as SupportedLang)} 
             style={{ 
@@ -174,7 +196,7 @@ function App() {
       ) : (
         <div className="stage" style={{ height: SIZE * scale + 10 }}>
           <div className="scaler" style={{ transform: `scale(${scale})` }}>
-            {data && <Bracket byStage={data} timezone={timezone} lang={lang} />}
+            {data && <Bracket byStage={data} timezone={timezone} lang={lang} season={season} />}
           </div>
         </div>
       )}

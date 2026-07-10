@@ -5,14 +5,27 @@ import type { Match } from "../api/sportsdb";
 export const SIZE = 940;
 export const C = SIZE / 2;
 
-export const RINGS: Record<string, { r: number; sz: number }> = {
+export const RINGS_2026 = {
   teams: { r: C - 42, sz: 40 }, // 32 teams (outer)
   R32: { r: 340, sz: 42 },
   R16: { r: 250, sz: 46 },
   QF: { r: 168, sz: 50 },
   SF: { r: 92, sz: 56 },
-  F: { r: 0, sz: 66 }, // Added to satisfy index types
+  F: { r: 0, sz: 66 },
 };
+
+export const RINGS_2022 = {
+  teams: { r: C - 42, sz: 44 }, // 16 teams (outer)
+  R32: { r: 0, sz: 0 },         // Fallback to prevent crash
+  R16: { r: 310, sz: 48 },
+  QF: { r: 200, sz: 52 },
+  SF: { r: 100, sz: 58 },
+  F: { r: 0, sz: 66 },
+};
+
+export function getRingsConfig(season: string) {
+  return season === "2022" ? RINGS_2022 : RINGS_2026;
+}
 
 export const rad = (deg: number) => (deg * Math.PI) / 180;
 export const pos = (angle: number, r: number) => ({

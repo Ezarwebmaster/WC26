@@ -4,7 +4,7 @@ import type { ByStage, Match, StageKey } from "../api/sportsdb";
 import {
   C,
   SIZE,
-  RINGS,
+  getRingsConfig,
   pos,
   rad,
   meanAngle,
@@ -26,6 +26,7 @@ interface BracketProps {
   byStage: ByStage;
   timezone: string;
   lang: SupportedLang;
+  season: string;
 }
 
 interface NodeData {
@@ -46,8 +47,9 @@ interface NodeData {
   awayTeam?: string | null;
 }
 
-export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => {
-  const { nodes, links, center } = useMemo(() => {
+export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, season }) => {
+  const { RINGS, nodes, links, center } = useMemo(() => {
+    const RINGS = getRingsConfig(season);
     const computedNodes: NodeData[] = [];
     const computedLinks: LinkData[] = [];
 
@@ -65,7 +67,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
       return winner(e, nextTeams);
     };
 
-    // Feeder logic to order initial R32 matches
+    // Feeder logic to order initial matches
     const feedersOf = (m: Match, si: number): Match[] => {
       if (si <= 0) return [];
       const parts = [m.strHomeTeam, m.strAwayTeam].filter(Boolean);
@@ -75,14 +77,19 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
       });
     };
 
-    const orderedR32: Match[] = [];
+    const is2022 = season === "2022";
+    const startStageIdx = is2022 ? 1 : 0;
+    const startStageKey = ORDER[startStageIdx]; // "R16" or "R32"
+    const startMatches = byStage[startStageKey];
+
+    const orderedStartMatches: Match[] = [];
     const seen = new Set<Match>();
 
     const expand = (m: Match, si: number) => {
-      if (si === 0) {
+      if (si === startStageIdx) {
         if (!seen.has(m)) {
           seen.add(m);
-          orderedR32.push(m);
+          orderedStartMatches.push(m);
         }
         return;
       }
@@ -90,28 +97,28 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
     };
 
     let T = -1;
-    for (let i = ORDER.length - 1; i >= 1; i--) {
+    for (let i = ORDER.length - 1; i >= startStageIdx + 1; i--) {
       if (byStage[ORDER[i]].length) {
         T = i;
         break;
       }
     }
-    if (T > 0) {
+    if (T > startStageIdx) {
       byStage[ORDER[T]].forEach((m) => expand(m, T));
     }
-    byStage.R32.forEach((m) => {
+    startMatches.forEach((m) => {
       if (!seen.has(m)) {
         seen.add(m);
-        orderedR32.push(m);
+        orderedStartMatches.push(m);
       }
     });
 
-    const slots = Math.max(byStage.R32.length * 2, 2);
-    const r32win: { x: number; y: number; angle: number; team: string | null }[] = [];
+    const slots = Math.max(orderedStartMatches.length * 2, 2);
+    const startWin: { x: number; y: number; angle: number; team: string | null }[] = [];
     const offset = 360 / (slots * 2);
 
-    orderedR32.forEach((m, j) => {
-      const w = getWinner(m, 0);
+    orderedStartMatches.forEach((m, j) => {
+      const w = getWinner(m, startStageIdx);
       const aH = rad(-90 + offset + ((2 * j) * 360) / slots);
       const aA = rad(-90 + offset + ((2 * j + 1) * 360) / slots);
 
@@ -130,25 +137,25 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
       });
 
       const wa = meanAngle([aH, aA]);
-      const p3 = pos(wa, RINGS.R32.r);
+      const p3 = pos(wa, RINGS[startStageKey].r);
       const n3 = { x: p3.x, y: p3.y, angle: normAng(wa), team: w };
       
       computedNodes.push({
-        ...n3, badge: badgeOf(m, w), ringSize: RINGS.R32.sz,
+        ...n3, badge: badgeOf(m, w), ringSize: RINGS[startStageKey].sz,
         isWin: true, match: m, isOuter: false, timezone
       });
       computedLinks.push({ a: n1, b: n3, state: lineState(m, w, m.strHomeTeam), match: m });
       computedLinks.push({ a: n2, b: n3, state: lineState(m, w, m.strAwayTeam), match: m });
-      r32win.push(n3);
+      startWin.push(n3);
     });
 
     const innerRing = (
       stageKey: StageKey,
       si: number,
-      feeders: typeof r32win
+      feeders: typeof startWin
     ) => {
-      const out: typeof r32win = [];
-      const used = new Set<typeof r32win[0]>();
+      const out: typeof startWin = [];
+      const used = new Set<typeof startWin[0]>();
 
       byStage[stageKey].forEach((m) => {
         const w = getWinner(m, si);
@@ -175,8 +182,6 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
         const ang = meanAngle([left[i].angle, left[i + 1].angle]);
         const p = pos(ang, RINGS[stageKey].r);
         const wn = { x: p.x, y: p.y, angle: normAng(ang), team: null };
-        // Both feeder winners are known but the fixture isn't in the API yet:
-        // surface the determined pairing so it renders as a split, not a blank.
         const bothKnown = !!left[i].team && !!left[i + 1].team;
         computedNodes.push({
           ...wn, badge: null, ringSize: RINGS[stageKey].sz,
@@ -191,8 +196,11 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
       return out;
     };
 
-    const r16win = innerRing("R16", 1, r32win);
-    const qfwin = innerRing("QF", 2, r16win);
+    let currentFeeders = startWin;
+    if (!is2022) {
+      currentFeeders = innerRing("R16", 1, currentFeeders);
+    }
+    const qfwin = innerRing("QF", 2, currentFeeders);
     const sfwin = innerRing("SF", 3, qfwin);
 
     const finalM = byStage.F[0];
@@ -212,8 +220,8 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
       centerData = { finalM: null, champ: null, badge: null, score: null };
     }
 
-    return { nodes: computedNodes, links: computedLinks, center: centerData };
-  }, [byStage, timezone, lang]);
+    return { RINGS, nodes: computedNodes, links: computedLinks, center: centerData };
+  }, [byStage, timezone, season]);
 
   return (
     <div className="canvas" id="canvas" style={{ width: SIZE, height: SIZE }}>
@@ -294,7 +302,9 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang }) => 
         strokeLinejoin="round"
         strokeLinecap="round"
       >
-          <text><textPath href="#txt-R32" startOffset="50%" textAnchor="middle">{translations[lang].R32}</textPath></text>
+          {season !== "2022" && (
+            <text><textPath href="#txt-R32" startOffset="50%" textAnchor="middle">{translations[lang].R32}</textPath></text>
+          )}
           <text><textPath href="#txt-R16" startOffset="50%" textAnchor="middle">{translations[lang].R16}</textPath></text>
           <text><textPath href="#txt-QF" startOffset="50%" textAnchor="middle">{translations[lang].QF}</textPath></text>
           <text><textPath href="#txt-SF" startOffset="50%" textAnchor="middle">{translations[lang].SF}</textPath></text>
