@@ -165,8 +165,8 @@ export async function fetchBracketData(season: string = "2026"): Promise<Bracket
 
   ORDER.forEach((s) => {
     byStage[s]!.sort((a, b) => {
-      const slotA = getMatchSlot(a, s);
-      const slotB = getMatchSlot(b, s);
+      const slotA = getMatchSlot(a, s, season);
+      const slotB = getMatchSlot(b, s, season);
       if (slotA !== slotB) {
         return slotA - slotB;
       }
@@ -213,10 +213,56 @@ const BRACKET_R32_PAIRS = [
   ["colombia", "ghana"],
 ];
 
-export function getMatchSlot(m: Match, stage: StageKey): number {
+const BRACKET_R16_PAIRS_2022 = [
+  ["netherlands", "usa"],
+  ["argentina", "australia"],
+  ["japan", "croatia"],
+  ["brazil", "south korea"],
+  ["england", "senegal"],
+  ["france", "poland"],
+  ["morocco", "spain"],
+  ["portugal", "switzerland"],
+];
+
+export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026"): number {
   const home = normalizeTeamName(m.strHomeTeam);
   const away = normalizeTeamName(m.strAwayTeam);
 
+  if (season === "2022") {
+    if (stage === "R16") {
+      for (let i = 0; i < BRACKET_R16_PAIRS_2022.length; i++) {
+        const pair = BRACKET_R16_PAIRS_2022[i];
+        if ((home && pair.includes(home)) || (away && pair.includes(away))) {
+          return i;
+        }
+      }
+    } else if (stage === "QF") {
+      for (let k = 0; k < 4; k++) {
+        const allowedTeams: string[] = [
+          ...BRACKET_R16_PAIRS_2022[2 * k],
+          ...BRACKET_R16_PAIRS_2022[2 * k + 1],
+        ];
+        if ((home && allowedTeams.includes(home)) || (away && allowedTeams.includes(away))) {
+          return k;
+        }
+      }
+    } else if (stage === "SF") {
+      for (let s = 0; s < 2; s++) {
+        const allowedTeams: string[] = [];
+        for (let offset = 0; offset < 4; offset++) {
+          allowedTeams.push(...BRACKET_R16_PAIRS_2022[4 * s + offset]);
+        }
+        if ((home && allowedTeams.includes(home)) || (away && allowedTeams.includes(away))) {
+          return s;
+        }
+      }
+    } else if (stage === "F") {
+      return 0;
+    }
+    return 999;
+  }
+
+  // 2026 logic
   if (stage === "R32") {
     for (let i = 0; i < BRACKET_R32_PAIRS.length; i++) {
       const pair = BRACKET_R32_PAIRS[i];
