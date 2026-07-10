@@ -5,8 +5,8 @@ export const KO_ROUNDS = [
   { r: [32], st: "R32" },
   { r: [16], st: "R16" },
   { r: [8, 125], st: "QF" },
-  { r: [4, 126], st: "SF" },
-  { r: [2, 127], st: "F" },
+  { r: [4, 150], st: "SF" },
+  { r: [2, 200], st: "F" },
 ] as const;
 
 export const ORDER = ["R32", "R16", "QF", "SF", "F"] as const;
