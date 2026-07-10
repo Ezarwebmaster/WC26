@@ -2,11 +2,11 @@ const KEY = import.meta.env.VITE_SPORTSDB_KEY || "123";
 const BASE = `https://www.thesportsdb.com/api/v1/json/${KEY}/eventsround.php?id=4429&s=2026&r=`;
 
 export const KO_ROUNDS = [
-  { r: 32, st: "R32" },
-  { r: 16, st: "R16" },
-  { r: 8, st: "QF" },
-  { r: 4, st: "SF" },
-  { r: 2, st: "F" },
+  { r: [32], st: "R32" },
+  { r: [16], st: "R16" },
+  { r: [8, 125], st: "QF" },
+  { r: [4, 126], st: "SF" },
+  { r: [2, 127], st: "F" },
 ] as const;
 
 export const ORDER = ["R32", "R16", "QF", "SF", "F"] as const;
@@ -104,25 +104,47 @@ export async function fetchBracketData(): Promise<BracketResult> {
     return { ok: false, data: { events: null } };
   };
 
-  const results: { ok: boolean; data: any }[] = [];
+  const results: { ok: boolean; data: any; roundNum: number; stageKey: StageKey }[] = [];
   for (let i = 0; i < KO_ROUNDS.length; i++) {
     const k = KO_ROUNDS[i];
-    if (i > 0) {
-      await delay(150); // delay between fetches to avoid rate limit
+    for (let j = 0; j < k.r.length; j++) {
+      const rNum = k.r[j];
+      if (results.length > 0) {
+        await delay(150); // delay between fetches to avoid rate limit
+      }
+      const res = await fetchWithRetry(BASE + rNum);
+      results.push({ ...res, roundNum: rNum, stageKey: k.st });
     }
-    const res = await fetchWithRetry(BASE + k.r);
-    results.push(res);
   }
 
-  results.forEach((res, i) => {
-    const k = KO_ROUNDS[i];
-    if (!res.ok) failedStages.push(k.st as StageKey);
-    const evs = res.data && res.data.events ? res.data.events : [];
-    evs.forEach((ev: any) => {
-      // Exclut la 2e journée de poules qui partage le round 2 avec la finale
-      if (k.r === 2 && !(ev.dateEvent && ev.dateEvent >= "2026-07-16")) return;
-      byStage[k.st as StageKey]!.push(ev);
-    });
+  const stageSuccess: Record<StageKey, boolean> = {
+    R32: false,
+    R16: false,
+    QF: false,
+    SF: false,
+    F: false,
+  };
+
+  results.forEach((res) => {
+    if (res.ok) {
+      stageSuccess[res.stageKey] = true;
+      const evs = res.data && res.data.events ? res.data.events : [];
+      evs.forEach((ev: any) => {
+        // Exclut la 2e journée de poules qui partage le round 2 avec la finale
+        if (res.roundNum === 2 && !(ev.dateEvent && ev.dateEvent >= "2026-07-16")) return;
+        
+        // Avoid duplicate events if they exist under multiple query fallback rounds
+        if (!byStage[res.stageKey]!.some((existing) => existing.idEvent === ev.idEvent)) {
+          byStage[res.stageKey]!.push(ev);
+        }
+      });
+    }
+  });
+
+  ORDER.forEach((s) => {
+    if (!stageSuccess[s]) {
+      failedStages.push(s);
+    }
   });
 
   ORDER.forEach((s) => {
