@@ -24,6 +24,14 @@ export const getKoRoundsForSeason = (season: string): readonly KOStage[] => {
       { r: [200], st: "F" },
     ] as const;
   }
+  if (season === "2014" || season === "2010") {
+    return [
+      { r: [16], st: "R16" },
+      { r: [125], st: "QF" },
+      { r: [150], st: "SF" },
+      { r: [200], st: "F" },
+    ] as const;
+  }
   return [
     { r: [32], st: "R32" },
     { r: [16], st: "R16" },
@@ -99,7 +107,7 @@ export interface BracketResult {
 }
 
 export async function fetchBracketData(season: string = "2026"): Promise<BracketResult> {
-  if (season === "2022" || season === "2018") {
+  if (season === "2022" || season === "2018" || season === "2014" || season === "2010") {
     return HISTORICAL_DATA[season];
   }
   const byStage: Partial<ByStage> = {};
@@ -248,12 +256,41 @@ const BRACKET_R16_PAIRS_2018 = [
   ["colombia", "england"],
 ];
 
+const BRACKET_R16_PAIRS_2014 = [
+  ["brazil", "chile"],
+  ["colombia", "uruguay"],
+  ["france", "nigeria"],
+  ["germany", "algeria"],
+  ["netherlands", "mexico"],
+  ["costa rica", "greece"],
+  ["argentina", "switzerland"],
+  ["belgium", "usa"],
+];
+
+const BRACKET_R16_PAIRS_2010 = [
+  ["uruguay", "south korea"],
+  ["usa", "ghana"],
+  ["netherlands", "slovakia"],
+  ["brazil", "chile"],
+  ["argentina", "mexico"],
+  ["germany", "england"],
+  ["paraguay", "japan"],
+  ["spain", "portugal"],
+];
+
 export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026"): number {
   const home = normalizeTeamName(m.strHomeTeam);
   const away = normalizeTeamName(m.strAwayTeam);
 
-  if (season === "2022" || season === "2018") {
-    const pairs = season === "2018" ? BRACKET_R16_PAIRS_2018 : BRACKET_R16_PAIRS_2022;
+  if (season === "2022" || season === "2018" || season === "2014" || season === "2010") {
+    const pairs =
+      season === "2018"
+        ? BRACKET_R16_PAIRS_2018
+        : season === "2014"
+        ? BRACKET_R16_PAIRS_2014
+        : season === "2010"
+        ? BRACKET_R16_PAIRS_2010
+        : BRACKET_R16_PAIRS_2022;
     if (stage === "R16") {
       for (let i = 0; i < pairs.length; i++) {
         const pair = pairs[i];

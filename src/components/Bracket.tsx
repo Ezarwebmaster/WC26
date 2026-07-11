@@ -48,7 +48,7 @@ interface NodeData {
 }
 
 export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, season }) => {
-  const is16Team = season === "2022" || season === "2018";
+  const is16Team = season !== "2026";
   const { RINGS, nodes, links, center } = useMemo(() => {
     const RINGS = getRingsConfig(season);
     const computedNodes: NodeData[] = [];
@@ -221,7 +221,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
     }
 
     return { RINGS, nodes: computedNodes, links: computedLinks, center: centerData };
-  }, [byStage, timezone, season]);
+  }, [byStage, timezone, season, is16Team]);
 
   return (
     <div className="canvas" id="canvas" style={{ width: SIZE, height: SIZE }}>

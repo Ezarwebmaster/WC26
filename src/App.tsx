@@ -128,6 +128,8 @@ function App() {
             <option value="2026">2026</option>
             <option value="2022">2022</option>
             <option value="2018">2018</option>
+            <option value="2014">2014</option>
+            <option value="2010">2010</option>
           </select>
 
           <select 

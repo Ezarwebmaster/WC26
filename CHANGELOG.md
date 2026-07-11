@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2026-07-11
+### Added
+- **2010 World Cup Integration**: Added full historical knockout stage data for the 2010 World Cup in South Africa.
+- **Slovakia Flag & Codes**: Added flag icon (ISO "sk") and short code ("SVK") for Slovakia.
+### Changed
+- **Adaptive Bracket Layout**: Refactored the rings configuration and 16-team layouts to automatically apply to all historical 16-team editions (2022, 2018, 2014, 2010).
+
 ## [1.3.0] - 2026-07-11
 ### Added
 - **Historical World Cups Support**: Added option to switch the bracket view between 2026, 2022, and 2018 World Cup data.
