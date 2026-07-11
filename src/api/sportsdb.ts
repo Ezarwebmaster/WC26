@@ -1,3 +1,5 @@
+import { HISTORICAL_DATA } from "./historicalData";
+
 const KEY = import.meta.env.VITE_SPORTSDB_KEY || "123";
 
 export interface KOStage {
@@ -9,6 +11,14 @@ export const getKoRoundsForSeason = (season: string): readonly KOStage[] => {
   if (season === "2022") {
     return [
       { r: [16], st: "R16" },
+      { r: [125], st: "QF" },
+      { r: [150], st: "SF" },
+      { r: [200], st: "F" },
+    ] as const;
+  }
+  if (season === "2018") {
+    return [
+      { r: [4], st: "R16" },
       { r: [125], st: "QF" },
       { r: [150], st: "SF" },
       { r: [200], st: "F" },
@@ -89,6 +99,9 @@ export interface BracketResult {
 }
 
 export async function fetchBracketData(season: string = "2026"): Promise<BracketResult> {
+  if (season === "2022" || season === "2018") {
+    return HISTORICAL_DATA[season];
+  }
   const byStage: Partial<ByStage> = {};
   ORDER.forEach((s) => {
     byStage[s] = [];
@@ -224,14 +237,26 @@ const BRACKET_R16_PAIRS_2022 = [
   ["portugal", "switzerland"],
 ];
 
+const BRACKET_R16_PAIRS_2018 = [
+  ["uruguay", "portugal"],
+  ["france", "argentina"],
+  ["brazil", "mexico"],
+  ["belgium", "japan"],
+  ["spain", "russia"],
+  ["croatia", "denmark"],
+  ["sweden", "switzerland"],
+  ["colombia", "england"],
+];
+
 export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026"): number {
   const home = normalizeTeamName(m.strHomeTeam);
   const away = normalizeTeamName(m.strAwayTeam);
 
-  if (season === "2022") {
+  if (season === "2022" || season === "2018") {
+    const pairs = season === "2018" ? BRACKET_R16_PAIRS_2018 : BRACKET_R16_PAIRS_2022;
     if (stage === "R16") {
-      for (let i = 0; i < BRACKET_R16_PAIRS_2022.length; i++) {
-        const pair = BRACKET_R16_PAIRS_2022[i];
+      for (let i = 0; i < pairs.length; i++) {
+        const pair = pairs[i];
         if ((home && pair.includes(home)) || (away && pair.includes(away))) {
           return i;
         }
@@ -239,8 +264,8 @@ export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026")
     } else if (stage === "QF") {
       for (let k = 0; k < 4; k++) {
         const allowedTeams: string[] = [
-          ...BRACKET_R16_PAIRS_2022[2 * k],
-          ...BRACKET_R16_PAIRS_2022[2 * k + 1],
+          ...pairs[2 * k],
+          ...pairs[2 * k + 1],
         ];
         if ((home && allowedTeams.includes(home)) || (away && allowedTeams.includes(away))) {
           return k;
@@ -250,7 +275,7 @@ export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026")
       for (let s = 0; s < 2; s++) {
         const allowedTeams: string[] = [];
         for (let offset = 0; offset < 4; offset++) {
-          allowedTeams.push(...BRACKET_R16_PAIRS_2022[4 * s + offset]);
+          allowedTeams.push(...pairs[4 * s + offset]);
         }
         if ((home && allowedTeams.includes(home)) || (away && allowedTeams.includes(away))) {
           return s;

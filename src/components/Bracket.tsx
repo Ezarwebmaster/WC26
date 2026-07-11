@@ -48,6 +48,7 @@ interface NodeData {
 }
 
 export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, season }) => {
+  const is16Team = season === "2022" || season === "2018";
   const { RINGS, nodes, links, center } = useMemo(() => {
     const RINGS = getRingsConfig(season);
     const computedNodes: NodeData[] = [];
@@ -77,8 +78,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
       });
     };
 
-    const is2022 = season === "2022";
-    const startStageIdx = is2022 ? 1 : 0;
+    const startStageIdx = is16Team ? 1 : 0;
     const startStageKey = ORDER[startStageIdx]; // "R16" or "R32"
     const startMatches = byStage[startStageKey];
 
@@ -197,7 +197,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
     };
 
     let currentFeeders = startWin;
-    if (!is2022) {
+    if (!is16Team) {
       currentFeeders = innerRing("R16", 1, currentFeeders);
     }
     const qfwin = innerRing("QF", 2, currentFeeders);
@@ -302,7 +302,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
         strokeLinejoin="round"
         strokeLinecap="round"
       >
-          {season !== "2022" && (
+          {!is16Team && (
             <text><textPath href="#txt-R32" startOffset="50%" textAnchor="middle">{translations[lang].R32}</textPath></text>
           )}
           <text><textPath href="#txt-R16" startOffset="50%" textAnchor="middle">{translations[lang].R16}</textPath></text>

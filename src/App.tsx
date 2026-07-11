@@ -119,40 +119,21 @@ function App() {
           <select 
             value={season} 
             onChange={(e) => setSeason(e.target.value)} 
+            className="select-btn"
             style={{ 
-              padding: "8px 12px", 
-              borderRadius: 20, 
-              background: "rgba(20, 20, 25, 0.8)", 
-              color: "var(--text)", 
-              border: "1px solid rgba(255, 255, 255, 0.05)", 
-              fontSize: 13,
-              backdropFilter: "blur(10px)",
-              outline: "none",
-              cursor: "pointer",
               marginRight: lang === "ar" ? 0 : 8,
               marginLeft: lang === "ar" ? 8 : 0
             }}
           >
             <option value="2026">2026</option>
             <option value="2022">2022</option>
+            <option value="2018">2018</option>
           </select>
 
           <select 
             value={lang} 
             onChange={(e) => setLang(e.target.value as SupportedLang)} 
-            style={{ 
-              padding: "8px 12px", 
-              borderRadius: 20, 
-              background: "rgba(20, 20, 25, 0.8)", 
-              color: "var(--text)", 
-              border: "1px solid rgba(255, 255, 255, 0.05)", 
-              fontSize: 13,
-              backdropFilter: "blur(10px)",
-              outline: "none",
-              cursor: "pointer",
-              marginRight: lang === "ar" ? 0 : 8,
-              marginLeft: lang === "ar" ? 8 : 0
-            }}
+            className="select-btn"
           >
             {Object.entries(languageNames).map(([code, name]) => (
               <option key={code} value={code}>
@@ -164,17 +145,7 @@ function App() {
           <select 
             value={timezone} 
             onChange={(e) => setTimezone(e.target.value)} 
-            style={{ 
-              padding: "8px 12px", 
-              borderRadius: 20, 
-              background: "rgba(20, 20, 25, 0.8)", 
-              color: "var(--text)", 
-              border: "1px solid rgba(255, 255, 255, 0.05)", 
-              fontSize: 13,
-              backdropFilter: "blur(10px)",
-              outline: "none",
-              cursor: "pointer"
-            }}
+            className="select-btn"
           >
             {/* Auto (local) first, then common zones with the local one de-duped */}
             <option value={localTimezone}>

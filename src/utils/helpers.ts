@@ -24,7 +24,7 @@ export const RINGS_2022 = {
 };
 
 export function getRingsConfig(season: string) {
-  return season === "2022" ? RINGS_2022 : RINGS_2026;
+  return season === "2022" || season === "2018" ? RINGS_2022 : RINGS_2026;
 }
 
 export const rad = (deg: number) => (deg * Math.PI) / 180;
@@ -52,7 +52,7 @@ export function normAng(a: number) {
 
 // ===================== Display Utils =====================
 const FLAG_ISO: Record<string, string> = {
-  Canada: "ca", Mexico: "mx", USA: "us", "United States": "us",
+  Canada: "ca", Mexico: "mx", USA: "us", "United States": "us", Russia: "ru",
   "South Africa": "za", Brazil: "br", Japan: "jp", Germany: "de", Paraguay: "py",
   Netherlands: "nl", Morocco: "ma", "Ivory Coast": "ci", Norway: "no", France: "fr",
   Sweden: "se", Ecuador: "ec", England: "gb-eng", Scotland: "gb-sct", Wales: "gb-wls",
@@ -98,8 +98,13 @@ export function scoreTxt(e: Match | null): string {
 
 export function matchTip(e: Match | null, lang: SupportedLang = "en"): string {
   if (!e) return "";
-  const sc =
-    e.intHomeScore != null ? ` ${e.intHomeScore}-${e.intAwayScore}` : "";
+  let sc = "";
+  if (e.intHomeScore != null) {
+    sc = ` ${e.intHomeScore}-${e.intAwayScore}`;
+    if (e.intHomePenaltyScore != null && e.intAwayPenaltyScore != null) {
+      sc += ` (${e.intHomePenaltyScore}-${e.intAwayPenaltyScore})`;
+    }
+  }
   const st = isLive(e)
     ? " (LIVE)"
     : isFinished(e)

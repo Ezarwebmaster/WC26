@@ -477,3 +477,22 @@ footer a:hover {
   color: var(--gold2);
   text-decoration: underline;
 }
+
+select.select-btn {
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  background: rgba(20, 20, 25, 0.8);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+  font-family: inherit;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+select.select-btn:focus-visible {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(232, 181, 63, 0.4);
+}
+

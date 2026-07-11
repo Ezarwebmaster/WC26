@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2026-07-11
+### Added
+- **Historical World Cups Support**: Added option to switch the bracket view between 2026, 2022, and 2018 World Cup data.
+### Changed
+- **Styling Refactoring**: Extracted inline select element styles to a `.select-btn` class in `src/index.css`.
+### Fixed
+- **Dropdown Accessibility**: Added visible focus outline style (`:focus-visible`) for select elements to improve keyboard accessibility.
+
 ## [1.2.3] - 2026-07-10
 ### Fixed
 - **API Rate Limiting**: Migrated parallel requests to sequential fetches with a 150ms delay and added exponential backoff retry logic. This prevents HTTP 429 and Cloudflare 1015 errors when loading the bracket.
