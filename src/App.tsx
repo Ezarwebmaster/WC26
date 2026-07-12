@@ -130,6 +130,7 @@ function App() {
             <option value="2018">2018</option>
             <option value="2014">2014</option>
             <option value="2010">2010</option>
+            <option value="2006">2006</option>
           </select>
 
           <select 
