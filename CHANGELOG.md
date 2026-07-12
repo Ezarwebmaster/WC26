@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2026-07-12
+### Added
+- **2006 World Cup Integration**: Added full historical knockout stage data for the 2006 World Cup in Germany.
+### Changed
+- **Bracket Mapping**: Added R16 team pairing definitions and updated `getMatchSlot` in `src/api/sportsdb.ts` to support the 2006 season structure.
+- **Season Selection**: Added "2006" to the season selection dropdown in `src/App.tsx`.
+
 ## [1.4.0] - 2026-07-11
 ### Added
 - **2010 World Cup Integration**: Added full historical knockout stage data for the 2010 World Cup in South Africa.
