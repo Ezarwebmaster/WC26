@@ -16,7 +16,7 @@ export const getKoRoundsForSeason = (season: string): readonly KOStage[] => {
       { r: [200], st: "F" },
     ] as const;
   }
-  if (season === "2018" || season === "2006") {
+  if (season === "2018" || season === "2006" || season === "2002") {
     return [
       { r: [4], st: "R16" },
       { r: [125], st: "QF" },
@@ -107,7 +107,14 @@ export interface BracketResult {
 }
 
 export async function fetchBracketData(season: string = "2026"): Promise<BracketResult> {
-  if (season === "2022" || season === "2018" || season === "2014" || season === "2010" || season === "2006") {
+  if (
+    season === "2022" ||
+    season === "2018" ||
+    season === "2014" ||
+    season === "2010" ||
+    season === "2006" ||
+    season === "2002"
+  ) {
     return HISTORICAL_DATA[season];
   }
   const byStage: Partial<ByStage> = {};
@@ -289,11 +296,29 @@ const BRACKET_R16_PAIRS_2006 = [
   ["spain", "france"],
 ];
 
+const BRACKET_R16_PAIRS_2002 = [
+  ["germany", "paraguay"],
+  ["mexico", "usa"],
+  ["spain", "ireland"],
+  ["south korea", "italy"],
+  ["denmark", "england"],
+  ["brazil", "belgium"],
+  ["sweden", "senegal"],
+  ["japan", "turkey"],
+];
+
 export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026"): number {
   const home = normalizeTeamName(m.strHomeTeam);
   const away = normalizeTeamName(m.strAwayTeam);
 
-  if (season === "2022" || season === "2018" || season === "2014" || season === "2010" || season === "2006") {
+  if (
+    season === "2022" ||
+    season === "2018" ||
+    season === "2014" ||
+    season === "2010" ||
+    season === "2006" ||
+    season === "2002"
+  ) {
     const pairs =
       season === "2018"
         ? BRACKET_R16_PAIRS_2018
@@ -303,6 +328,8 @@ export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026")
         ? BRACKET_R16_PAIRS_2010
         : season === "2006"
         ? BRACKET_R16_PAIRS_2006
+        : season === "2002"
+        ? BRACKET_R16_PAIRS_2002
         : BRACKET_R16_PAIRS_2022;
     if (stage === "R16") {
       for (let i = 0; i < pairs.length; i++) {
