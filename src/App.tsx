@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { fetchBracketData, ORDER, isLive } from "./api/sportsdb";
 import type { ByStage } from "./api/sportsdb";
 import { Bracket } from "./components/Bracket";
+import { SeasonSelect } from "./components/SeasonSelect";
 import { SIZE } from "./utils/helpers";
 import { detectBrowserLanguage, translations, languageNames } from "./utils/i18n";
 import type { SupportedLang } from "./utils/i18n";
@@ -116,24 +117,11 @@ function App() {
             GitHub
           </a>
           
-          <select 
+          <SeasonSelect 
             value={season} 
-            onChange={(e) => setSeason(e.target.value)} 
-            className="select-btn"
-            style={{ 
-              marginRight: lang === "ar" ? 0 : 8,
-              marginLeft: lang === "ar" ? 8 : 0
-            }}
-          >
-            <option value="2026">2026</option>
-            <option value="2022">2022</option>
-            <option value="2018">2018</option>
-            <option value="2014">2014</option>
-            <option value="2010">2010</option>
-            <option value="2006">2006</option>
-            <option value="2002">2002</option>
-            <option value="1998">1998</option>
-          </select>
+            onChange={setSeason} 
+            lang={lang} 
+          />
 
           <select 
             value={lang} 
