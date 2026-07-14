@@ -3,20 +3,14 @@ import { fetchBracketData, ORDER, isLive } from "./api/sportsdb";
 import type { ByStage } from "./api/sportsdb";
 import { Bracket } from "./components/Bracket";
 import { SeasonSelect } from "./components/SeasonSelect";
+import { LanguageSelect } from "./components/LanguageSelect";
+import { TimezoneSelect } from "./components/TimezoneSelect";
 import { SIZE } from "./utils/helpers";
-import { detectBrowserLanguage, translations, languageNames } from "./utils/i18n";
+import { detectBrowserLanguage, translations } from "./utils/i18n";
 import type { SupportedLang } from "./utils/i18n";
 
 type StatusType = "load" | "ok" | "err";
 
-const COMMON_TIMEZONES = [
-  "Europe/Paris",
-  "America/New_York",
-  "America/Los_Angeles",
-  "Europe/London",
-  "Asia/Tokyo",
-  "Australia/Sydney",
-];
 
 function App() {
   const [data, setData] = useState<ByStage | null>(null);
@@ -123,33 +117,16 @@ function App() {
             lang={lang} 
           />
 
-          <select 
+          <LanguageSelect 
             value={lang} 
-            onChange={(e) => setLang(e.target.value as SupportedLang)} 
-            className="select-btn"
-          >
-            {Object.entries(languageNames).map(([code, name]) => (
-              <option key={code} value={code}>
-                {name}
-              </option>
-            ))}
-          </select>
+            onChange={setLang} 
+          />
 
-          <select 
+          <TimezoneSelect 
             value={timezone} 
-            onChange={(e) => setTimezone(e.target.value)} 
-            className="select-btn"
-          >
-            {/* Auto (local) first, then common zones with the local one de-duped */}
-            <option value={localTimezone}>
-              {lang === "ar" ? "تلقائي" : "Auto"} ({localTimezone})
-            </option>
-            {COMMON_TIMEZONES.filter((tz) => tz !== localTimezone).map((tz) => (
-              <option key={tz} value={tz}>
-                {tz}
-              </option>
-            ))}
-          </select>
+            onChange={setTimezone} 
+            lang={lang} 
+          />
         </div>
       </header>
 

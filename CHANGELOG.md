@@ -5,9 +5,13 @@ All notable changes to this project will be documented in this file.
 ## [1.7.0] - 2026-07-14
 ### Added
 - **1998 World Cup Integration**: Added full historical knockout stage data for the 1998 World Cup in France.
+- **Custom Dropdown Selectors**: Replaced all native `<select>` elements in the header with premium, glassmorphic custom React dropdown selectors:
+  - **SeasonSelect**: Displays the year, host countries, flags, and the official tournament mascot in all 5 supported languages.
+  - **LanguageSelect**: Displays localized language names with corresponding flag emojis.
+  - **TimezoneSelect**: Lists common timezones showing their live local times.
+- **Flags and Codes Mapping**: Added missing country flags and 3-letter FIFA abbreviation codes for Romania (`ROU` / `ro`) and FR Yugoslavia (`YUG` / `rs`).
 ### Changed
 - **Bracket Mapping**: Added R16 team pairing definitions and updated `getMatchSlot` in `src/api/sportsdb.ts` to support the 1998 tournament layout.
-- **Season Selection**: Added "1998" to the season selection dropdown in `src/App.tsx`.
 - **Fetch Integration**: Configured `fetchBracketData` in `src/api/sportsdb.ts` to bypass live requests for 1998 and directly load historical data.
 
 ## [1.6.0] - 2026-07-13
