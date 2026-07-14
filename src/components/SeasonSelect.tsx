@@ -153,6 +153,24 @@ const SEASONS_DATA: SeasonInfo[] = [
       pt: "Footix o galo 🐓",
     },
   },
+  {
+    season: "1994",
+    flag: "🇺🇸",
+    hosts: {
+      en: "United States",
+      fr: "États-Unis",
+      ar: "الولايات المتحدة",
+      es: "Estados Unidos",
+      pt: "Estados Unidos",
+    },
+    mascot: {
+      en: "Stryker 🐶",
+      fr: "Stryker 🐶",
+      ar: "سترايكر 🐶",
+      es: "Stryker 🐶",
+      pt: "Stryker 🐶",
+    },
+  },
 ];
 
 interface SeasonSelectProps {

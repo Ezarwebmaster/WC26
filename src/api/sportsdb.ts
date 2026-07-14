@@ -16,7 +16,7 @@ export const getKoRoundsForSeason = (season: string): readonly KOStage[] => {
       { r: [200], st: "F" },
     ] as const;
   }
-  if (season === "2018" || season === "2006" || season === "2002" || season === "1998") {
+  if (season === "2018" || season === "2006" || season === "2002" || season === "1998" || season === "1994") {
     return [
       { r: [4], st: "R16" },
       { r: [125], st: "QF" },
@@ -114,7 +114,8 @@ export async function fetchBracketData(season: string = "2026"): Promise<Bracket
     season === "2010" ||
     season === "2006" ||
     season === "2002" ||
-    season === "1998"
+    season === "1998" ||
+    season === "1994"
   ) {
     return HISTORICAL_DATA[season];
   }
@@ -319,6 +320,17 @@ const BRACKET_R16_PAIRS_1998 = [
   ["romania", "croatia"],
 ];
 
+const BRACKET_R16_PAIRS_1994 = [
+  ["germany", "belgium"],
+  ["mexico", "bulgaria"],
+  ["spain", "switzerland"],
+  ["nigeria", "italy"],
+  ["saudi arabia", "sweden"],
+  ["romania", "argentina"],
+  ["netherlands", "republic of ireland"],
+  ["brazil", "usa"],
+];
+
 export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026"): number {
   const home = normalizeTeamName(m.strHomeTeam);
   const away = normalizeTeamName(m.strAwayTeam);
@@ -330,10 +342,13 @@ export function getMatchSlot(m: Match, stage: StageKey, season: string = "2026")
     season === "2010" ||
     season === "2006" ||
     season === "2002" ||
-    season === "1998"
+    season === "1998" ||
+    season === "1994"
   ) {
     const pairs =
-      season === "1998"
+      season === "1994"
+        ? BRACKET_R16_PAIRS_1994
+        : season === "1998"
         ? BRACKET_R16_PAIRS_1998
         : season === "2018"
         ? BRACKET_R16_PAIRS_2018
