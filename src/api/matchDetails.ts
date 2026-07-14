@@ -305,6 +305,235 @@ export const MATCH_DETAILS: Record<string, RichMatchDetails> = {
     ],
     awayCards: []
   },
+  "2499618": {
+    stadium: "SoFi Stadium",
+    city: "Inglewood",
+    dateEvent: "2026-06-28",
+    strTime: "19:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Stephen Eustáquio", minute: "90+2" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2499835": {
+    stadium: "NRG Stadium",
+    city: "Houston",
+    dateEvent: "2026-06-29",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Casemiro", minute: "56" },
+      { player: "Gabriel Martinelli", minute: "90+5" }
+    ],
+    awayGoals: [
+      { player: "Kaishū Sano", minute: "29" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2502846": {
+    stadium: "Gillette Stadium",
+    city: "Foxborough",
+    dateEvent: "2026-06-29",
+    strTime: "20:30:00",
+    homeGoals: [
+      { player: "Kai Havertz", minute: "54" }
+    ],
+    awayGoals: [
+      { player: "Julio Enciso", minute: "42" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2499836": {
+    stadium: "Estadio BBVA",
+    city: "Guadalupe",
+    dateEvent: "2026-06-30",
+    strTime: "01:00:00",
+    homeGoals: [
+      { player: "Cody Gakpo", minute: "72" }
+    ],
+    awayGoals: [
+      { player: "Issa Diop", minute: "90+1" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2502605": {
+    stadium: "AT&T Stadium",
+    city: "Arlington",
+    dateEvent: "2026-06-30",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Amad Diallo", minute: "74" }
+    ],
+    awayGoals: [
+      { player: "Antonio Nusa", minute: "39" },
+      { player: "Erling Haaland", minute: "86" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2502847": {
+    stadium: "MetLife Stadium",
+    city: "East Rutherford",
+    dateEvent: "2026-06-30",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Kylian Mbappé", minute: "45" },
+      { player: "Bradley Barcola", minute: "53" },
+      { player: "Kylian Mbappé", minute: "74" }
+    ],
+    awayGoals: [],
+    homeCards: [],
+    awayCards: []
+  },
+  "2503390": {
+    stadium: "Estadio Azteca",
+    city: "Mexico City",
+    dateEvent: "2026-07-01",
+    strTime: "01:00:00",
+    homeGoals: [
+      { player: "Julián Quiñones", minute: "22" },
+      { player: "Raúl Jiménez", minute: "31" }
+    ],
+    awayGoals: [],
+    homeCards: [],
+    awayCards: []
+  },
+  "2503391": {
+    stadium: "Mercedes-Benz Stadium",
+    city: "Atlanta",
+    dateEvent: "2026-07-01",
+    strTime: "16:00:00",
+    homeGoals: [
+      { player: "Harry Kane", minute: "75" },
+      { player: "Harry Kane", minute: "86" }
+    ],
+    awayGoals: [
+      { player: "Brian Cipenga", minute: "7" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2503392": {
+    stadium: "Lumen Field",
+    city: "Seattle",
+    dateEvent: "2026-07-01",
+    strTime: "20:00:00",
+    homeGoals: [
+      { player: "Romelu Lukaku", minute: "86" },
+      { player: "Youri Tielemans", minute: "89" },
+      { player: "Youri Tielemans", minute: "120+5", type: "penalty" }
+    ],
+    awayGoals: [
+      { player: "Habib Diarra", minute: "25" },
+      { player: "Ismaïla Sarr", minute: "51" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2499837": {
+    stadium: "Levi's Stadium",
+    city: "Santa Clara",
+    dateEvent: "2026-07-02",
+    strTime: "00:00:00",
+    homeGoals: [
+      { player: "Folarin Balogun", minute: "45" },
+      { player: "Malik Tillman", minute: "82" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Folarin Balogun", minute: "64", type: "red" }
+    ],
+    awayCards: []
+  },
+  "2503636": {
+    stadium: "SoFi Stadium",
+    city: "Inglewood",
+    dateEvent: "2026-07-02",
+    strTime: "19:00:00",
+    homeGoals: [
+      { player: "Mikel Oyarzabal", minute: "36" },
+      { player: "Pedro Porro", minute: "66" },
+      { player: "Mikel Oyarzabal", minute: "89" }
+    ],
+    awayGoals: [],
+    homeCards: [],
+    awayCards: []
+  },
+  "2503393": {
+    stadium: "BMO Field",
+    city: "Toronto",
+    dateEvent: "2026-07-02",
+    strTime: "23:00:00",
+    homeGoals: [
+      { player: "Cristiano Ronaldo", minute: "68", type: "penalty" },
+      { player: "Gonçalo Ramos", minute: "90+4" }
+    ],
+    awayGoals: [
+      { player: "Ivan Perišić", minute: "53" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2503635": {
+    stadium: "BC Place",
+    city: "Vancouver",
+    dateEvent: "2026-07-03",
+    strTime: "03:00:00",
+    homeGoals: [
+      { player: "Breel Embolo", minute: "10" },
+      { player: "Dan Ndoye", minute: "46" }
+    ],
+    awayGoals: [],
+    homeCards: [],
+    awayCards: []
+  },
+  "2502848": {
+    stadium: "AT&T Stadium",
+    city: "Arlington",
+    dateEvent: "2026-07-03",
+    strTime: "18:00:00",
+    homeGoals: [
+      { player: "Mohamed Hany", minute: "55", type: "own" }
+    ],
+    awayGoals: [
+      { player: "Emam Ashour", minute: "13" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2502849": {
+    stadium: "Hard Rock Stadium",
+    city: "Miami Gardens",
+    dateEvent: "2026-07-03",
+    strTime: "22:00:00",
+    homeGoals: [
+      { player: "Lionel Messi", minute: "29" },
+      { player: "Lisandro Martínez", minute: "92" },
+      { player: "Diney", minute: "111", type: "own" }
+    ],
+    awayGoals: [
+      { player: "Deroy Duarte", minute: "59" },
+      { player: "Sidny Lopes Cabral", minute: "103" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2503394": {
+    stadium: "Arrowhead Stadium",
+    city: "Kansas City",
+    dateEvent: "2026-07-04",
+    strTime: "01:30:00",
+    homeGoals: [
+      { player: "Jhon Arias", minute: "14" }
+    ],
+    awayGoals: [],
+    homeCards: [],
+    awayCards: []
+  },
   "2505183": {
     stadium: "NRG Stadium",
     city: "Houston",
