@@ -711,14 +711,28 @@ select.select-btn option {
   }
 }
 
-/* Arrow Pointer below popover */
-.popover-inner::after {
+/* Arrow Pointer below popover (upward popover) */
+.popover-inner.up::after {
   content: "";
   position: absolute;
   bottom: -6px;
   left: 50%;
   transform: translateX(-50%);
   border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: rgba(12, 12, 16, 0.96) transparent;
+  display: block;
+  width: 0;
+}
+
+/* Arrow Pointer above popover (downward popover) */
+.popover-inner.down::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 6px 6px;
   border-style: solid;
   border-color: rgba(12, 12, 16, 0.96) transparent;
   display: block;

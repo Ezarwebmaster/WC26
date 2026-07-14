@@ -439,12 +439,14 @@ const MatchDetailsPopover: React.FC<MatchDetailsPopoverProps> = ({
     },
   }[lang];
 
-  // Position popover above the score bubble
+  const openDown = y < 350;
+
+  // Position popover above or below the score bubble
   const style: React.CSSProperties = {
     position: "absolute",
     left: x,
-    top: y - 12,
-    transform: "translate(-50%, -100%)",
+    top: openDown ? y + 12 : y - 12,
+    transform: openDown ? "translate(-50%, 0)" : "translate(-50%, -100%)",
     zIndex: 2000,
     pointerEvents: "auto",
   };
@@ -462,7 +464,7 @@ const MatchDetailsPopover: React.FC<MatchDetailsPopoverProps> = ({
 
   return (
     <div className="popover-capsule">
-      <div className="popover-inner" style={style}>
+      <div className={`popover-inner ${openDown ? "down" : "up"}`} style={style}>
         <button className="popover-close" onClick={onClose} aria-label="Close">
           &times;
         </button>
