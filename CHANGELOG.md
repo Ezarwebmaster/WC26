@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.1] - 2026-07-14
+### Changed
+- **Concentric Paths Smoothing**: Replaced sharp orthogonal 90-degree corner joints on match connector lines with smooth, rounded corner curves using a 12px radius, delivering a more organic and polished layout.
+
 ## [1.8.0] - 2026-07-14
 ### Added
 - **Match Details Popover Capsule**: Clicking on any match score bubble (on connector lines or in the final center bubble) opens a premium glassmorphic popover directly above the bubble. It displays detailed match events (goals, cards, timings) in a dual-column layout, as well as the date, time, stadium, and city.

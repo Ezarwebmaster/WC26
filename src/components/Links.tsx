@@ -59,16 +59,34 @@ const generatePath = (a: { x: number; y: number }, b: { x: number; y: number }) 
   const pB = getPolar(b);
   const rMid = (pA.r + pB.r) / 2;
 
-  const pt1 = polarToCartesian(rMid, pA.ang);
-  const pt2 = polarToCartesian(rMid, pB.ang);
-
   let diff = pB.ang - pA.ang;
   while (diff < -Math.PI) diff += 2 * Math.PI;
   while (diff > Math.PI) diff -= 2 * Math.PI;
   const sweepFlag = diff > 0 ? 1 : 0;
+  const dir = diff > 0 ? 1 : -1;
 
-  const path = `M ${a.x} ${a.y} L ${pt1.x} ${pt1.y} A ${rMid} ${rMid} 0 0 ${sweepFlag} ${pt2.x} ${pt2.y} L ${b.x} ${b.y}`;
-  return { path, scorePt: pt2 };
+  // 12px rounding radius
+  let rc = 12;
+  const maxAngleDiff = Math.abs(diff);
+  const minRequiredAngle = 2 * (rc / rMid);
+  if (maxAngleDiff < minRequiredAngle) {
+    rc = (maxAngleDiff * rMid) / 2.2;
+  }
+
+  // Calculate coordinates for rounded corners
+  const p1Start = polarToCartesian(rMid + rc, pA.ang);
+  const p1EndAng = pA.ang + dir * (rc / rMid);
+  const p1End = polarToCartesian(rMid, p1EndAng);
+
+  const p2StartAng = pB.ang - dir * (rc / rMid);
+  const p2Start = polarToCartesian(rMid, p2StartAng);
+  const p2End = polarToCartesian(rMid - rc, pB.ang);
+
+  // Generate SVG path with rounded corners
+  const path = `M ${a.x} ${a.y} L ${p1Start.x} ${p1Start.y} A ${rc} ${rc} 0 0 ${sweepFlag} ${p1End.x} ${p1End.y} A ${rMid} ${rMid} 0 0 ${sweepFlag} ${p2Start.x} ${p2Start.y} A ${rc} ${rc} 0 0 ${sweepFlag} ${p2End.x} ${p2End.y} L ${b.x} ${b.y}`;
+
+  const scorePt = polarToCartesian(rMid, pB.ang);
+  return { path, scorePt };
 };
 export const Links: React.FC<LinksProps> = ({ links, lang, onScoreClick }) => {
   // Sort links from least to most visible
