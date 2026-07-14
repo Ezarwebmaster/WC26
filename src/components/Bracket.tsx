@@ -14,6 +14,7 @@ import {
   lineState,
   flagURL,
   scoreTxt,
+  penaltyScoreTxt,
 } from "../utils/helpers";
 import { TeamNode } from "./TeamNode";
 import { Links } from "./Links";
@@ -214,14 +215,15 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
         .forEach((f) =>
           computedLinks.push({ a: f, b: { x: C, y: C }, state: lineState(finalM, champ, f.team), match: finalM })
         );
-      centerData = { finalM, champ, badge: badgeOf(finalM, champ), score: scoreTxt(finalM) };
+      const penScore = penaltyScoreTxt(finalM, translations[lang].pen);
+      centerData = { finalM, champ, badge: badgeOf(finalM, champ), score: scoreTxt(finalM), penScore };
     } else {
       sfwin.forEach((f) => computedLinks.push({ a: f, b: { x: C, y: C }, state: "cold" }));
-      centerData = { finalM: null, champ: null, badge: null, score: null };
+      centerData = { finalM: null, champ: null, badge: null, score: null, penScore: null };
     }
 
     return { RINGS, nodes: computedNodes, links: computedLinks, center: centerData };
-  }, [byStage, timezone, season, is16Team]);
+  }, [byStage, timezone, season, is16Team, lang]);
 
   return (
     <div className="canvas" id="canvas" style={{ width: SIZE, height: SIZE }}>
@@ -251,7 +253,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
       <div className="center">
         {center.finalM && center.champ ? (
           <>
-            <div className="node champ" style={{ position: "static", transform: "none", width: 66, height: 66, margin: "0 auto", marginBottom: 10 }}>
+            <div className="node champ" style={{ position: "static", transform: "none", width: 66, height: 66, margin: "0 auto", marginBottom: 8 }}>
               {flagURL(center.champ) ? (
                 <img className="flag" src={flagURL(center.champ)!} alt={center.champ} />
               ) : center.badge ? (
@@ -259,6 +261,28 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
               ) : null}
               {center.badge && (
                 <img className="crest" src={center.badge} alt="" />
+              )}
+            </div>
+
+            <div className="center-score-bubble" style={{ 
+              background: "rgba(11, 11, 14, 0.95)", 
+              border: "1.5px solid var(--gold)", 
+              borderRadius: "8px", 
+              padding: "4px 10px", 
+              marginBottom: 8, 
+              display: "flex", 
+              flexDirection: "column", 
+              alignItems: "center",
+              boxShadow: "0 4px 15px rgba(0, 0, 0, 0.5)",
+              pointerEvents: "auto"
+            }}>
+              <span style={{ color: "var(--gold)", fontSize: 12, fontWeight: 800, fontFamily: "Outfit", letterSpacing: "0.5px" }}>
+                {center.score}
+              </span>
+              {center.penScore && (
+                <span style={{ color: "var(--muted)", fontSize: 9, fontWeight: 600, fontFamily: "Inter", marginTop: 1 }}>
+                  {center.penScore}
+                </span>
               )}
             </div>
 

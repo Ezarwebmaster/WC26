@@ -90,6 +90,7 @@ export const Links: React.FC<LinksProps> = ({ links, lang }) => {
         const isWonLine = l.state === "won" && l.match;
         const score = l.match ? scoreTxt(l.match) : "";
         const { path, scorePt } = generatePath(l.a, l.b);
+        const isFinalLink = Math.abs(l.b.x - C) < 1 && Math.abs(l.b.y - C) < 1;
 
         const homeLabel = translations[lang].home;
         const awayLabel = translations[lang].away;
@@ -138,7 +139,7 @@ export const Links: React.FC<LinksProps> = ({ links, lang }) => {
               strokeDasharray={s.dash || undefined}
               filter={s.glow ? "url(#goldglow)" : undefined}
             />
-            {isWonLine && score && (
+            {isWonLine && score && !isFinalLink && (
               <g transform={`translate(${scorePt.x}, ${scorePt.y})`} style={{ pointerEvents: "auto", cursor: tooltip ? "help" : "default" }}>
                 {tooltip && <title>{tooltip}</title>}
                 <rect x={-rectW/2} y={rectY} width={rectW} height={rectH} rx="6" fill="#0b0b0e" stroke="var(--gold)" strokeWidth="1.5" />

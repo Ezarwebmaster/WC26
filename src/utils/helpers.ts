@@ -99,6 +99,24 @@ export function scoreTxt(e: Match | null): string {
     : "";
 }
 
+export function penaltyScoreTxt(m: Match | null, penLabel: string): string {
+  if (!m) return "";
+  const hPen = m.intHomePenaltyScore;
+  const aPen = m.intAwayPenaltyScore;
+  const hEx = m.intHomeScoreExtra;
+  const aEx = m.intAwayScoreExtra;
+  const isPen = m.strStatus === "PEN" || m.strStatus === "AP" || (hPen != null && aPen != null);
+  
+  if (hPen != null && aPen != null) {
+    return `${hPen}–${aPen} ${penLabel}`;
+  } else if (isPen && hEx != null && aEx != null) {
+    return `${hEx}–${aEx} ${penLabel}`;
+  } else if (m.strResult?.includes("penalties")) {
+    return penLabel; 
+  }
+  return "";
+}
+
 export function matchTip(e: Match | null, lang: SupportedLang = "en"): string {
   if (!e) return "";
   let sc = "";

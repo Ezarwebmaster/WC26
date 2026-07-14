@@ -70,7 +70,7 @@ export const translations: Record<SupportedLang, TranslationDict> = {
     home: "Domicile",
     away: "Extérieur",
     vs: "contre",
-    pen: "PEN",
+    pen: "t.a.b.",
     R32: "32es de finale",
     R16: "16es de finale",
     QF: "Quarts de finale",
