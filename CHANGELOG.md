@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.1] - 2026-07-14
+### Changed
+- **Winner & Final Score Presentation**: Redesigned the center champion block to display the winner's flag at the top, the final score bubble directly below it, and the champion label at the bottom, resolving visual overlap issues.
+- **Victory Path Cleanup**: Removed the final score bubble from the final match connector lines to keep the golden victory path clear and visible.
+- **Localisation**: Improved French translation of penalty shootouts by using `t.a.b.` instead of `PEN`.
+
 ## [1.7.0] - 2026-07-14
 ### Added
 - **1998 World Cup Integration**: Added full historical knockout stage data for the 1998 World Cup in France.
