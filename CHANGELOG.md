@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.0] - 2026-07-14
+### Added
+- **1998 World Cup Integration**: Added full historical knockout stage data for the 1998 World Cup in France.
+### Changed
+- **Bracket Mapping**: Added R16 team pairing definitions and updated `getMatchSlot` in `src/api/sportsdb.ts` to support the 1998 tournament layout.
+- **Season Selection**: Added "1998" to the season selection dropdown in `src/App.tsx`.
+- **Fetch Integration**: Configured `fetchBracketData` in `src/api/sportsdb.ts` to bypass live requests for 1998 and directly load historical data.
+
 ## [1.6.0] - 2026-07-13
 ### Added
 - **2002 World Cup Integration**: Added full historical knockout stage data for the 2002 World Cup in South Korea & Japan.
