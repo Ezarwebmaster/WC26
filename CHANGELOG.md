@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.0] - 2026-07-14
+### Added
+- **Static 2026 Matches Data**: Stored all completed matches (Round of 32, Round of 16, and Quarter-finals) of the ongoing 2026 World Cup in a static store `src/api/static2026.ts`.
+- **Hybrid Fetching Architecture**: Refactored `fetchBracketData` in `src/api/sportsdb.ts` to load 2026 completed matches statically, only querying the live API for active/future rounds (Semi-finals and Final), optimizing performance and preventing API rate-limiting issues.
+- **2026 Match Details**: Imported 2026 Quarter-final match details (scorers, cards, timings, and stadiums) retrieved via NotebookLM into `src/api/matchDetails.ts`.
+
 ## [1.8.1] - 2026-07-14
 ### Changed
 - **Concentric Paths Smoothing**: Replaced sharp orthogonal 90-degree corner joints on match connector lines with smooth, rounded corner curves using a 12px radius, delivering a more organic and polished layout.

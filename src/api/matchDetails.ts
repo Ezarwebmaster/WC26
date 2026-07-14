@@ -304,5 +304,73 @@ export const MATCH_DETAILS: Record<string, RichMatchDetails> = {
       { player: "Gonzalo Montiel", minute: "116", type: "yellow" }
     ],
     awayCards: []
+  },
+  "2515305": {
+    stadium: "Gillette Stadium",
+    city: "Foxborough",
+    dateEvent: "2026-07-09",
+    strTime: "20:00:00",
+    homeGoals: [
+      { player: "Kylian Mbappé", minute: "60" },
+      { player: "Ousmane Dembélé", minute: "66" }
+    ],
+    awayGoals: [],
+    homeCards: [],
+    awayCards: []
+  },
+  "2519345": {
+    stadium: "SoFi Stadium",
+    city: "Inglewood",
+    dateEvent: "2026-07-10",
+    strTime: "19:00:00",
+    homeGoals: [
+      { player: "Fabián Ruiz", minute: "30" },
+      { player: "Mikel Merino", minute: "88" }
+    ],
+    awayGoals: [
+      { player: "Charles De Ketelaere", minute: "41" }
+    ],
+    homeCards: [
+      { player: "Pau Cubarsí", minute: "43", type: "yellow" },
+      { player: "Aymeric Laporte", minute: "90+3", type: "yellow" }
+    ],
+    awayCards: []
+  },
+  "2517651": {
+    stadium: "Hard Rock Stadium",
+    city: "Miami Gardens",
+    dateEvent: "2026-07-11",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Andreas Schjelderup", minute: "36" }
+    ],
+    awayGoals: [
+      { player: "Jude Bellingham", minute: "45+2" },
+      { player: "Jude Bellingham", minute: "93" }
+    ],
+    homeCards: [
+      { player: "Kristoffer Ajer", minute: "117", type: "yellow" }
+    ],
+    awayCards: []
+  },
+  "2520608": {
+    stadium: "Arrowhead Stadium",
+    city: "Kansas City",
+    dateEvent: "2026-07-12",
+    strTime: "01:00:00",
+    homeGoals: [
+      { player: "Alexis Mac Allister", minute: "10" },
+      { player: "Julián Alvarez", minute: "112" },
+      { player: "Lautaro Martínez", minute: "120+1" }
+    ],
+    awayGoals: [
+      { player: "Dan Ndoye", minute: "67" }
+    ],
+    homeCards: [
+      { player: "Thiago Almada", minute: "97", type: "yellow" },
+      { player: "Lautaro Martínez", minute: "98", type: "yellow" },
+      { player: "José Manuel López", minute: "114", type: "yellow" }
+    ],
+    awayCards: []
   }
 };

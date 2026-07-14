@@ -1,4 +1,5 @@
 import { HISTORICAL_DATA } from "./historicalData";
+import { STATIC_2026 } from "./static2026";
 
 const KEY = import.meta.env.VITE_SPORTSDB_KEY || "123";
 
@@ -101,8 +102,6 @@ export function isFinished(e: Match | null): boolean {
 
 export interface BracketResult {
   byStage: ByStage;
-  // Rounds whose request genuinely failed (network/HTTP), as opposed to
-  // succeeding with an empty list (a not-yet-played round is not a failure).
   failedStages: StageKey[];
 }
 
@@ -119,12 +118,23 @@ export async function fetchBracketData(season: string = "2026"): Promise<Bracket
   ) {
     return HISTORICAL_DATA[season];
   }
-  const byStage: Partial<ByStage> = {};
-  ORDER.forEach((s) => {
-    byStage[s] = [];
-  });
+
+  // Pre-load with hardcoded static 2026 data
+  const byStage: ByStage = {
+    R32: [...STATIC_2026.R32],
+    R16: [...STATIC_2026.R16],
+    QF: [...STATIC_2026.QF],
+    SF: [],
+    F: [],
+  };
   const failedStages: StageKey[] = [];
-  const koRounds = getKoRoundsForSeason(season);
+
+  // Determine active/live rounds to fetch: only SF and F
+  const liveStages: { r: readonly number[]; st: StageKey }[] = [
+    { r: [4, 150], st: "SF" },
+    { r: [2, 200], st: "F" },
+  ];
+
   const baseApiUrl = `https://www.thesportsdb.com/api/v1/json/${KEY}/eventsround.php?id=4429&s=${season}&r=`;
 
   const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -151,12 +161,12 @@ export async function fetchBracketData(season: string = "2026"): Promise<Bracket
   };
 
   const results: { ok: boolean; data: any; roundNum: number; stageKey: StageKey }[] = [];
-  for (let i = 0; i < koRounds.length; i++) {
-    const k = koRounds[i];
+  for (let i = 0; i < liveStages.length; i++) {
+    const k = liveStages[i];
     for (let j = 0; j < k.r.length; j++) {
       const rNum = k.r[j];
       if (results.length > 0) {
-        await delay(150); // delay between fetches to avoid rate limit
+        await delay(150);
       }
       const res = await fetchWithRetry(baseApiUrl + rNum);
       results.push({ ...res, roundNum: rNum, stageKey: k.st });
@@ -164,9 +174,9 @@ export async function fetchBracketData(season: string = "2026"): Promise<Bracket
   }
 
   const stageSuccess: Record<StageKey, boolean> = {
-    R32: false,
-    R16: false,
-    QF: false,
+    R32: true, // statically loaded
+    R16: true, // statically loaded
+    QF: true,  // statically loaded
     SF: false,
     F: false,
   };
@@ -178,15 +188,38 @@ export async function fetchBracketData(season: string = "2026"): Promise<Bracket
       evs.forEach((ev: any) => {
         // Exclut la 2e journée de poules qui partage le round 2 avec la finale (uniquement pour 2026)
         if (season === "2026" && res.roundNum === 2 && !(ev.dateEvent && ev.dateEvent >= "2026-07-16")) return;
-        
-        // Avoid duplicate events if they exist under multiple query fallback rounds
+
         if (!byStage[res.stageKey]!.some((existing) => existing.idEvent === ev.idEvent)) {
-          byStage[res.stageKey]!.push(ev);
+          byStage[res.stageKey]!.push({
+            idEvent: ev.idEvent,
+            strEvent: ev.strEvent,
+            strHomeTeam: ev.strHomeTeam,
+            strAwayTeam: ev.strAwayTeam,
+            intHomeScore: ev.intHomeScore,
+            intAwayScore: ev.intAwayScore,
+            strHomeTeamBadge: ev.strHomeTeamBadge,
+            strAwayTeamBadge: ev.strAwayTeamBadge,
+            dateEvent: ev.dateEvent,
+            strTime: ev.strTime,
+            strStatus: ev.strStatus,
+            strHomeGoalDetails: ev.strHomeGoalDetails,
+            strAwayGoalDetails: ev.strAwayGoalDetails,
+            intHomeScoreExtra: ev.intHomeScoreExtra,
+            intAwayScoreExtra: ev.intAwayScoreExtra,
+            intHomePenaltyScore: ev.intHomePenaltyScore,
+            intAwayPenaltyScore: ev.intAwayPenaltyScore,
+            strResult: ev.strResult,
+          });
         }
       });
+    } else {
+      if (res.stageKey === "SF" || res.stageKey === "F") {
+        failedStages.push(res.stageKey);
+      }
     }
   });
 
+  const koRounds = getKoRoundsForSeason(season);
   koRounds.forEach((k) => {
     if (!stageSuccess[k.st]) {
       failedStages.push(k.st);
