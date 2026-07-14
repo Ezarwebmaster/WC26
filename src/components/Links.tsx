@@ -44,7 +44,12 @@ const polarToCartesian = (r: number, ang: number) => {
 
 const generatePath = (a: { x: number; y: number }, b: { x: number; y: number }) => {
   if (Math.abs(b.x - C) < 1 && Math.abs(b.y - C) < 1) {
-    return { path: `M ${a.x} ${a.y} L ${b.x} ${b.y}`, scorePt: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 } };
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    // Add a tiny offset to avoid zero width or height bounding box for gradients
+    const targetX = Math.abs(dx) < 0.1 ? b.x + 0.1 : b.x;
+    const targetY = Math.abs(dy) < 0.1 ? b.y + 0.1 : b.y;
+    return { path: `M ${a.x} ${a.y} L ${targetX} ${targetY}`, scorePt: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 } };
   }
   const pA = getPolar(a);
   const pB = getPolar(b);
