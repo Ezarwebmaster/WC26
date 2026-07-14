@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [1.8.1] - 2026-07-14
 ### Changed
 - **Concentric Paths Smoothing**: Replaced sharp orthogonal 90-degree corner joints on match connector lines with smooth, rounded corner curves using a 12px radius, delivering a more organic and polished layout.
+- **Concentric Paths Corner Fix**: Corrected the sweep flag of the first corner arc to prevent the curves from bulging outwards/creating a wave-like deformation, yielding perfectly smoothed inside-rounded transitions.
 
 ## [1.8.0] - 2026-07-14
 ### Added

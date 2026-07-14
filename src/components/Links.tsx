@@ -83,7 +83,7 @@ const generatePath = (a: { x: number; y: number }, b: { x: number; y: number }) 
   const p2End = polarToCartesian(rMid - rc, pB.ang);
 
   // Generate SVG path with rounded corners
-  const path = `M ${a.x} ${a.y} L ${p1Start.x} ${p1Start.y} A ${rc} ${rc} 0 0 ${sweepFlag} ${p1End.x} ${p1End.y} A ${rMid} ${rMid} 0 0 ${sweepFlag} ${p2Start.x} ${p2Start.y} A ${rc} ${rc} 0 0 ${sweepFlag} ${p2End.x} ${p2End.y} L ${b.x} ${b.y}`;
+  const path = `M ${a.x} ${a.y} L ${p1Start.x} ${p1Start.y} A ${rc} ${rc} 0 0 ${1 - sweepFlag} ${p1End.x} ${p1End.y} A ${rMid} ${rMid} 0 0 ${sweepFlag} ${p2Start.x} ${p2Start.y} A ${rc} ${rc} 0 0 ${sweepFlag} ${p2End.x} ${p2End.y} L ${b.x} ${b.y}`;
 
   const scorePt = polarToCartesian(rMid, pB.ang);
   return { path, scorePt };
