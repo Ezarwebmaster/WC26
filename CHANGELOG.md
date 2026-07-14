@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - **Winner & Final Score Presentation**: Redesigned the center champion block to display the winner's flag at the top, the final score bubble directly below it, and the champion label at the bottom, resolving visual overlap issues.
 - **Victory Path Cleanup**: Removed the final score bubble from the final match connector lines to keep the golden victory path clear and visible.
 - **Victory Path Gradient Fix**: Added a tiny offset to straight horizontal/vertical paths (such as the final match line) to ensure SVG `linearGradient` works properly and does not disappear or render as grey due to a zero-width/height bounding box.
+- **Vertical Victory Path Connection**: Added a vertical golden connection line going from the center score bubble up to the champion's flag, matching the hierarchical tree aesthetics of the other tournament stages.
 - **Localisation**: Improved French translation of penalty shootouts by using `t.a.b.` instead of `PEN`.
 
 ## [1.7.0] - 2026-07-14

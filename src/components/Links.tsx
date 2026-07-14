@@ -43,7 +43,10 @@ const polarToCartesian = (r: number, ang: number) => {
 };
 
 const generatePath = (a: { x: number; y: number }, b: { x: number; y: number }) => {
-  if (Math.abs(b.x - C) < 1 && Math.abs(b.y - C) < 1) {
+  const isAAtCenter = Math.abs(a.x - C) < 1 && Math.abs(a.y - C) < 1;
+  const isBAtCenter = Math.abs(b.x - C) < 1 && Math.abs(b.y - C) < 1;
+
+  if (isAAtCenter || isBAtCenter) {
     const dx = b.x - a.x;
     const dy = b.y - a.y;
     // Add a tiny offset to avoid zero width or height bounding box for gradients

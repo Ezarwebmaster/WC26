@@ -215,6 +215,13 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
         .forEach((f) =>
           computedLinks.push({ a: f, b: { x: C, y: C }, state: lineState(finalM, champ, f.team), match: finalM })
         );
+      if (champ) {
+        computedLinks.push({
+          a: { x: C, y: C },
+          b: { x: C, y: C - 45 },
+          state: "won",
+        });
+      }
       const penScore = penaltyScoreTxt(finalM, translations[lang].pen);
       centerData = { finalM, champ, badge: badgeOf(finalM, champ), score: scoreTxt(finalM), penScore };
     } else {
