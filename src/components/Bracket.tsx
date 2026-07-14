@@ -1,6 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { ORDER } from "../api/sportsdb";
 import type { ByStage, Match, StageKey } from "../api/sportsdb";
+import { MATCH_DETAILS } from "../api/matchDetails";
+import { formatMatchDate } from "../utils/helpers";
 import {
   C,
   SIZE,
@@ -49,6 +51,23 @@ interface NodeData {
 }
 
 export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, season }) => {
+  const [activeDetails, setActiveDetails] = useState<{ match: Match; x: number; y: number } | null>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+        setActiveDetails(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleScoreClick = (match: Match, x: number, y: number) => {
+    setActiveDetails({ match, x, y });
+  };
+
   const is16Team = season !== "2026";
   const { RINGS, nodes, links, center } = useMemo(() => {
     const RINGS = getRingsConfig(season);
@@ -236,7 +255,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
     <div className="canvas" id="canvas" style={{ width: SIZE, height: SIZE }}>
       <div className="glow"></div>
       
-      <Links links={links} lang={lang} />
+      <Links links={links} lang={lang} onScoreClick={handleScoreClick} />
 
       {nodes.map((n) => (
         <TeamNode
@@ -271,18 +290,23 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
               )}
             </div>
 
-            <div className="center-score-bubble" style={{ 
-              background: "rgba(11, 11, 14, 0.95)", 
-              border: "1.5px solid var(--gold)", 
-              borderRadius: "8px", 
-              padding: "4px 10px", 
-              marginBottom: 8, 
-              display: "flex", 
-              flexDirection: "column", 
-              alignItems: "center",
-              boxShadow: "0 4px 15px rgba(0, 0, 0, 0.5)",
-              pointerEvents: "auto"
-            }}>
+            <div 
+              className="center-score-bubble" 
+              onClick={() => handleScoreClick(center.finalM!, C, C - 35)}
+              style={{ 
+                background: "rgba(11, 11, 14, 0.95)", 
+                border: "1.5px solid var(--gold)", 
+                borderRadius: "8px", 
+                padding: "4px 10px", 
+                marginBottom: 8, 
+                display: "flex", 
+                flexDirection: "column", 
+                alignItems: "center",
+                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.5)",
+                pointerEvents: "auto",
+                cursor: "pointer"
+              }}
+            >
               <span style={{ color: "var(--gold)", fontSize: 12, fontWeight: 800, fontFamily: "Outfit", letterSpacing: "0.5px" }}>
                 {center.score}
               </span>
@@ -341,6 +365,194 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
           <text><textPath href="#txt-SF" startOffset="50%" textAnchor="middle">{translations[lang].SF}</textPath></text>
         </g>
       </svg>
+
+      {activeDetails && (
+        <div ref={popoverRef}>
+          <MatchDetailsPopover
+            match={activeDetails.match}
+            x={activeDetails.x}
+            y={activeDetails.y}
+            lang={lang}
+            timezone={timezone}
+            onClose={() => setActiveDetails(null)}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface MatchDetailsPopoverProps {
+  match: Match;
+  x: number;
+  y: number;
+  lang: SupportedLang;
+  timezone: string;
+  onClose: () => void;
+}
+
+const MatchDetailsPopover: React.FC<MatchDetailsPopoverProps> = ({
+  match,
+  x,
+  y,
+  lang,
+  timezone,
+  onClose,
+}) => {
+  const details = MATCH_DETAILS[match.idEvent];
+
+  const tLocal = {
+    en: {
+      stadium: "Stadium",
+      city: "City",
+      goals: "Goals",
+      cards: "Cards",
+      noDetails: "Lineups, goal times, and card details will be imported soon.",
+    },
+    fr: {
+      stadium: "Stade",
+      city: "Ville",
+      goals: "Buts",
+      cards: "Cartons",
+      noDetails: "Les compositions, buteurs et cartons détaillés seront bientôt importés.",
+    },
+    ar: {
+      stadium: "الملعب",
+      city: "المدينة",
+      goals: "الأهداف",
+      cards: "البطاقات",
+      noDetails: "سيتم استيراد التشكيلات وأوقات الأهداف والبطاقات قريبًا.",
+    },
+    es: {
+      stadium: "Estadio",
+      city: "Ciudad",
+      goals: "Goles",
+      cards: "Tarjetas",
+      noDetails: "Las alineaciones, minutos de goles y tarjetas se importarán pronto.",
+    },
+    pt: {
+      stadium: "Estádio",
+      city: "Cidade",
+      goals: "Gols",
+      cards: "Cartões",
+      noDetails: "As escalações, tempos de gols e cartões serão importados em breve.",
+    },
+  }[lang];
+
+  // Position popover above the score bubble
+  const style: React.CSSProperties = {
+    position: "absolute",
+    left: x,
+    top: y - 12,
+    transform: "translate(-50%, -100%)",
+    zIndex: 2000,
+    pointerEvents: "auto",
+  };
+
+  const renderEventEmoji = (type?: string) => {
+    if (type === "yellow") return <span className="card-icon yellow"></span>;
+    if (type === "red" || type === "yellow-red") return <span className="card-icon red"></span>;
+    if (type === "own") return "⚽ (csc)";
+    return "⚽";
+  };
+
+  const dateInfo = details
+    ? formatMatchDate(details.dateEvent, details.strTime, timezone, lang)
+    : formatMatchDate(match.dateEvent, match.strTime, timezone, lang);
+
+  return (
+    <div className="popover-capsule">
+      <div className="popover-inner" style={style}>
+        <button className="popover-close" onClick={onClose} aria-label="Close">
+          &times;
+        </button>
+        
+        <div className="popover-header">
+          <div className="popover-teams">
+            {match.strHomeTeam} vs {match.strAwayTeam}
+          </div>
+          <div className="popover-date">
+            {dateInfo.date} • {dateInfo.time}
+          </div>
+          {details && (
+            <div className="popover-venue">
+              {details.stadium}, {details.city}
+            </div>
+          )}
+        </div>
+
+        <div className="popover-body">
+          {details ? (
+            <div className="popover-columns">
+              {/* Home Column */}
+              <div className="popover-column">
+                <div className="team-name-header">{match.strHomeTeam}</div>
+                
+                {/* Goals */}
+                {details.homeGoals && details.homeGoals.length > 0 && (
+                  <div className="event-section">
+                    <div className="section-title">{tLocal.goals}</div>
+                    {details.homeGoals.map((g, idx) => (
+                      <div key={idx} className="event-item">
+                        <span>⚽</span>
+                        <span>{g.player} ({g.minute}') {g.type === "own" && "(csc)"} {g.type === "penalty" && "(pen)"}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Cards */}
+                {details.homeCards && details.homeCards.length > 0 && (
+                  <div className="event-section">
+                    <div className="section-title">{tLocal.cards}</div>
+                    {details.homeCards.map((c, idx) => (
+                      <div key={idx} className="event-item">
+                        {renderEventEmoji(c.type)}
+                        <span>{c.player} ({c.minute}')</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Away Column */}
+              <div className="popover-column">
+                <div className="team-name-header">{match.strAwayTeam}</div>
+                
+                {/* Goals */}
+                {details.awayGoals && details.awayGoals.length > 0 && (
+                  <div className="event-section">
+                    <div className="section-title">{tLocal.goals}</div>
+                    {details.awayGoals.map((g, idx) => (
+                      <div key={idx} className="event-item">
+                        <span>⚽</span>
+                        <span>{g.player} ({g.minute}') {g.type === "own" && "(csc)"} {g.type === "penalty" && "(pen)"}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Cards */}
+                {details.awayCards && details.awayCards.length > 0 && (
+                  <div className="event-section">
+                    <div className="section-title">{tLocal.cards}</div>
+                    {details.awayCards.map((c, idx) => (
+                      <div key={idx} className="event-item">
+                        {renderEventEmoji(c.type)}
+                        <span>{c.player} ({c.minute}')</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="popover-no-details">
+              {tLocal.noDetails}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

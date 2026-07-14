@@ -15,6 +15,7 @@ export interface LinkData {
 interface LinksProps {
   links: LinkData[];
   lang: SupportedLang;
+  onScoreClick?: (match: Match, x: number, y: number) => void;
 }
 
 const STYLE: Record<string, { stroke: string; w: number; op: number; dash: string | null; glow: boolean }> = {
@@ -69,7 +70,7 @@ const generatePath = (a: { x: number; y: number }, b: { x: number; y: number }) 
   const path = `M ${a.x} ${a.y} L ${pt1.x} ${pt1.y} A ${rMid} ${rMid} 0 0 ${sweepFlag} ${pt2.x} ${pt2.y} L ${b.x} ${b.y}`;
   return { path, scorePt: pt2 };
 };
-export const Links: React.FC<LinksProps> = ({ links, lang }) => {
+export const Links: React.FC<LinksProps> = ({ links, lang, onScoreClick }) => {
   // Sort links from least to most visible
   const sortedLinks = [...links].sort((a, b) => (RANK[a.state] || 0) - (RANK[b.state] || 0));
 
@@ -148,7 +149,11 @@ export const Links: React.FC<LinksProps> = ({ links, lang }) => {
               filter={s.glow ? "url(#goldglow)" : undefined}
             />
             {isWonLine && score && !isFinalLink && (
-              <g transform={`translate(${scorePt.x}, ${scorePt.y})`} style={{ pointerEvents: "auto", cursor: tooltip ? "help" : "default" }}>
+              <g
+                transform={`translate(${scorePt.x}, ${scorePt.y})`}
+                style={{ pointerEvents: "auto", cursor: "pointer" }}
+                onClick={() => onScoreClick?.(l.match!, scorePt.x, scorePt.y)}
+              >
                 {tooltip && <title>{tooltip}</title>}
                 <rect x={-rectW/2} y={rectY} width={rectW} height={rectH} rx="6" fill="#0b0b0e" stroke="var(--gold)" strokeWidth="1.5" />
                 <text x="0" y={scoreY} fill="var(--gold)" fontSize="11" fontWeight="800" textAnchor="middle" alignmentBaseline="middle" fontFamily="Outfit">
