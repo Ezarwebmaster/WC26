@@ -305,6 +305,154 @@ export const MATCH_DETAILS: Record<string, RichMatchDetails> = {
     ],
     awayCards: []
   },
+  "2505183": {
+    stadium: "NRG Stadium",
+    city: "Houston",
+    dateEvent: "2026-07-04",
+    strTime: "17:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Azzedine Ounahi", minute: "50" },
+      { player: "Azzedine Ounahi", minute: "82" },
+      { player: "Soufiane Rahimi", minute: "90+8" }
+    ],
+    homeCards: [
+      { player: "Richie Laryea", minute: "40", type: "yellow" },
+      { player: "Jonathan David", minute: "43", type: "yellow" },
+      { player: "Luc de Fougerolles", minute: "49", type: "yellow" },
+      { player: "Cyle Larin", minute: "67", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Redouane Halhal", minute: "20", type: "yellow" },
+      { player: "Achraf Hakimi", minute: "40", type: "yellow" },
+      { player: "Azzedine Ounahi", minute: "45", type: "yellow" },
+      { player: "Bilal El Khannouss", minute: "45+6", type: "yellow" }
+    ]
+  },
+  "2505624": {
+    stadium: "Lincoln Financial Field",
+    city: "Philadelphie",
+    dateEvent: "2026-07-04",
+    strTime: "21:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Kylian Mbappé", minute: "70", type: "penalty" }
+    ],
+    homeCards: [
+      { player: "Carlos González", minute: "90", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Bradley Barcola", minute: "19", type: "yellow" },
+      { player: "Manu Koné", minute: "81", type: "yellow" },
+      { player: "Michael Olise", minute: "90+7", type: "yellow" }
+    ]
+  },
+  "2505462": {
+    stadium: "MetLife Stadium",
+    city: "East Rutherford",
+    dateEvent: "2026-07-05",
+    strTime: "20:00:00",
+    homeGoals: [
+      { player: "Neymar", minute: "90+10", type: "penalty" }
+    ],
+    awayGoals: [
+      { player: "Erling Haaland", minute: "79" },
+      { player: "Erling Haaland", minute: "90" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "2507706": {
+    stadium: "Estadio Azteca",
+    city: "Mexico",
+    dateEvent: "2026-07-06",
+    strTime: "02:00:00",
+    homeGoals: [
+      { player: "Julián Quiñones", minute: "42" },
+      { player: "Raúl Jiménez", minute: "69", type: "penalty" }
+    ],
+    awayGoals: [
+      { player: "Jude Bellingham", minute: "36" },
+      { player: "Jude Bellingham", minute: "38" },
+      { player: "Harry Kane", minute: "60", type: "penalty" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Jarell Quansah", minute: "70", type: "red" },
+      { player: "Declan Rice", minute: "45", type: "yellow" }
+    ]
+  },
+  "2511721": {
+    stadium: "AT&T Stadium",
+    city: "Arlington",
+    dateEvent: "2026-07-06",
+    strTime: "19:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Mikel Merino", minute: "90+1" }
+    ],
+    homeCards: [
+      { player: "Bernardo Silva", minute: "89", type: "yellow" },
+      { player: "Renato Veiga", minute: "90+3", type: "yellow" }
+    ],
+    awayCards: []
+  },
+  "2507707": {
+    stadium: "Lumen Field",
+    city: "Seattle",
+    dateEvent: "2026-07-07",
+    strTime: "00:00:00",
+    homeGoals: [
+      { player: "Malik Tillman", minute: "31" }
+    ],
+    awayGoals: [
+      { player: "Charles De Ketelaere", minute: "9" },
+      { player: "Charles De Ketelaere", minute: "33" },
+      { player: "Hans Vanaken", minute: "57" },
+      { player: "Romelu Lukaku", minute: "90+3" }
+    ],
+    homeCards: [
+      { player: "Weston McKennie", minute: "35", type: "yellow" },
+      { player: "Malik Tillman", minute: "69", type: "yellow" }
+    ],
+    awayCards: []
+  },
+  "2513670": {
+    stadium: "Mercedes-Benz Stadium",
+    city: "Atlanta",
+    dateEvent: "2026-07-07",
+    strTime: "16:00:00",
+    homeGoals: [
+      { player: "Cristian Romero", minute: "79" },
+      { player: "Lionel Messi", minute: "83" },
+      { player: "Enzo Fernández", minute: "90+2" }
+    ],
+    awayGoals: [
+      { player: "Yasser Ibrahim", minute: "15" },
+      { player: "Mostafa Ziko", minute: "67" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Yasser Ibrahim", minute: "15", type: "yellow" },
+      { player: "Mostafa Ziko", minute: "67", type: "yellow" },
+      { player: "Mostafa Shoubir", minute: "90+3", type: "yellow" },
+      { player: "Hamdy Fathy", minute: "90+4", type: "yellow" },
+      { player: "Marawan Attia", minute: "90+8", type: "yellow" }
+    ]
+  },
+  "2513671": {
+    stadium: "BC Place",
+    city: "Vancouver",
+    dateEvent: "2026-07-07",
+    strTime: "20:00:00",
+    homeGoals: [],
+    awayGoals: [],
+    homeCards: [
+      { player: "Granit Xhaka", minute: "51", type: "yellow" },
+      { player: "Denis Zakaria", minute: "59", type: "yellow" }
+    ],
+    awayCards: []
+  },
   "2515305": {
     stadium: "Gillette Stadium",
     city: "Foxborough",
