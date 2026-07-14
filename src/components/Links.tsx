@@ -85,7 +85,7 @@ export const Links: React.FC<LinksProps> = ({ links, lang }) => {
           <stop offset="0" stopColor="#ffe08a" />
           <stop offset="1" stopColor="#d99a1f" />
         </linearGradient>
-        <filter id="goldglow" x="-20%" y="-20%" width="140%" height="140%">
+        <filter id="goldglow" filterUnits="userSpaceOnUse" x="-50" y="-50" width={SIZE + 100} height={SIZE + 100}>
           <feGaussianBlur stdDeviation="3" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
