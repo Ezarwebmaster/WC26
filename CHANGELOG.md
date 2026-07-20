@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.1] - 2026-07-20
+### Fixed
+- **Champion Crest Positioning**: Changed the position property of the champion node from static to relative to ensure the team crest renders in the correct size and position without overlapping other elements.
+
 ## [1.9.0] - 2026-07-14
 ### Added
 - **Static 2026 Matches Data**: Stored all completed matches (Round of 32, Round of 16, and Quarter-finals) of the ongoing 2026 World Cup in a static store `src/api/static2026.ts`.

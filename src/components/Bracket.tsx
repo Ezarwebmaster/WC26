@@ -279,7 +279,7 @@ export const Bracket: React.FC<BracketProps> = ({ byStage, timezone, lang, seaso
       <div className="center">
         {center.finalM && center.champ ? (
           <>
-            <div className="node champ" style={{ position: "static", transform: "none", width: 66, height: 66, margin: "0 auto", marginBottom: 8 }}>
+            <div className="node champ" style={{ position: "relative", transform: "none", width: 66, height: 66, margin: "0 auto", marginBottom: 8 }}>
               {flagURL(center.champ) ? (
                 <img className="flag" src={flagURL(center.champ)!} alt={center.champ} />
               ) : center.badge ? (
