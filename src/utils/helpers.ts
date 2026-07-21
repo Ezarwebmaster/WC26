@@ -53,19 +53,19 @@ export function normAng(a: number) {
 // ===================== Display Utils =====================
 const FLAG_ISO: Record<string, string> = {
   Canada: "ca", Mexico: "mx", USA: "us", "United States": "us", Russia: "ru",
-  "South Africa": "za", Brazil: "br", Japan: "jp", Germany: "de", Paraguay: "py",
+  "South Africa": "za", Brazil: "br", Japan: "jp", Germany: "de", "West Germany": "de", Paraguay: "py",
   Netherlands: "nl", Morocco: "ma", "Ivory Coast": "ci", Norway: "no", France: "fr",
   Sweden: "se", Ecuador: "ec", England: "gb-eng", Scotland: "gb-sct", Wales: "gb-wls",
   "DR Congo": "cd", Belgium: "be", Senegal: "sn", "Bosnia-Herzegovina": "ba", Portugal: "pt",
   Croatia: "hr", Spain: "es", Austria: "at", Australia: "au", Egypt: "eg", Argentina: "ar",
   "Cape Verde": "cv", Switzerland: "ch", Algeria: "dz", Colombia: "co", Ghana: "gh", Qatar: "qa",
-  "South Korea": "kr", "Czech Republic": "cz", Haiti: "ht", Italy: "it", Uruguay: "uy", Nigeria: "ng",
+  "South Korea": "kr", "Czech Republic": "cz", Czechoslovakia: "cz", Haiti: "ht", Italy: "it", Uruguay: "uy", Nigeria: "ng",
   Cameroon: "cm", Tunisia: "tn", Iran: "ir", "Saudi Arabia": "sa", Denmark: "dk", Poland: "pl",
-  Serbia: "rs", Peru: "pe", Chile: "cl", Panama: "pa", "Costa Rica": "cr", Jamaica: "jm",
+  Serbia: "rs", Yugoslavia: "rs", "FR Yugoslavia": "rs", Peru: "pe", Chile: "cl", Panama: "pa", "Costa Rica": "cr", Jamaica: "jm",
   Honduras: "hn", "New Zealand": "nz", Jordan: "jo", Uzbekistan: "uz", Iraq: "iq",
   "United Arab Emirates": "ae", Curacao: "cw", Turkey: "tr", Greece: "gr", Ukraine: "ua",
   Ireland: "ie", "Republic of Ireland": "ie", "Panama ": "pa", Venezuela: "ve", Bolivia: "bo", Kenya: "ke", Slovakia: "sk",
-  Romania: "ro", "FR Yugoslavia": "rs", Bulgaria: "bg",
+  Romania: "ro", Bulgaria: "bg",
 };
 
 export function flagURL(name: string | null): string | null {
@@ -79,11 +79,11 @@ export function short(name: string | null): string {
   const map: Record<string, string> = {
     "South Africa": "RSA", "Ivory Coast": "CIV", "DR Congo": "COD", "Bosnia-Herzegovina": "BIH",
     "Cape Verde": "CPV", "South Korea": "KOR", "Saudi Arabia": "KSA", "United States": "USA", USA: "USA",
-    "Czech Republic": "CZE", "New Zealand": "NZL", "Costa Rica": "CRC", Austria: "AUT", Australia: "AUS",
-    Spain: "ESP", Netherlands: "NED", Japan: "JPN", Switzerland: "SUI", Germany: "GER", Morocco: "MAR",
+    "Czech Republic": "CZE", Czechoslovakia: "TCH", "New Zealand": "NZL", "Costa Rica": "CRC", Austria: "AUT", Australia: "AUS",
+    Spain: "ESP", Netherlands: "NED", Japan: "JPN", Switzerland: "SUI", Germany: "GER", "West Germany": "FRG", Morocco: "MAR",
     Paraguay: "PAR", Qatar: "QAT", Haiti: "HAI", England: "ENG", Portugal: "POR", Croatia: "CRO",
-    Slovakia: "SVK", Romania: "ROU", "FR Yugoslavia": "YUG", Bulgaria: "BUL", "Republic of Ireland": "IRL",
-    Ireland: "IRL", Nigeria: "NGA", Argentina: "ARG",
+    Slovakia: "SVK", Romania: "ROU", "FR Yugoslavia": "YUG", Yugoslavia: "YUG", Bulgaria: "BUL", "Republic of Ireland": "IRL",
+    Ireland: "IRL", Nigeria: "NGA", Argentina: "ARG", Cameroon: "CMR", Uruguay: "URU", Italy: "ITA",
   };
   if (map[name]) return map[name];
   return name.replace(/[^A-Za-z ]/g, "").slice(0, 3).toUpperCase();
