@@ -749,5 +749,311 @@ export const MATCH_DETAILS: Record<string, RichMatchDetails> = {
       { player: "José Manuel López", minute: "114", type: "yellow" }
     ],
     awayCards: []
+  },
+  "576424": {
+    stadium: "Fisht Olympic Stadium",
+    city: "Sochi",
+    dateEvent: "2018-06-30",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Edinson Cavani", minute: "7" },
+      { player: "Edinson Cavani", minute: "62" }
+    ],
+    awayGoals: [
+      { player: "Pepe", minute: "55" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Cristiano Ronaldo", minute: "90+3", type: "yellow" }
+    ]
+  },
+  "576426": {
+    stadium: "Kazan Arena",
+    city: "Kazan",
+    dateEvent: "2018-06-30",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Antoine Griezmann", minute: "13", type: "penalty" },
+      { player: "Benjamin Pavard", minute: "57" },
+      { player: "Kylian Mbappé", minute: "64" },
+      { player: "Kylian Mbappé", minute: "68" }
+    ],
+    awayGoals: [
+      { player: "Ángel Di María", minute: "41" },
+      { player: "Gabriel Mercado", minute: "48" },
+      { player: "Sergio Agüero", minute: "90+3" }
+    ],
+    homeCards: [
+      { player: "Blaise Matuidi", minute: "72", type: "yellow" },
+      { player: "Benjamin Pavard", minute: "73", type: "yellow" },
+      { player: "Olivier Giroud", minute: "90+3", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Marcos Rojo", minute: "11", type: "yellow" },
+      { player: "Nicolás Tagliafico", minute: "19", type: "yellow" },
+      { player: "Javier Mascherano", minute: "43", type: "yellow" },
+      { player: "Éver Banega", minute: "50", type: "yellow" },
+      { player: "Nicolás Otamendi", minute: "90+3", type: "yellow" }
+    ]
+  },
+  "576425": {
+    stadium: "Luzhniki Stadium",
+    city: "Moscow",
+    dateEvent: "2018-07-01",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Sergei Ignashevich", minute: "12", type: "own" }
+    ],
+    awayGoals: [
+      { player: "Artem Dzyuba", minute: "41", type: "penalty" }
+    ],
+    homeCards: [
+      { player: "Gerard Piqué", minute: "40", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Ilya Kutepov", minute: "54", type: "yellow" },
+      { player: "Roman Zobnin", minute: "71", type: "yellow" }
+    ]
+  },
+  "576464": {
+    stadium: "Nizhny Novgorod Stadium",
+    city: "Nizhny Novgorod",
+    dateEvent: "2018-07-01",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Mario Mandžukić", minute: "4" }
+    ],
+    awayGoals: [
+      { player: "Mathias Jørgensen", minute: "1" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Mathias Jørgensen", minute: "115", type: "yellow" }
+    ]
+  },
+  "576465": {
+    stadium: "Samara Arena",
+    city: "Samara",
+    dateEvent: "2018-07-02",
+    strTime: "18:00:00",
+    homeGoals: [
+      { player: "Neymar", minute: "51" },
+      { player: "Roberto Firmino", minute: "88" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Filipe Luís", minute: "43", type: "yellow" },
+      { player: "Casemiro", minute: "59", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Edson Álvarez", minute: "38", type: "yellow" },
+      { player: "Héctor Herrera", minute: "55", type: "yellow" },
+      { player: "Carlos Salcedo", minute: "77", type: "yellow" },
+      { player: "Andrés Guardado", minute: "90+2", type: "yellow" }
+    ]
+  },
+  "576468": {
+    stadium: "Rostov Arena",
+    city: "Rostov-on-Don",
+    dateEvent: "2018-07-02",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Jan Vertonghen", minute: "69" },
+      { player: "Marouane Fellaini", minute: "74" },
+      { player: "Nacer Chadli", minute: "90+4" }
+    ],
+    awayGoals: [
+      { player: "Genki Haraguchi", minute: "48" },
+      { player: "Takashi Inui", minute: "52" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Gaku Shibasaki", minute: "40", type: "yellow" }
+    ]
+  },
+  "576466": {
+    stadium: "Saint Petersburg Stadium",
+    city: "Saint Petersburg",
+    dateEvent: "2018-07-03",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Emil Forsberg", minute: "66" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Mikael Lustig", minute: "31", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Valon Behrami", minute: "61", type: "yellow" },
+      { player: "Granit Xhaka", minute: "68", type: "yellow" },
+      { player: "Michael Lang", minute: "90+4", type: "red" }
+    ]
+  },
+  "576467": {
+    stadium: "Spartak Stadium",
+    city: "Moscow",
+    dateEvent: "2018-07-03",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Yerry Mina", minute: "90+3" }
+    ],
+    awayGoals: [
+      { player: "Harry Kane", minute: "57", type: "penalty" }
+    ],
+    homeCards: [
+      { player: "Wilmar Barrios", minute: "41", type: "yellow" },
+      { player: "Santiago Arias", minute: "52", type: "yellow" },
+      { player: "Carlos Sánchez", minute: "54", type: "yellow" },
+      { player: "Radamel Falcao", minute: "63", type: "yellow" },
+      { player: "Carlos Bacca", minute: "64", type: "yellow" },
+      { player: "Juan Cuadrado", minute: "118", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Jordan Henderson", minute: "56", type: "yellow" },
+      { player: "Jesse Lingard", minute: "69", type: "yellow" }
+    ]
+  },
+  "576469": {
+    stadium: "Nizhny Novgorod Stadium",
+    city: "Nizhny Novgorod",
+    dateEvent: "2018-07-06",
+    strTime: "17:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Raphaël Varane", minute: "40" },
+      { player: "Antoine Griezmann", minute: "61" }
+    ],
+    homeCards: [
+      { player: "Rodrigo Bentancur", minute: "38", type: "yellow" },
+      { player: "Cristian Rodríguez", minute: "69", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Lucas Hernandez", minute: "33", type: "yellow" },
+      { player: "Kylian Mbappé", minute: "69", type: "yellow" }
+    ]
+  },
+  "576854": {
+    stadium: "Kazan Arena",
+    city: "Kazan",
+    dateEvent: "2018-07-06",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Renato Augusto", minute: "76" }
+    ],
+    awayGoals: [
+      { player: "Fernandinho", minute: "13", type: "own" },
+      { player: "Kevin De Bruyne", minute: "31" }
+    ],
+    homeCards: [
+      { player: "Fernandinho", minute: "85", type: "yellow" },
+      { player: "Fagner", minute: "90", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Toby Alderweireld", minute: "47", type: "yellow" },
+      { player: "Thomas Meunier", minute: "71", type: "yellow" }
+    ]
+  },
+  "576850": {
+    stadium: "Fisht Olympic Stadium",
+    city: "Sochi",
+    dateEvent: "2018-07-07",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Denis Cheryshev", minute: "31" },
+      { player: "Mário Fernandes", minute: "115" }
+    ],
+    awayGoals: [
+      { player: "Andrej Kramarić", minute: "39" },
+      { player: "Domagoj Vida", minute: "101" }
+    ],
+    homeCards: [
+      { player: "Yury Gazinsky", minute: "109", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Dejan Lovren", minute: "35", type: "yellow" },
+      { player: "Ivan Strinić", minute: "38", type: "yellow" },
+      { player: "Domagoj Vida", minute: "101", type: "yellow" },
+      { player: "Josip Pivarić", minute: "114", type: "yellow" }
+    ]
+  },
+  "576856": {
+    stadium: "Samara Arena",
+    city: "Samara",
+    dateEvent: "2018-07-07",
+    strTime: "18:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Harry Maguire", minute: "30" },
+      { player: "Dele Alli", minute: "59" }
+    ],
+    homeCards: [
+      { player: "John Guidetti", minute: "87", type: "yellow" },
+      { player: "Sebastian Larsson", minute: "90+4", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Harry Maguire", minute: "87", type: "yellow" }
+    ]
+  },
+  "576962": {
+    stadium: "Saint Petersburg Stadium",
+    city: "Saint Petersburg",
+    dateEvent: "2018-07-10",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Samuel Umtiti", minute: "51" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Kylian Mbappé", minute: "88", type: "yellow" },
+      { player: "N'Golo Kanté", minute: "90+3", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Jan Vertonghen", minute: "52", type: "yellow" },
+      { player: "Toby Alderweireld", minute: "64", type: "yellow" },
+      { player: "Eden Hazard", minute: "90+4", type: "yellow" }
+    ]
+  },
+  "576963": {
+    stadium: "Luzhniki Stadium",
+    city: "Moscow",
+    dateEvent: "2018-07-11",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Ivan Perišić", minute: "68" },
+      { player: "Mario Mandžukić", minute: "109" }
+    ],
+    awayGoals: [
+      { player: "Kieran Trippier", minute: "5" }
+    ],
+    homeCards: [
+      { player: "Mario Mandžukić", minute: "48", type: "yellow" },
+      { player: "Ante Rebić", minute: "96", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Kyle Walker", minute: "54", type: "yellow" }
+    ]
+  },
+  "577207": {
+    stadium: "Luzhniki Stadium",
+    city: "Moscow",
+    dateEvent: "2018-07-15",
+    strTime: "18:00:00",
+    homeGoals: [
+      { player: "Mario Mandžukić", minute: "18", type: "own" },
+      { player: "Antoine Griezmann", minute: "38", type: "penalty" },
+      { player: "Paul Pogba", minute: "59" },
+      { player: "Kylian Mbappé", minute: "65" }
+    ],
+    awayGoals: [
+      { player: "Ivan Perišić", minute: "28" },
+      { player: "Mario Mandžukić", minute: "69" }
+    ],
+    homeCards: [
+      { player: "N'Golo Kanté", minute: "27", type: "yellow" },
+      { player: "Lucas Hernandez", minute: "41", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Šime Vrsaljko", minute: "90+2", type: "yellow" }
+    ]
   }
 };
