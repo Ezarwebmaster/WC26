@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.10.0] - 2026-07-21
+### Added
+- **1990 World Cup Integration**: Added full historical knockout stage data for the 1990 World Cup in Italy (including host metadata, mascot Ciao ⚽, goalscorers, and penalty shootouts).
+
+### Changed
+- **Bracket Mapping**: Added R16 team pairing definitions (`BRACKET_R16_PAIRS_1990`) and updated `getMatchSlot` in `src/api/sportsdb.ts` to support the 1990 tournament layout.
+- **Fetch Integration**: Configured `fetchBracketData` in `src/api/sportsdb.ts` to bypass live requests for 1990 and directly load historical data.
+
 ## [1.9.1] - 2026-07-20
 ### Fixed
 - **Champion Crest Positioning**: Changed the position property of the champion node from static to relative to ensure the team crest renders in the correct size and position without overlapping other elements.
