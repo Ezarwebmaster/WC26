@@ -171,6 +171,24 @@ const SEASONS_DATA: SeasonInfo[] = [
       pt: "Stryker 🐶",
     },
   },
+  {
+    season: "1990",
+    flag: "🇮🇹",
+    hosts: {
+      en: "Italy",
+      fr: "Italie",
+      ar: "إيطاليا",
+      es: "Italia",
+      pt: "Itália",
+    },
+    mascot: {
+      en: "Ciao ⚽",
+      fr: "Ciao ⚽",
+      ar: "تشاو ⚽",
+      es: "Ciao ⚽",
+      pt: "Ciao ⚽",
+    },
+  },
 ];
 
 interface SeasonSelectProps {
