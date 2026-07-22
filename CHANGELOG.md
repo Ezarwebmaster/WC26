@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 - **Season Selector**: Updated `src/components/SeasonSelect.tsx` to include 1986 with host country flag (🇲🇽) and official mascot (Pique 🌶️) localized in all 5 supported languages (`en`, `fr`, `ar`, `es`, `pt`).
 
 ### Fixed
-- **Soviet Union Flag & Abbreviation**: Added missing ISO code mapping (`su`) and official FIFA 3-letter code (`URS`) for Soviet Union in `src/utils/helpers.ts` so that the flag badge renders correctly on bracket nodes.
+- **Historical Country SVG Flags**: Created authentic SVG flags in `public/flags/` for historical nations (Soviet Union / URSS, West Germany / RFA, SFR Yugoslavia, FR Yugoslavia, Czechoslovakia) and updated `flagURL` in `src/utils/helpers.ts` so real period-accurate flags render instead of modern country fallbacks.
 
 ## [1.12.0] - 2026-07-22
 ### Added

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <rect width="900" height="200" y="0" fill="#0038A8"/>
+  <rect width="900" height="200" y="200" fill="#FFFFFF"/>
+  <rect width="900" height="200" y="400" fill="#DE1E35"/>
+  <!-- Star with Gold border -->
+  <g transform="translate(450, 300)">
+    <polygon points="0,-140 41,-20 152,-20 62,45 96,157 0,88 -96,157 -62,45 -152,-20 -41,-20" fill="#DE1E35" stroke="#FFD700" stroke-width="16" stroke-linejoin="miter"/>
+  </g>
+</svg>

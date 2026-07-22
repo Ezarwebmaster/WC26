@@ -50,7 +50,15 @@ export function normAng(a: number) {
   return a;
 }
 
-// ===================== Display Utils =====================
+const LOCAL_FLAGS: Record<string, string> = {
+  "Soviet Union": "/flags/su.svg",
+  USSR: "/flags/su.svg",
+  "West Germany": "/flags/west-germany.svg",
+  Yugoslavia: "/flags/yugoslavia.svg",
+  "FR Yugoslavia": "/flags/fr-yugoslavia.svg",
+  Czechoslovakia: "/flags/czechoslovakia.svg",
+};
+
 const FLAG_ISO: Record<string, string> = {
   Canada: "ca", Mexico: "mx", USA: "us", "United States": "us", Russia: "ru",
   "South Africa": "za", Brazil: "br", Japan: "jp", Germany: "de", "West Germany": "de", Paraguay: "py",
@@ -70,6 +78,9 @@ const FLAG_ISO: Record<string, string> = {
 
 export function flagURL(name: string | null): string | null {
   if (!name) return null;
+  if (LOCAL_FLAGS[name]) {
+    return LOCAL_FLAGS[name];
+  }
   const c = FLAG_ISO[name];
   return c ? `https://flagcdn.com/w160/${c}.png` : null;
 }

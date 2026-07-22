@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  <rect width="1000" height="200" y="0" fill="#000000"/>
+  <rect width="1000" height="200" y="200" fill="#DD0000"/>
+  <rect width="1000" height="200" y="400" fill="#FFCC00"/>
+  <!-- Federal Shield -->
+  <g transform="translate(500, 300) scale(0.95)">
+    <path d="M -90 -130 L 90 -130 L 90 20 C 90 100 0 135 0 135 C 0 135 -90 100 -90 20 Z" fill="#FFCC00" stroke="#000000" stroke-width="8"/>
+    <!-- Federal Eagle -->
+    <path d="M 0 -85 C 18 -75 35 -55 50 -30 C 40 -20 55 0 70 20 C 50 25 40 45 28 75 C 16 55 0 65 0 65 C 0 65 -16 55 -28 75 C -40 45 -50 25 -70 20 C -55 0 -40 -20 -50 -30 C -35 -55 -18 -75 0 -85 Z" fill="#000000"/>
+    <polygon points="0,-95 -12,-72 0,-62 12,-72" fill="#DD0000"/>
+    <polygon points="-28,75 -20,95 -35,90" fill="#DD0000"/>
+    <polygon points="28,75 20,95 35,90" fill="#DD0000"/>
+  </g>
+</svg>
