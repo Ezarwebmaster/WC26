@@ -65,7 +65,7 @@ const FLAG_ISO: Record<string, string> = {
   Honduras: "hn", "New Zealand": "nz", Jordan: "jo", Uzbekistan: "uz", Iraq: "iq",
   "United Arab Emirates": "ae", Curacao: "cw", Turkey: "tr", Greece: "gr", Ukraine: "ua",
   Ireland: "ie", "Republic of Ireland": "ie", "Panama ": "pa", Venezuela: "ve", Bolivia: "bo", Kenya: "ke", Slovakia: "sk",
-  Romania: "ro", Bulgaria: "bg",
+  Romania: "ro", Bulgaria: "bg", "Soviet Union": "su", USSR: "su",
 };
 
 export function flagURL(name: string | null): string | null {
@@ -83,7 +83,7 @@ export function short(name: string | null): string {
     Spain: "ESP", Netherlands: "NED", Japan: "JPN", Switzerland: "SUI", Germany: "GER", "West Germany": "FRG", Morocco: "MAR",
     Paraguay: "PAR", Qatar: "QAT", Haiti: "HAI", England: "ENG", Portugal: "POR", Croatia: "CRO",
     Slovakia: "SVK", Romania: "ROU", "FR Yugoslavia": "YUG", Yugoslavia: "YUG", Bulgaria: "BUL", "Republic of Ireland": "IRL",
-    Ireland: "IRL", Nigeria: "NGA", Argentina: "ARG", Cameroon: "CMR", Uruguay: "URU", Italy: "ITA",
+    Ireland: "IRL", Nigeria: "NGA", Argentina: "ARG", Cameroon: "CMR", Uruguay: "URU", Italy: "ITA", "Soviet Union": "URS",
   };
   if (map[name]) return map[name];
   return name.replace(/[^A-Za-z ]/g, "").slice(0, 3).toUpperCase();

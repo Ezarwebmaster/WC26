@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file.
 - **Fetch Integration**: Configured `getKoRoundsForSeason` and `fetchBracketData` in `src/api/sportsdb.ts` to bypass live API requests for 1986 and directly load historical data.
 - **Season Selector**: Updated `src/components/SeasonSelect.tsx` to include 1986 with host country flag (🇲🇽) and official mascot (Pique 🌶️) localized in all 5 supported languages (`en`, `fr`, `ar`, `es`, `pt`).
 
+### Fixed
+- **Soviet Union Flag & Abbreviation**: Added missing ISO code mapping (`su`) and official FIFA 3-letter code (`URS`) for Soviet Union in `src/utils/helpers.ts` so that the flag badge renders correctly on bracket nodes.
+
 ## [1.12.0] - 2026-07-22
 ### Added
 - **2014 Match Details**: Added rich match details (stadiums, cities, goalscorers with minutes, yellow/red cards with minutes) for all 15 knockout stage matches of the 2014 World Cup in Brazil in `src/api/matchDetails.ts`.
