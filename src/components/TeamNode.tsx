@@ -111,6 +111,8 @@ export const TeamNode: React.FC<TeamNodeProps> = ({
             if (badge) {
               e.currentTarget.src = badge;
               e.currentTarget.style.objectFit = "contain";
+            } else {
+              e.currentTarget.style.display = "none";
             }
           }}
         />

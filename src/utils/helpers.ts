@@ -65,7 +65,7 @@ const FLAG_ISO: Record<string, string> = {
   Honduras: "hn", "New Zealand": "nz", Jordan: "jo", Uzbekistan: "uz", Iraq: "iq",
   "United Arab Emirates": "ae", Curacao: "cw", Turkey: "tr", Greece: "gr", Ukraine: "ua",
   Ireland: "ie", "Republic of Ireland": "ie", "Panama ": "pa", Venezuela: "ve", Bolivia: "bo", Kenya: "ke", Slovakia: "sk",
-  Romania: "ro", Bulgaria: "bg", "Soviet Union": "su", USSR: "su",
+  Romania: "ro", Bulgaria: "bg", "Soviet Union": "ru", USSR: "ru",
 };
 
 export function flagURL(name: string | null): string | null {
