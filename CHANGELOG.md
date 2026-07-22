@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.11.0] - 2026-07-21
+### Added
+- **2018 Match Details**: Added rich match details (stadiums, cities, goalscorers with minutes, yellow/red cards with minutes) for all 15 knockout stage matches of the 2018 World Cup in Russia in `src/api/matchDetails.ts`.
+
 ## [1.10.0] - 2026-07-21
 ### Added
 - **1990 World Cup Integration**: Added full historical knockout stage data for the 1990 World Cup in Italy (including host metadata, mascot Ciao ⚽, goalscorers, and penalty shootouts).
