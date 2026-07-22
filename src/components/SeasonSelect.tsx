@@ -189,6 +189,24 @@ const SEASONS_DATA: SeasonInfo[] = [
       pt: "Ciao ⚽",
     },
   },
+  {
+    season: "1986",
+    flag: "🇲🇽",
+    hosts: {
+      en: "Mexico",
+      fr: "Mexique",
+      ar: "المكسيك",
+      es: "México",
+      pt: "México",
+    },
+    mascot: {
+      en: "Pique 🌶️",
+      fr: "Pique 🌶️",
+      ar: "بيكي 🌶️",
+      es: "Pique 🌶️",
+      pt: "Pique 🌶️",
+    },
+  },
 ];
 
 interface SeasonSelectProps {
