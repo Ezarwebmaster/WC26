@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.12.0] - 2026-07-22
+### Added
+- **2014 Match Details**: Added rich match details (stadiums, cities, goalscorers with minutes, yellow/red cards with minutes) for all 15 knockout stage matches of the 2014 World Cup in Brazil in `src/api/matchDetails.ts`.
+
 ## [1.11.0] - 2026-07-21
 ### Added
 - **2018 Match Details**: Added rich match details (stadiums, cities, goalscorers with minutes, yellow/red cards with minutes) for all 15 knockout stage matches of the 2018 World Cup in Russia in `src/api/matchDetails.ts`.

@@ -1055,5 +1055,287 @@ export const MATCH_DETAILS: Record<string, RichMatchDetails> = {
     awayCards: [
       { player: "Šime Vrsaljko", minute: "90+2", type: "yellow" }
     ]
+  },
+  "505634": {
+    stadium: "Estádio Mineirão",
+    city: "Belo Horizonte",
+    dateEvent: "2014-06-28",
+    strTime: "13:00:00",
+    homeGoals: [
+      { player: "David Luiz", minute: "18" }
+    ],
+    awayGoals: [
+      { player: "Alexis Sánchez", minute: "32" }
+    ],
+    homeCards: [
+      { player: "Hulk", minute: "55", type: "yellow" },
+      { player: "Luiz Gustavo", minute: "60", type: "yellow" },
+      { player: "Jô", minute: "93", type: "yellow" },
+      { player: "Dani Alves", minute: "105+1", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Eugenio Mena", minute: "17", type: "yellow" },
+      { player: "Francisco Silva", minute: "40", type: "yellow" },
+      { player: "Mauricio Pinilla", minute: "102", type: "yellow" }
+    ]
+  },
+  "505635": {
+    stadium: "Estádio do Maracanã",
+    city: "Rio de Janeiro",
+    dateEvent: "2014-06-28",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "James Rodríguez", minute: "28" },
+      { player: "James Rodríguez", minute: "50" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Pablo Armero", minute: "78", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "José María Giménez", minute: "55", type: "yellow" },
+      { player: "Diego Lugano", minute: "77", type: "yellow" }
+    ]
+  },
+  "505636": {
+    stadium: "Estádio Castelão",
+    city: "Fortaleza",
+    dateEvent: "2014-06-29",
+    strTime: "13:00:00",
+    homeGoals: [
+      { player: "Wesley Sneijder", minute: "88" },
+      { player: "Klaas-Jan Huntelaar", minute: "90+4", type: "penalty" }
+    ],
+    awayGoals: [
+      { player: "Giovani dos Santos", minute: "48" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Paul Aguilar", minute: "69", type: "yellow" },
+      { player: "Rafael Márquez", minute: "90+2", type: "yellow" },
+      { player: "Andrés Guardado", minute: "90+3", type: "yellow" }
+    ]
+  },
+  "505637": {
+    stadium: "Itaipava Arena Pernambuco",
+    city: "Recife",
+    dateEvent: "2014-06-29",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Bryan Ruiz", minute: "52" }
+    ],
+    awayGoals: [
+      { player: "Sokratis Papastathopoulos", minute: "90+1" }
+    ],
+    homeCards: [
+      { player: "Óscar Duarte", minute: "42", type: "yellow" },
+      { player: "Yeltsin Tejeda", minute: "48", type: "yellow" },
+      { player: "Óscar Granados", minute: "57", type: "yellow" },
+      { player: "Óscar Duarte", minute: "66", type: "yellow-red" },
+      { player: "Bryan Ruiz", minute: "70", type: "yellow" },
+      { player: "Keylor Navas", minute: "90", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Andreas Samaris", minute: "36", type: "yellow" },
+      { player: "Konstantinos Manolas", minute: "72", type: "yellow" }
+    ]
+  },
+  "505638": {
+    stadium: "Estádio Nacional Mané Garrincha",
+    city: "Brasília",
+    dateEvent: "2014-06-30",
+    strTime: "13:00:00",
+    homeGoals: [
+      { player: "Paul Pogba", minute: "79" },
+      { player: "Joseph Yobo", minute: "90+2", type: "own" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Blaise Matuidi", minute: "54", type: "yellow" }
+    ],
+    awayCards: []
+  },
+  "505639": {
+    stadium: "Estádio Beira-Rio",
+    city: "Porto Alegre",
+    dateEvent: "2014-06-30",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "André Schürrle", minute: "92" },
+      { player: "Mesut Özil", minute: "120" }
+    ],
+    awayGoals: [
+      { player: "Abdelmoumene Djabou", minute: "120+1" }
+    ],
+    homeCards: [
+      { player: "Philipp Lahm", minute: "107", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Rafik Halliche", minute: "42", type: "yellow" }
+    ]
+  },
+  "505640": {
+    stadium: "Arena Corinthians",
+    city: "São Paulo",
+    dateEvent: "2014-07-01",
+    strTime: "13:00:00",
+    homeGoals: [
+      { player: "Ángel Di María", minute: "118" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Marcos Rojo", minute: "90", type: "yellow" },
+      { player: "Ángel Di María", minute: "120", type: "yellow" },
+      { player: "Ezequiel Garay", minute: "120+4", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Granit Xhaka", minute: "36", type: "yellow" },
+      { player: "Gelson Fernandes", minute: "73", type: "yellow" }
+    ]
+  },
+  "505641": {
+    stadium: "Itaipava Arena Fonte Nova",
+    city: "Salvador",
+    dateEvent: "2014-07-01",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Kevin De Bruyne", minute: "93" },
+      { player: "Romelu Lukaku", minute: "105" }
+    ],
+    awayGoals: [
+      { player: "Julian Green", minute: "107" }
+    ],
+    homeCards: [
+      { player: "Vincent Kompany", minute: "42", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Geoff Cameron", minute: "18", type: "yellow" }
+    ]
+  },
+  "505642": {
+    stadium: "Estádio do Maracanã",
+    city: "Rio de Janeiro",
+    dateEvent: "2014-07-04",
+    strTime: "13:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Mats Hummels", minute: "13" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Sami Khedira", minute: "54", type: "yellow" },
+      { player: "Bastian Schweinsteiger", minute: "80", type: "yellow" }
+    ]
+  },
+  "505643": {
+    stadium: "Estádio Castelão",
+    city: "Fortaleza",
+    dateEvent: "2014-07-04",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Thiago Silva", minute: "7" },
+      { player: "David Luiz", minute: "69" }
+    ],
+    awayGoals: [
+      { player: "James Rodríguez", minute: "80", type: "penalty" }
+    ],
+    homeCards: [
+      { player: "Thiago Silva", minute: "64", type: "yellow" },
+      { player: "Júlio César", minute: "78", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "James Rodríguez", minute: "67", type: "yellow" },
+      { player: "Mario Yepes", minute: "69", type: "yellow" }
+    ]
+  },
+  "505644": {
+    stadium: "Estádio Nacional Mané Garrincha",
+    city: "Brasília",
+    dateEvent: "2014-07-05",
+    strTime: "13:00:00",
+    homeGoals: [
+      { player: "Gonzalo Higuaín", minute: "8" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Lucas Biglia", minute: "75", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Eden Hazard", minute: "53", type: "yellow" },
+      { player: "Toby Alderweireld", minute: "68", type: "yellow" }
+    ]
+  },
+  "505645": {
+    stadium: "Itaipava Arena Fonte Nova",
+    city: "Salvador",
+    dateEvent: "2014-07-05",
+    strTime: "17:00:00",
+    homeGoals: [],
+    awayGoals: [],
+    homeCards: [
+      { player: "Bruno Martins Indi", minute: "64", type: "yellow" },
+      { player: "Klaas-Jan Huntelaar", minute: "111", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Júnior Díaz", minute: "37", type: "yellow" },
+      { player: "Michael Umaña", minute: "52", type: "yellow" },
+      { player: "Giancarlo González", minute: "81", type: "yellow" },
+      { player: "Johnny Acosta", minute: "107", type: "yellow" }
+    ]
+  },
+  "505646": {
+    stadium: "Estádio Mineirão",
+    city: "Belo Horizonte",
+    dateEvent: "2014-07-08",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Oscar", minute: "90" }
+    ],
+    awayGoals: [
+      { player: "Thomas Müller", minute: "11" },
+      { player: "Miroslav Klose", minute: "23" },
+      { player: "Toni Kroos", minute: "24" },
+      { player: "Toni Kroos", minute: "26" },
+      { player: "Sami Khedira", minute: "29" },
+      { player: "André Schürrle", minute: "69" },
+      { player: "André Schürrle", minute: "79" }
+    ],
+    homeCards: [
+      { player: "Dante", minute: "68", type: "yellow" }
+    ],
+    awayCards: []
+  },
+  "505647": {
+    stadium: "Arena Corinthians",
+    city: "São Paulo",
+    dateEvent: "2014-07-09",
+    strTime: "17:00:00",
+    homeGoals: [],
+    awayGoals: [],
+    homeCards: [
+      { player: "Bruno Martins Indi", minute: "45", type: "yellow" },
+      { player: "Klaas-Jan Huntelaar", minute: "105", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Martín Demichelis", minute: "49", type: "yellow" }
+    ]
+  },
+  "505649": {
+    stadium: "Estádio do Maracanã",
+    city: "Rio de Janeiro",
+    dateEvent: "2014-07-13",
+    strTime: "16:00:00",
+    homeGoals: [
+      { player: "Mario Götze", minute: "113" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Bastian Schweinsteiger", minute: "29", type: "yellow" },
+      { player: "Benedikt Höwedes", minute: "34", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Javier Mascherano", minute: "64", type: "yellow" },
+      { player: "Sergio Agüero", minute: "65", type: "yellow" }
+    ]
   }
 };
