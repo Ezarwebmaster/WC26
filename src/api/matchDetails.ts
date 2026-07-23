@@ -1337,5 +1337,312 @@ export const MATCH_DETAILS: Record<string, RichMatchDetails> = {
       { player: "Javier Mascherano", minute: "64", type: "yellow" },
       { player: "Sergio Agüero", minute: "65", type: "yellow" }
     ]
+  },
+  "538305": {
+    stadium: "Nelson Mandela Bay Stadium",
+    city: "Port Elizabeth",
+    dateEvent: "2010-06-26",
+    strTime: "16:00:00",
+    homeGoals: [
+      { player: "Luis Suárez", minute: "8" },
+      { player: "Luis Suárez", minute: "80" }
+    ],
+    awayGoals: [
+      { player: "Lee Chung-yong", minute: "68" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Kim Jung-woo", minute: "38", type: "yellow" },
+      { player: "Cha Du-ri", minute: "69", type: "yellow" },
+      { player: "Cho Yong-hyung", minute: "83", type: "yellow" }
+    ]
+  },
+  "538319": {
+    stadium: "Royal Bafokeng Stadium",
+    city: "Rustenburg",
+    dateEvent: "2010-06-26",
+    strTime: "20:30:00",
+    homeGoals: [
+      { player: "Landon Donovan", minute: "62", type: "penalty" }
+    ],
+    awayGoals: [
+      { player: "Kevin-Prince Boateng", minute: "5" },
+      { player: "Asamoah Gyan", minute: "93" }
+    ],
+    homeCards: [
+      { player: "Ricardo Clark", minute: "7", type: "yellow" },
+      { player: "Steve Cherundolo", minute: "18", type: "yellow" },
+      { player: "Carlos Bocanegra", minute: "68", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Jonathan Mensah", minute: "61", type: "yellow" },
+      { player: "André Ayew", minute: "92", type: "yellow" }
+    ]
+  },
+  "538325": {
+    stadium: "Moses Mabhida Stadium",
+    city: "Durban",
+    dateEvent: "2010-06-28",
+    strTime: "16:00:00",
+    homeGoals: [
+      { player: "Arjen Robben", minute: "18" },
+      { player: "Wesley Sneijder", minute: "84" }
+    ],
+    awayGoals: [
+      { player: "Róbert Vittek", minute: "90+4", type: "penalty" }
+    ],
+    homeCards: [
+      { player: "Arjen Robben", minute: "31", type: "yellow" },
+      { player: "Maarten Stekelenburg", minute: "90+3", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Juraj Kucka", minute: "40", type: "yellow" },
+      { player: "Kamil Kopúnek", minute: "72", type: "yellow" },
+      { player: "Martin Škrtel", minute: "84", type: "yellow" }
+    ]
+  },
+  "538329": {
+    stadium: "Ellis Park Stadium",
+    city: "Johannesburg",
+    dateEvent: "2010-06-28",
+    strTime: "20:30:00",
+    homeGoals: [
+      { player: "Juan", minute: "35" },
+      { player: "Luís Fabiano", minute: "38" },
+      { player: "Robinho", minute: "59" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Kaká", minute: "30", type: "yellow" },
+      { player: "Ramires", minute: "72", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Arturo Vidal", minute: "47", type: "yellow" },
+      { player: "Ismael Fuentes", minute: "68", type: "yellow" },
+      { player: "Rodrigo Millar", minute: "80", type: "yellow" }
+    ]
+  },
+  "538307": {
+    stadium: "Soccer City",
+    city: "Johannesburg",
+    dateEvent: "2010-06-27",
+    strTime: "20:30:00",
+    homeGoals: [
+      { player: "Carlos Tevez", minute: "26" },
+      { player: "Gonzalo Higuaín", minute: "33" },
+      { player: "Carlos Tevez", minute: "52" }
+    ],
+    awayGoals: [
+      { player: "Javier Hernández", minute: "71" }
+    ],
+    homeCards: [],
+    awayCards: [
+      { player: "Rafael Márquez", minute: "28", type: "yellow" }
+    ]
+  },
+  "538306": {
+    stadium: "Free State Stadium",
+    city: "Bloemfontein",
+    dateEvent: "2010-06-27",
+    strTime: "16:00:00",
+    homeGoals: [
+      { player: "Miroslav Klose", minute: "20" },
+      { player: "Lukas Podolski", minute: "32" },
+      { player: "Thomas Müller", minute: "67" },
+      { player: "Thomas Müller", minute: "70" }
+    ],
+    awayGoals: [
+      { player: "Matthew Upson", minute: "37" }
+    ],
+    homeCards: [
+      { player: "Arne Friedrich", minute: "47", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Glen Johnson", minute: "81", type: "yellow" }
+    ]
+  },
+  "1033973": {
+    stadium: "Loftus Versfeld Stadium",
+    city: "Pretoria",
+    dateEvent: "2010-06-29",
+    strTime: "14:00:00",
+    homeGoals: [],
+    awayGoals: [],
+    homeCards: [
+      { player: "Cristian Riveros", minute: "118", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Daisuke Matsui", minute: "58", type: "yellow" },
+      { player: "Yuto Nagatomo", minute: "72", type: "yellow" },
+      { player: "Keisuke Honda", minute: "90+3", type: "yellow" },
+      { player: "Yasuhito Endō", minute: "113", type: "yellow" }
+    ]
+  },
+  "538308": {
+    stadium: "Cape Town Stadium",
+    city: "Cape Town",
+    dateEvent: "2010-06-29",
+    strTime: "20:30:00",
+    homeGoals: [
+      { player: "David Villa", minute: "63" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Xabi Alonso", minute: "74", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Tiago", minute: "80", type: "yellow" },
+      { player: "Ricardo Costa", minute: "89", type: "red" }
+    ]
+  },
+  "538320": {
+    stadium: "Soccer City",
+    city: "Johannesburg",
+    dateEvent: "2010-07-02",
+    strTime: "20:30:00",
+    homeGoals: [
+      { player: "Diego Forlán", minute: "55" }
+    ],
+    awayGoals: [
+      { player: "Sulley Muntari", minute: "45+2" }
+    ],
+    homeCards: [
+      { player: "Jorge Fucile", minute: "20", type: "yellow" },
+      { player: "Egidio Arévalo Ríos", minute: "48", type: "yellow" },
+      { player: "Diego Pérez", minute: "59", type: "yellow" },
+      { player: "Luis Suárez", minute: "120+1", type: "red" }
+    ],
+    awayCards: [
+      { player: "John Paintsil", minute: "54", type: "yellow" },
+      { player: "Hans Sarpei", minute: "77", type: "yellow" },
+      { player: "John Mensah", minute: "93", type: "yellow" }
+    ]
+  },
+  "538309": {
+    stadium: "Nelson Mandela Bay Stadium",
+    city: "Port Elizabeth",
+    dateEvent: "2010-07-02",
+    strTime: "16:00:00",
+    homeGoals: [
+      { player: "Wesley Sneijder", minute: "53" },
+      { player: "Wesley Sneijder", minute: "68" }
+    ],
+    awayGoals: [
+      { player: "Robinho", minute: "10" }
+    ],
+    homeCards: [
+      { player: "John Heitinga", minute: "14", type: "yellow" },
+      { player: "Gregory van der Wiel", minute: "47", type: "yellow" },
+      { player: "Nigel de Jong", minute: "64", type: "yellow" },
+      { player: "André Ooijer", minute: "76", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Michel Bastos", minute: "37", type: "yellow" },
+      { player: "Felipe Melo", minute: "73", type: "red" }
+    ]
+  },
+  "538310": {
+    stadium: "Cape Town Stadium",
+    city: "Cape Town",
+    dateEvent: "2010-07-03",
+    strTime: "16:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Thomas Müller", minute: "3" },
+      { player: "Miroslav Klose", minute: "68" },
+      { player: "Arne Friedrich", minute: "74" },
+      { player: "Miroslav Klose", minute: "89" }
+    ],
+    homeCards: [
+      { player: "Nicolás Otamendi", minute: "11", type: "yellow" },
+      { player: "Javier Mascherano", minute: "80", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Thomas Müller", minute: "35", type: "yellow" }
+    ]
+  },
+  "1033974": {
+    stadium: "Ellis Park Stadium",
+    city: "Johannesburg",
+    dateEvent: "2010-07-03",
+    strTime: "18:30:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "David Villa", minute: "83" }
+    ],
+    homeCards: [
+      { player: "Víctor Cáceres", minute: "59", type: "yellow" },
+      { player: "Antolín Alcaraz", minute: "59", type: "yellow" },
+      { player: "Claudio Morel", minute: "71", type: "yellow" },
+      { player: "Jonathan Santana", minute: "88", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Gerard Piqué", minute: "57", type: "yellow" },
+      { player: "Sergio Busquets", minute: "63", type: "yellow" }
+    ]
+  },
+  "538311": {
+    stadium: "Cape Town Stadium",
+    city: "Cape Town",
+    dateEvent: "2010-07-06",
+    strTime: "20:30:00",
+    homeGoals: [
+      { player: "Diego Forlán", minute: "41" },
+      { player: "Maxi Pereira", minute: "90+2" }
+    ],
+    awayGoals: [
+      { player: "Giovanni van Bronckhorst", minute: "18" },
+      { player: "Wesley Sneijder", minute: "70" },
+      { player: "Arjen Robben", minute: "73" }
+    ],
+    homeCards: [
+      { player: "Maxi Pereira", minute: "21", type: "yellow" },
+      { player: "Martín Cáceres", minute: "29", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Wesley Sneijder", minute: "29", type: "yellow" },
+      { player: "Khalid Boulahrouz", minute: "78", type: "yellow" },
+      { player: "Mark van Bommel", minute: "90+5", type: "yellow" }
+    ]
+  },
+  "538312": {
+    stadium: "Moses Mabhida Stadium",
+    city: "Durban",
+    dateEvent: "2010-07-07",
+    strTime: "20:30:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Carles Puyol", minute: "73" }
+    ],
+    homeCards: [],
+    awayCards: []
+  },
+  "538314": {
+    stadium: "Soccer City",
+    city: "Johannesburg",
+    dateEvent: "2010-07-11",
+    strTime: "20:30:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Andrés Iniesta", minute: "116" }
+    ],
+    homeCards: [
+      { player: "Robin van Persie", minute: "15", type: "yellow" },
+      { player: "Mark van Bommel", minute: "22", type: "yellow" },
+      { player: "Nigel de Jong", minute: "28", type: "yellow" },
+      { player: "Giovanni van Bronckhorst", minute: "54", type: "yellow" },
+      { player: "John Heitinga", minute: "57", type: "yellow" },
+      { player: "Arjen Robben", minute: "84", type: "yellow" },
+      { player: "John Heitinga", minute: "109", type: "yellow-red" },
+      { player: "Gregory van der Wiel", minute: "111", type: "yellow" },
+      { player: "Joris Mathijsen", minute: "117", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Carles Puyol", minute: "16", type: "yellow" },
+      { player: "Sergio Ramos", minute: "23", type: "yellow" },
+      { player: "Joan Capdevila", minute: "67", type: "yellow" },
+      { player: "Andrés Iniesta", minute: "118", type: "yellow" },
+      { player: "Xavi", minute: "121", type: "yellow" }
+    ]
   }
 };

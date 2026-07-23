@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.15.0] - 2026-07-23
+### Added
+- **2010 Match Details**: Added rich match details (stadiums, cities, goalscorers with minutes, yellow/red cards with minutes) for all 15 knockout stage matches of the 2010 World Cup in South Africa in `src/api/matchDetails.ts`.
+
 ## [1.14.0] - 2026-07-23
 ### Added
 - **1982 World Cup Integration**: Added full historical knockout stage data for the 1982 World Cup in Spain (including host metadata, mascot Naranjito 🍊, goalscorers with minutes, and penalty shootouts) in `src/api/historicalData.ts`.
