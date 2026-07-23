@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.14.0] - 2026-07-23
+### Added
+- **1982 World Cup Integration**: Added full historical knockout stage data for the 1982 World Cup in Spain (including host metadata, mascot Naranjito 🍊, goalscorers with minutes, and penalty shootouts) in `src/api/historicalData.ts`.
+
+### Changed
+- **Bracket Mapping**: Added R16 team pairing definitions (`BRACKET_R16_PAIRS_1982`) and updated `getMatchSlot` in `src/api/sportsdb.ts` to support the 1982 tournament layout.
+- **Fetch Integration**: Configured `getKoRoundsForSeason` and `fetchBracketData` in `src/api/sportsdb.ts` to bypass live API requests for 1982 and directly load historical data.
+- **Season Selector**: Updated `src/components/SeasonSelect.tsx` to include 1982 with host country flag (🇪🇸) and official mascot (Naranjito 🍊) localized in all 5 supported languages (`en`, `fr`, `ar`, `es`, `pt`).
+- **Flags & Country Abbreviations**: Verified ISO codes and 3-letter country shortcodes for 1982 teams in `src/utils/helpers.ts`.
+
 ## [1.13.0] - 2026-07-22
 ### Added
 - **1986 World Cup Integration**: Added full historical knockout stage data for the 1986 World Cup in Mexico (including host metadata, mascot Pique 🌶️, goalscorers with minutes, and penalty shootouts) in `src/api/historicalData.ts`.

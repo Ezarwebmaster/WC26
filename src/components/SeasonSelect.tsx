@@ -207,6 +207,24 @@ const SEASONS_DATA: SeasonInfo[] = [
       pt: "Pique 🌶️",
     },
   },
+  {
+    season: "1982",
+    flag: "🇪🇸",
+    hosts: {
+      en: "Spain",
+      fr: "Espagne",
+      ar: "إسبانيا",
+      es: "España",
+      pt: "Espanha",
+    },
+    mascot: {
+      en: "Naranjito 🍊",
+      fr: "Naranjito 🍊",
+      ar: "نارانخيتو 🍊",
+      es: "Naranjito 🍊",
+      pt: "Naranjito 🍊",
+    },
+  },
 ];
 
 interface SeasonSelectProps {
