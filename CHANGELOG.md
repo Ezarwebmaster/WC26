@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.16.0] - 2026-07-24
+### Added
+- **1978 World Cup Integration**: Added full historical knockout stage data for the 1978 World Cup in Argentina (including host metadata, mascot Gauchito 🤠, goalscorers with minutes) in `src/api/historicalData.ts`.
+
+### Changed
+- **Bracket Mapping**: Added team pairing definitions (`BRACKET_R16_PAIRS_1978`) and updated `getMatchSlot` in `src/api/sportsdb.ts` to support the 1978 tournament layout.
+- **Fetch Integration**: Configured `getKoRoundsForSeason` and `fetchBracketData` in `src/api/sportsdb.ts` to bypass live API requests for 1978 and directly load historical data.
+- **Season Selector**: Updated `src/components/SeasonSelect.tsx` to include 1978 with host country flag (🇦🇷) and official mascot (Gauchito 🤠) localized in all 5 supported languages (`en`, `fr`, `ar`, `es`, `pt`).
+- **Flags & Country Abbreviations**: Verified ISO codes and 3-letter country shortcodes for 1978 teams in `src/utils/helpers.ts`.
+
 ## [1.15.0] - 2026-07-23
 ### Added
 - **2010 Match Details**: Added rich match details (stadiums, cities, goalscorers with minutes, yellow/red cards with minutes) for all 15 knockout stage matches of the 2010 World Cup in South Africa in `src/api/matchDetails.ts`.

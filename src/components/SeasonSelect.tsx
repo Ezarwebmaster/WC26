@@ -225,6 +225,24 @@ const SEASONS_DATA: SeasonInfo[] = [
       pt: "Naranjito 🍊",
     },
   },
+  {
+    season: "1978",
+    flag: "🇦🇷",
+    hosts: {
+      en: "Argentina",
+      fr: "Argentine",
+      ar: "الأرجنتين",
+      es: "Argentina",
+      pt: "Argentina",
+    },
+    mascot: {
+      en: "Gauchito 🤠",
+      fr: "Gauchito 🤠",
+      ar: "غوتشيتو 🤠",
+      es: "Gauchito 🤠",
+      pt: "Gauchito 🤠",
+    },
+  },
 ];
 
 interface SeasonSelectProps {

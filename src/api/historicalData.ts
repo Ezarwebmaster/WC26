@@ -2308,5 +2308,48 @@ export const HISTORICAL_DATA: Record<string, BracketResult> = {
     },
     failedStages: [],
   },
+  "1978": {
+    byStage: {
+      R32: [],
+      R16: [],
+      QF: [],
+      SF: [
+        {
+          idEvent: "197801",
+          strEvent: "Brazil vs Italy",
+          strHomeTeam: "Brazil",
+          strAwayTeam: "Italy",
+          intHomeScore: "2",
+          intAwayScore: "1",
+          strHomeTeamBadge: null,
+          strAwayTeamBadge: null,
+          dateEvent: "1978-06-24",
+          strTime: "15:00:00",
+          strStatus: "FT",
+          strHomeGoalDetails: "Nelinho 64'; Dirceu 71'",
+          strAwayGoalDetails: "Causio 38'",
+        },
+      ],
+      F: [
+        {
+          idEvent: "197802",
+          strEvent: "Argentina vs Netherlands",
+          strHomeTeam: "Argentina",
+          strAwayTeam: "Netherlands",
+          intHomeScore: "3",
+          intAwayScore: "1",
+          strHomeTeamBadge: null,
+          strAwayTeamBadge: null,
+          dateEvent: "1978-06-25",
+          strTime: "15:00:00",
+          strStatus: "AET",
+          strHomeGoalDetails: "Kempes 38', 105'; Bertoni 115'",
+          strAwayGoalDetails: "Nanninga 82'",
+        },
+      ],
+    },
+    failedStages: [],
+  },
 };
+
 
