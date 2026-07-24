@@ -1644,5 +1644,312 @@ export const MATCH_DETAILS: Record<string, RichMatchDetails> = {
       { player: "Andrés Iniesta", minute: "118", type: "yellow" },
       { player: "Xavi", minute: "121", type: "yellow" }
     ]
+  },
+  "1034683": {
+    stadium: "Allianz Arena",
+    city: "Munich",
+    dateEvent: "2006-06-24",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Lukas Podolski", minute: "4" },
+      { player: "Lukas Podolski", minute: "12" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Torsten Frings", minute: "27", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Teddy Lučić", minute: "28", type: "yellow" },
+      { player: "Teddy Lučić", minute: "35", type: "yellow-red" },
+      { player: "Mattias Jonson", minute: "48", type: "yellow" },
+      { player: "Marcus Allbäck", minute: "78", type: "yellow" }
+    ]
+  },
+  "1034684": {
+    stadium: "Zentralstadion",
+    city: "Leipzig",
+    dateEvent: "2006-06-24",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Hernán Crespo", minute: "10" },
+      { player: "Maxi Rodríguez", minute: "98" }
+    ],
+    awayGoals: [
+      { player: "Rafael Márquez", minute: "6" }
+    ],
+    homeCards: [
+      { player: "Gabriel Heinze", minute: "45+1", type: "yellow" },
+      { player: "Juan Pablo Sorín", minute: "112", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Rafael Márquez", minute: "70", type: "yellow" },
+      { player: "José Antonio Castro", minute: "82", type: "yellow" },
+      { player: "Gerardo Torrado", minute: "118", type: "yellow" },
+      { player: "Francisco Fonseca", minute: "119", type: "yellow" }
+    ]
+  },
+  "1034685": {
+    stadium: "Gottlieb-Daimler-Stadion",
+    city: "Stuttgart",
+    dateEvent: "2006-06-25",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "David Beckham", minute: "60" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "John Terry", minute: "18", type: "yellow" },
+      { player: "Paul Robinson", minute: "78", type: "yellow" },
+      { player: "Jamie Carragher", minute: "82", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Antonio Valencia", minute: "24", type: "yellow" },
+      { player: "Carlos Tenorio", minute: "37", type: "yellow" },
+      { player: "Ulises de la Cruz", minute: "67", type: "yellow" }
+    ]
+  },
+  "1034686": {
+    stadium: "Frankenstadion",
+    city: "Nuremberg",
+    dateEvent: "2006-06-25",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Maniche", minute: "23" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Maniche", minute: "20", type: "yellow" },
+      { player: "Costinha", minute: "31", type: "yellow" },
+      { player: "Costinha", minute: "45+1", type: "yellow-red" },
+      { player: "Petit", minute: "50", type: "yellow" },
+      { player: "Luís Figo", minute: "60", type: "yellow" },
+      { player: "Deco", minute: "73", type: "yellow" },
+      { player: "Ricardo", minute: "76", type: "yellow" },
+      { player: "Nuno Valente", minute: "76", type: "yellow" },
+      { player: "Deco", minute: "78", type: "yellow-red" }
+    ],
+    awayCards: [
+      { player: "Mark van Bommel", minute: "2", type: "yellow" },
+      { player: "Khalid Boulahrouz", minute: "7", type: "yellow" },
+      { player: "Giovanni van Bronckhorst", minute: "59", type: "yellow" },
+      { player: "Khalid Boulahrouz", minute: "63", type: "yellow-red" },
+      { player: "Wesley Sneijder", minute: "73", type: "yellow" },
+      { player: "Rafael van der Vaart", minute: "74", type: "yellow" },
+      { player: "Giovanni van Bronckhorst", minute: "90+5", type: "yellow-red" }
+    ]
+  },
+  "1034687": {
+    stadium: "Fritz-Walter-Stadion",
+    city: "Kaiserslautern",
+    dateEvent: "2006-06-26",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Francesco Totti", minute: "90+5", type: "penalty" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Fabio Grosso", minute: "29", type: "yellow" },
+      { player: "Marco Materazzi", minute: "50", type: "red" },
+      { player: "Gennaro Gattuso", minute: "89", type: "yellow" },
+      { player: "Gianluca Zambrotta", minute: "90+1", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Vince Grella", minute: "23", type: "yellow" },
+      { player: "Tim Cahill", minute: "49", type: "yellow" },
+      { player: "Luke Wilkshire", minute: "61", type: "yellow" }
+    ]
+  },
+  "1034688": {
+    stadium: "RheinEnergieStadion",
+    city: "Cologne",
+    dateEvent: "2006-06-26",
+    strTime: "21:00:00",
+    homeGoals: [],
+    awayGoals: [],
+    homeCards: [
+      { player: "Tranquillo Barnetta", minute: "59", type: "yellow" }
+    ],
+    awayCards: []
+  },
+  "1034689": {
+    stadium: "Westfalenstadion",
+    city: "Dortmund",
+    dateEvent: "2006-06-27",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Ronaldo", minute: "5" },
+      { player: "Adriano", minute: "45+1" },
+      { player: "Zé Roberto", minute: "84" }
+    ],
+    awayGoals: [],
+    homeCards: [
+      { player: "Adriano", minute: "13", type: "yellow" },
+      { player: "Juan", minute: "44", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Stephen Appiah", minute: "7", type: "yellow" },
+      { player: "Sulley Muntari", minute: "11", type: "yellow" },
+      { player: "John Paintsil", minute: "29", type: "yellow" },
+      { player: "Eric Addo", minute: "38", type: "yellow" },
+      { player: "Asamoah Gyan", minute: "48", type: "yellow" },
+      { player: "Asamoah Gyan", minute: "81", type: "yellow-red" }
+    ]
+  },
+  "1034690": {
+    stadium: "Niedersachsenstadion",
+    city: "Hanover",
+    dateEvent: "2006-06-27",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "David Villa", minute: "28", type: "penalty" }
+    ],
+    awayGoals: [
+      { player: "Franck Ribéry", minute: "41" },
+      { player: "Patrick Vieira", minute: "83" },
+      { player: "Zinedine Zidane", minute: "90+2" }
+    ],
+    homeCards: [
+      { player: "Carles Puyol", minute: "82", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Patrick Vieira", minute: "68", type: "yellow" },
+      { player: "Franck Ribéry", minute: "87", type: "yellow" },
+      { player: "Zinedine Zidane", minute: "90+1", type: "yellow" }
+    ]
+  },
+  "1034691": {
+    stadium: "Olympiastadion",
+    city: "Berlin",
+    dateEvent: "2006-06-30",
+    strTime: "17:00:00",
+    homeGoals: [
+      { player: "Miroslav Klose", minute: "80" }
+    ],
+    awayGoals: [
+      { player: "Roberto Ayala", minute: "49" }
+    ],
+    homeCards: [
+      { player: "Lukas Podolski", minute: "3", type: "yellow" },
+      { player: "David Odonkor", minute: "94", type: "yellow" },
+      { player: "Arne Friedrich", minute: "114", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Juan Pablo Sorín", minute: "46", type: "yellow" },
+      { player: "Javier Mascherano", minute: "60", type: "yellow" },
+      { player: "Maxi Rodríguez", minute: "88", type: "yellow" },
+      { player: "Julio Cruz", minute: "95", type: "yellow" },
+      { player: "Leandro Cufré", minute: "120", type: "red" }
+    ]
+  },
+  "1034692": {
+    stadium: "Volksparkstadion",
+    city: "Hamburg",
+    dateEvent: "2006-06-30",
+    strTime: "21:00:00",
+    homeGoals: [
+      { player: "Gianluca Zambrotta", minute: "6" },
+      { player: "Luca Toni", minute: "59" },
+      { player: "Luca Toni", minute: "69" }
+    ],
+    awayGoals: [],
+    homeCards: [],
+    awayCards: [
+      { player: "Vyacheslav Sviderskyi", minute: "16", type: "yellow" },
+      { player: "Maksym Kalynychenko", minute: "21", type: "yellow" },
+      { player: "Artem Milevskyi", minute: "67", type: "yellow" }
+    ]
+  },
+  "1034693": {
+    stadium: "Arena AufSchalke",
+    city: "Gelsenkirchen",
+    dateEvent: "2006-07-01",
+    strTime: "17:00:00",
+    homeGoals: [],
+    awayGoals: [],
+    homeCards: [
+      { player: "John Terry", minute: "30", type: "yellow" },
+      { player: "Wayne Rooney", minute: "62", type: "red" },
+      { player: "Owen Hargreaves", minute: "107", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Petit", minute: "44", type: "yellow" },
+      { player: "Ricardo Carvalho", minute: "111", type: "yellow" }
+    ]
+  },
+  "1034694": {
+    stadium: "Waldstadion",
+    city: "Frankfurt",
+    dateEvent: "2006-07-01",
+    strTime: "21:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Thierry Henry", minute: "57" }
+    ],
+    homeCards: [
+      { player: "Cafu", minute: "25", type: "yellow" },
+      { player: "Juan", minute: "45", type: "yellow" },
+      { player: "Ronaldo", minute: "45+2", type: "yellow" },
+      { player: "Lúcio", minute: "75", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Willy Sagnol", minute: "74", type: "yellow" },
+      { player: "Louis Saha", minute: "87", type: "yellow" },
+      { player: "Lilian Thuram", minute: "88", type: "yellow" }
+    ]
+  },
+  "1034695": {
+    stadium: "Westfalenstadion",
+    city: "Dortmund",
+    dateEvent: "2006-07-04",
+    strTime: "21:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Fabio Grosso", minute: "119" },
+      { player: "Alessandro Del Piero", minute: "120+1" }
+    ],
+    homeCards: [
+      { player: "Tim Borowski", minute: "40", type: "yellow" },
+      { player: "Christoph Metzelder", minute: "56", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Mauro Camoranesi", minute: "90", type: "yellow" }
+    ]
+  },
+  "1034696": {
+    stadium: "Allianz Arena",
+    city: "Munich",
+    dateEvent: "2006-07-05",
+    strTime: "21:00:00",
+    homeGoals: [],
+    awayGoals: [
+      { player: "Zinedine Zidane", minute: "33", type: "penalty" }
+    ],
+    homeCards: [
+      { player: "Ricardo Carvalho", minute: "83", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Louis Saha", minute: "87", type: "yellow" }
+    ]
+  },
+  "1034698": {
+    stadium: "Olympiastadion",
+    city: "Berlin",
+    dateEvent: "2006-07-09",
+    strTime: "20:00:00",
+    homeGoals: [
+      { player: "Marco Materazzi", minute: "19" }
+    ],
+    awayGoals: [
+      { player: "Zinedine Zidane", minute: "7", type: "penalty" }
+    ],
+    homeCards: [
+      { player: "Gianluca Zambrotta", minute: "5", type: "yellow" }
+    ],
+    awayCards: [
+      { player: "Willy Sagnol", minute: "12", type: "yellow" },
+      { player: "Claude Makélélé", minute: "76", type: "yellow" },
+      { player: "Zinedine Zidane", minute: "110", type: "red" },
+      { player: "Florent Malouda", minute: "111", type: "yellow" }
+    ]
   }
 };

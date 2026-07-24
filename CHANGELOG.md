@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.17.0] - 2026-07-24
+### Added
+- **2006 Match Details**: Added rich match details (stadiums, cities, goalscorers with minutes, yellow/red cards with minutes) for all 15 knockout stage matches of the 2006 World Cup in Germany in `src/api/matchDetails.ts`.
+
 ## [1.16.0] - 2026-07-24
 ### Added
 - **1978 World Cup Integration**: Added full historical knockout stage data for the 1978 World Cup in Argentina (including host metadata, mascot Gauchito 🤠, goalscorers with minutes) in `src/api/historicalData.ts`.
